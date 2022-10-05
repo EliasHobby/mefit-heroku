@@ -10,12 +10,11 @@ if (process.env.NODE_ENV === 'production') {
         if (req.header('x-forwarded-proto') !== 'https')
             res.redirect(`https://${req.header('host')}${req.url}`)
         else
-            res.sendFile(path.join(publicPath, 'index.html'));
-        next()
+            next()
     })
 }
 app.get('*', (req, res) => {
-
+    res.sendFile(path.join(publicPath, 'index.html'));
 });
 app.listen(port, () => {
     console.log('Server is up!');
