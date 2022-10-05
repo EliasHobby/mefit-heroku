@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Link from '@mui/material/Link';
 
-const pages = ['Programs', 'Workouts', 'Exercises',];
+const pages = ['Programs', 'Workouts', 'Exercises'];
 const settings = ['Profile', 'Contributors', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {

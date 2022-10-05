@@ -1,10 +1,14 @@
 import ProgramCard from "../components/ProgramCard/ProgramCard";
+import '../App.css';
 
 const Programs = () => {
+    
     return (
         <>
             <h1>Programs</h1>
-            <ProgramCard></ProgramCard>
+            <div className="program-card-container">
+                <ProgramCard />
+            </div>
         </>
     )
 }

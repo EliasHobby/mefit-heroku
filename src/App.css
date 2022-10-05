@@ -1,0 +1,7 @@
+.program-card-container {
+    margin: 4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
