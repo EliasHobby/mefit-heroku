@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Link from '@mui/material/Link';
+import { useKeycloak } from '@react-keycloak/web';
 
 const pages = ['Programs', 'Workouts', 'Exercises'];
 const settings = ['Profile', 'Contributors', 'Dashboard', 'Logout'];
@@ -20,6 +21,7 @@ const settings = ['Profile', 'Contributors', 'Dashboard', 'Logout'];
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { keycloak, initialized } = useKeycloak();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -91,7 +93,7 @@ const ResponsiveAppBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page}>
-                  <Link href={"/" + page} textalign="center" style={{textDecoration: 'none'}}>
+                  <Link href={"/" + page} textalign="center" style={{ textDecoration: 'none' }}>
                     {page}
                   </Link>
                 </MenuItem>
@@ -120,7 +122,7 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-              href={"/" + page}
+                href={"/" + page}
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
@@ -130,35 +132,45 @@ const ResponsiveAppBar = () => {
             ))}
           </Box>
 
+
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Link href={"/" + setting} textalign="center" style={{textDecoration: 'none'}}>{setting}</Link>
-                </MenuItem>
-              ))}
-            </Menu>
+            {!keycloak.authenticated && (
+              <Button onClick={() => keycloak.login()}>Login</Button>
+            )}
           </Box>
+
+          {!!keycloak.authenticated && (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                    <Link href={"/" + setting} textalign="center" style={{ textDecoration: 'none' }}>{setting}</Link>
+                  </MenuItem>
+                ))}
+              </Menu>
+              <Button onClick={() => keycloak.logout()}>Logout({keycloak.tokenParsed.preferred_username})</Button>
+            </Box>
+          )}
         </Toolbar>
       </Container>
     </AppBar>
