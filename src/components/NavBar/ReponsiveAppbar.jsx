@@ -135,7 +135,7 @@ const ResponsiveAppBar = () => {
 
           <Box sx={{ flexGrow: 0 }}>
             {!keycloak.authenticated && (
-              <Button onClick={() => keycloak.login()}>Login</Button>
+              <Button color="primary" variant="contained" onClick={() => keycloak.login()}>Login</Button>
             )}
           </Box>
 
@@ -165,10 +165,10 @@ const ResponsiveAppBar = () => {
                 {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
                     <Link href={"/" + setting} textalign="center" style={{ textDecoration: 'none' }}>{setting}</Link>
+                    <Link onClick={() => keycloak.logout()}></Link>
                   </MenuItem>
                 ))}
               </Menu>
-              <Button onClick={() => keycloak.logout()}>Logout({keycloak.tokenParsed.preferred_username})</Button>
             </Box>
           )}
         </Toolbar>
