@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ReactKeycloakProvider } from '@react-keycloak/web';
-import keycloak from './keycloak';
+import keycloak from './Keycloak';
 import Login from './views/Login';
 import Profile from './views/Profile';
 import Workouts from './views/Workouts';
