@@ -19,9 +19,9 @@ const pages = ['Programs', 'Workouts', 'Exercises'];
 const settings = ['Profile', 'Contributors', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
+  const { keycloak } = useKeycloak();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const { keycloak, initialized } = useKeycloak();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -165,7 +165,7 @@ const ResponsiveAppBar = () => {
                 {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
                     <Link href={"/" + setting} textalign="center" style={{ textDecoration: 'none' }}>{setting}</Link>
-                    <Link onClick={() => keycloak.logout()}></Link>
+                    <Button onClick={() => keycloak.logout()}></Button>
                   </MenuItem>
                 ))}
               </Menu>
