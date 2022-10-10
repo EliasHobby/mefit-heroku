@@ -16,7 +16,7 @@ import Link from '@mui/material/Link';
 import { useKeycloak } from '@react-keycloak/web';
 
 const pages = ['Programs', 'Workouts', 'Exercises'];
-const settings = ['Profile', 'Contributors', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Contributors', 'Dashboard'];
 
 const ResponsiveAppBar = () => {
   const { keycloak } = useKeycloak();
@@ -165,9 +165,9 @@ const ResponsiveAppBar = () => {
                 {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
                     <Link href={"/" + setting} textalign="center" style={{ textDecoration: 'none' }}>{setting}</Link>
-                    <Button onClick={() => keycloak.logout()}></Button>
                   </MenuItem>
                 ))}
+                <Button onClick={() => keycloak.logout()}>Logout</Button>
               </Menu>
             </Box>
           )}

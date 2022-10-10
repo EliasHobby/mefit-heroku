@@ -16,7 +16,19 @@ import ResponsiveAppBar from './components/NavBar/ReponsiveAppbar';
 function App() {
 
   return (
-    <ReactKeycloakProvider authClient={keycloak}>
+    <ReactKeycloakProvider
+      authClient={keycloak}
+      initOptions={{
+        checkLoginIframe: 'false',
+        onLoad: "check-sso",
+        silentCheckSsoRedirectUri:
+          window.location.origin + "/silent-check-sso.html",
+        promiseType: 'native'
+      }}
+      onEvent={(ev, err) => console.log(ev + '   ' + err)
+
+      }
+    >
       <BrowserRouter>
         <div className='App'>
           <ResponsiveAppBar />
