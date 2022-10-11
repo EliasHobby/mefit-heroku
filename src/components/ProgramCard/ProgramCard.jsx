@@ -6,34 +6,30 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-const exercises = [
+const programs = [
   {
-    name: 'Push-up',
-    description: 'Push-ups are a basic exercise used in civilian athletic training or physical education and commonly in military physical training.',
-    img: 'https://i.ndtvimg.com/i/2016-06/pushups-625_625x350_51465978240.jpg'
+    name: 'Get Fit in One Month with Arnold Swarzchszenegger',
+    description: 'Join Arnold on a one month journey to peak athletisism. This program focuses on weightlifting and steroids.',
+    img: 'https://image-cdn.essentiallysports.com/wp-content/uploads/arnold-schwarzenegger.jpg'
   },
   {
-    name: 'Squat',
-    description: 'Squats are considered a vital exercise for increasing the strength and size of the lower body muscles as well as developing core strength.',
-    img: 'https://parade.com/.image/t_share/MTkwNTc4MTU3NDQwMzQ1MjEz/woman-doing-squats-ftr.jpg'
+    name: 'Go Crazy with Kari Jaquesson',
+    description: 'Did the Covid-vaccine make you autistic? Do you radiate 5G wherever you go? Join Kari in her Aerobic workout to shake it all off.',
+    img: 'https://images.dn.no/image/TlZQUVVmOGR5ZDlKL1ZmUWhSK0F0UCtXdXNLaHQxNERRM255czk3cEpkYz0=/nhst/binary/5c26263260ad5601924b073e455e3f1e?image_version=720'
   },
   {
-    name: 'Sit-up',
-    description: 'The sit-up is an abdominal endurance training exercise to strengthen, tighten and tone the abdominal muscles.',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Abdominal_Exercise_Training.jpg/1920px-Abdominal_Exercise_Training.jpg' 
+    name: 'No shortcuts with bigboy Zyzz',
+    description: 'No Bitches? No money? Zyzz got you bro. Join my all natural body building program and get ripped - FAST',
+    img: 'https://melmagazine.com/wp-content/uploads/2022/04/Zyzz.jpg' 
   },
-  {
-    name: 'Pull-up',
-    description: 'Pull-ups build up several muscles of the upper body, including the latissimus dorsi, trapezius, and biceps brachii. A pull-up may be performed with overhand (pronated), underhand (supinated), neutral, or rotating hand position.',
-    img: 'https://i0.wp.com/post.healthline.com/wp-content/uploads/2019/12/pull-up-pullup-gym-1296x728-header-1296x728.jpg?w=1155&h=1528'
-  },
+  
 
 ]
 
 export default function ProgramCard() {
   return (
     <>
-      {exercises.map((exercise, i) => (
+      {programs.map((exercise, i) => (
         <Card key={i} sx={{ maxWidth: 345 }}>
           <CardMedia
             component="img"
@@ -50,7 +46,6 @@ export default function ProgramCard() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Add to Goal</Button>
             <Button size="small">Learn More</Button>
           </CardActions>
         </Card>

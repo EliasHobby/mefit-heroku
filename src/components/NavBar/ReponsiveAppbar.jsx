@@ -11,7 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import FitnessCenterOutlinedIcon from '@mui/icons-material/FitnessCenterOutlined';
 import Link from '@mui/material/Link';
 import { useKeycloak } from '@react-keycloak/web';
 
@@ -26,7 +26,7 @@ const ResponsiveAppBar = () => {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -56,25 +56,52 @@ const ResponsiveAppBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            MeFit
-          </Typography>
 
+          {/* Start desktop view */}
+          <FitnessCenterOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          {/* User is not logged in */}
+          {!keycloak.authenticated && (
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              MeFit
+            </Typography>
+          )}
+          {/* User is logged in */}
+          {!!keycloak.authenticated && (
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/dashboard"
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              MeFit
+            </Typography>
+          )}
+          {/* End desktop view */}
+
+          {/* Start Mobile view */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -113,52 +140,82 @@ const ResponsiveAppBar = () => {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            MeFit
-          </Typography>
-          {!!keycloak.authenticated && (
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                href={"/" + page}
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
+
+          <FitnessCenterOutlinedIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          {/* User is not logged in */}
+          {!keycloak.authenticated && (
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href=""
+              sx={{
+                mr: 2,
+                display: { xs: 'flex', md: 'none' },
+                flexGrow: 1,
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              MeFit
+            </Typography>
           )}
 
+          {/* User is logged in */}
+          {!!keycloak.authenticated && (
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href="/dashboard"
+              sx={{
+                mr: 2,
+                display: { xs: 'flex', md: 'none' },
+                flexGrow: 1,
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              MeFit
+            </Typography>
+          )}
+          {/* End mobile view */}
 
+          {/* Desktop Navigation Links */}
+          {!!keycloak.authenticated && (
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              {pages.map((page) => (
+                <Button
+                  href={"/" + page}
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page}
+                </Button>
+              ))}
+            </Box>
+          )}
+
+          {/* Login button */}
           <Box sx={{ flexGrow: 0 }}>
             {!keycloak.authenticated && (
-              <Button color="primary" variant="contained" onClick={() => keycloak.login()}>Login</Button>
+              <Button color="primary" variant="contained" onClick={() => keycloak.login() }>Login</Button>
             )}
           </Box>
 
+          {/* User Profile Icon */}
           {!!keycloak.authenticated && (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Avatar alt={keycloak.tokenParsed.name} src="" />
                 </IconButton>
               </Tooltip>
               <Menu
@@ -186,7 +243,7 @@ const ResponsiveAppBar = () => {
                   <Button textalign="center" style={{ textDecoration: 'none' }} onClick={() => keycloak.logout()}>Logout</Button>
                 </MenuItem>
               </Menu>
-              <Button variant="contained" onClick={() => printCurrentUser()}>Print user</Button>
+              {/* <Button variant="contained" onClick={() => printCurrentUser()}>Print user</Button> */}
             </Box>
           )}
         </Toolbar>

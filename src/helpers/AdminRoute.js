@@ -1,5 +1,5 @@
 import { useKeycloak } from "@react-keycloak/web";
-import Unauthorized from "../views/Unauthenticated";
+import Unauthorized from "../views/Unauthorized";
 
 const AdminRoute = ({ children }) => {
  const { keycloak } = useKeycloak();

@@ -24,11 +24,10 @@ function App() {
         checkLoginIframe: false,
       }}
       onEvent={(ev, err) => console.log(ev + '   ' + err)
-
       }
     >
       <BrowserRouter>
-          <ResponsiveAppBar />
+        <ResponsiveAppBar />
         <div className='App'>
           <Routes>
             <Route path="/" element={<Login />} />

@@ -1,5 +1,5 @@
-import ProgramCard from "../components/ProgramCard/ProgramCard";
 import '../App.css';
+import ProgramCard from "../components/ProgramCard/ProgramCard";
 
 const Programs = () => {
     
