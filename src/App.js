@@ -12,36 +12,61 @@ import Contributors from './views/Contributors';
 import PrivateRoute from './helpers/PrivateRoute';
 import * as React from 'react';
 import ResponsiveAppBar from './components/NavBar/ReponsiveAppbar';
+import ContributorRoute from './helpers/ContributorRoute';
 
 function App() {
-
   return (
     <ReactKeycloakProvider
       authClient={keycloak}
       initOptions={{
-        checkLoginIframe: 'false',
         onLoad: "check-sso",
-        silentCheckSsoRedirectUri:
-          window.location.origin + "/silent-check-sso.html",
-        promiseType: 'native'
+        promiseType: 'native',
+        checkLoginIframe: false,
       }}
       onEvent={(ev, err) => console.log(ev + '   ' + err)
 
       }
     >
       <BrowserRouter>
-        <div className='App'>
           <ResponsiveAppBar />
+        <div className='App'>
           <Routes>
             <Route path="/" element={<Login />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/workouts" element={<Workouts />} />
-            <Route path="/exercises" element={<Exercises />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/programs" element={<Programs />} />
+            <Route path="/profile" element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+            />
+            <Route path="/workouts" element={
+              <PrivateRoute>
+                <Workouts />
+              </PrivateRoute>
+            }
+            />
+            <Route path="/exercises" element={
+              <PrivateRoute>
+                <Exercises />
+              </PrivateRoute>
+            }
+            />
+            <Route path="/dashboard" element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+            />
+            <Route path="/programs" element={
+              <PrivateRoute>
+                <Programs />
+              </PrivateRoute>
+            }
+            />
             <Route path="/contributors" element={
               <PrivateRoute>
-                <Contributors />
+                <ContributorRoute>
+                  <Contributors />
+                </ContributorRoute>
               </PrivateRoute>
             }
             />

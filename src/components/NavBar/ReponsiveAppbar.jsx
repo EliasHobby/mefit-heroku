@@ -26,6 +26,7 @@ const ResponsiveAppBar = () => {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+  
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -37,6 +38,18 @@ const ResponsiveAppBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+
+  const printCurrentUser = () => {
+    console.log(keycloak.tokenParsed.preferred_username)
+    console.log(keycloak.tokenParsed.given_name)
+    console.log(keycloak.tokenParsed.family_name)
+    console.log(keycloak.tokenParsed.name)
+    console.log(keycloak.tokenParsed.roles)
+    if (keycloak.tokenParsed.roles.includes("admin")) {
+      console.log("User is an admin")
+    } else console.log("User is NOT an admin")
+  }
 
 
   return (
@@ -119,6 +132,7 @@ const ResponsiveAppBar = () => {
           >
             MeFit
           </Typography>
+          {!!keycloak.authenticated && (
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -131,6 +145,7 @@ const ResponsiveAppBar = () => {
               </Button>
             ))}
           </Box>
+          )}
 
 
           <Box sx={{ flexGrow: 0 }}>
@@ -167,8 +182,11 @@ const ResponsiveAppBar = () => {
                     <Link href={"/" + setting} textalign="center" style={{ textDecoration: 'none' }}>{setting}</Link>
                   </MenuItem>
                 ))}
-                <Button onClick={() => keycloak.logout()}>Logout</Button>
+                <MenuItem>
+                  <Button textalign="center" style={{ textDecoration: 'none' }} onClick={() => keycloak.logout()}>Logout</Button>
+                </MenuItem>
               </Menu>
+              <Button variant="contained" onClick={() => printCurrentUser()}>Print user</Button>
             </Box>
           )}
         </Toolbar>

@@ -10,3 +10,8 @@
     background-color: rgb(151, 151, 206);
     color: white;
 }
+
+.App {
+    margin-left: 8rem;
+    margin-right: 8rem;
+}
