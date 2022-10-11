@@ -204,11 +204,11 @@ const ResponsiveAppBar = () => {
           )}
 
           {/* Login button */}
-          <Box sx={{ flexGrow: 0 }}>
+          {/* <Box sx={{ flexGrow: 0 }}>
             {!keycloak.authenticated && (
               <Button color="primary" variant="contained" onClick={() => keycloak.login() }>Login</Button>
             )}
-          </Box>
+          </Box> */}
 
           {/* User Profile Icon */}
           {!!keycloak.authenticated && (
