@@ -5,6 +5,9 @@ import {User} from "../models/user"
 import { blueGrey } from "@mui/material/colors"
 
 
+import { Typography } from "@mui/material";
+import { useKeycloak } from "@react-keycloak/web";
+
 const Profile = () => {
     //User context provider to set current user
     //const userContext = useContext(UserContext)
@@ -53,9 +56,12 @@ const Profile = () => {
     </div>
 
     return (
-        <Box sx={{ minWidth: 300 }}>
+        <>
+            <Box sx={{ minWidth: 300 }}>
         <Card variant="outlined" >{userCard}</Card>
         </Box>
+            <Typography variant="h5">Hi {keycloak.tokenParsed.name} the {keycloak.tokenParsed.roles[0]}.</Typography>
+        </>
     )
 }
 
