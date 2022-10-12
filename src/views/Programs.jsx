@@ -20,6 +20,11 @@ const Programs = () => {
           description: 'No Bitches? No money? Zyzz got you bro. Join my all natural body building program and get ripped - FAST',
           img: 'https://melmagazine.com/wp-content/uploads/2022/04/Zyzz.jpg' 
         },
+        {
+            name: 'From Dadbod to Fuckboi using Calisthenics',
+            description: 'If you weight 200kg, why spend money on weights when you can just use your own bodyweight? Try out this cheap training program and make your wife love you again.',
+            img: 'https://d3h9ln6psucegz.cloudfront.net/wp-content/uploads/2021/07/Dad-Bods-Are-Hot-Fake-News-vs.-Science.jpeg' 
+          },
         
       
       ]
@@ -30,7 +35,7 @@ const Programs = () => {
             <Grid container spacing={2}>
 
                 {programs.map((program, index) => (
-                    <Grid item xs={4} key={index}>
+                    <Grid item xs={4} mb={4} key={index}>
                         <DisplayCard exercise={program} />
                     </Grid>
                 ))}
