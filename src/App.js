@@ -13,6 +13,7 @@ import PrivateRoute from './helpers/PrivateRoute';
 import * as React from 'react';
 import ResponsiveAppBar from './components/NavBar/ReponsiveAppbar';
 import ContributorRoute from './helpers/ContributorRoute';
+import LoggedInRoute from './helpers/LoggedInRoute';
 
 function App() {
   return (
@@ -26,12 +27,17 @@ function App() {
       onEvent={(ev, err) => console.log(ev + '   ' + err)
       }
     >
+      <ResponsiveAppBar />
       <BrowserRouter>
-        <ResponsiveAppBar />
+
         <div className='App'>
           <Routes>
-            <Route path="/" element={<Login />} />
-            
+            <Route path="/" element={
+              <LoggedInRoute>
+                <Login />
+              </LoggedInRoute>
+            } />
+
             <Route path="/profile" element={
               <PrivateRoute>
                 <Profile />
