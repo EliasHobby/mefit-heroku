@@ -13,6 +13,7 @@ import PrivateRoute from './helpers/PrivateRoute';
 import * as React from 'react';
 import ResponsiveAppBar from './components/NavBar/ReponsiveAppbar';
 import ContributorRoute from './helpers/ContributorRoute';
+import LoggedInRoute from './helpers/LoggedInRoute';
 
 function App() {
   return (
@@ -27,11 +28,15 @@ function App() {
       }
     >
       <BrowserRouter>
-        <ResponsiveAppBar />
+      <ResponsiveAppBar />
         <div className='App'>
           <Routes>
-            <Route path="/" element={<Login />} />
-            
+            <Route path="/" element={
+              <LoggedInRoute>
+                <Login />
+              </LoggedInRoute>
+            } />
+
             <Route path="/profile" element={
               <PrivateRoute>
                 <Profile />
@@ -78,3 +83,6 @@ function App() {
 }
 
 export default App;
+
+
+//programs[] = json.parse("mefit-backend-api.com/api/programs/{keykloakid}" + { keycloak.tokenParsed.user.id })
