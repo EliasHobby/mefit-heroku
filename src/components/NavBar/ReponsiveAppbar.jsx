@@ -14,9 +14,10 @@ import MenuItem from '@mui/material/MenuItem';
 import FitnessCenterOutlinedIcon from '@mui/icons-material/FitnessCenterOutlined';
 import Link from '@mui/material/Link';
 import { useKeycloak } from '@react-keycloak/web';
+import { NavLink } from 'react-router-dom';
 
-const pages = ['Programs', 'Workouts', 'Exercises'];
-const settings = ['Profile', 'Contributors', 'Dashboard'];
+const pages = ['Dashboard', 'Programs', 'Workouts', 'Exercises'];
+const settings = ['Profile'];
 
 const ResponsiveAppBar = () => {
   const { keycloak } = useKeycloak();
@@ -65,7 +66,7 @@ const ResponsiveAppBar = () => {
               variant="h6"
               noWrap
               component="a"
-              href="/"
+              href="/dashboard"
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
@@ -189,17 +190,25 @@ const ResponsiveAppBar = () => {
 
           {/* Desktop Navigation Links */}
           {!!keycloak.authenticated && (
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, ml: 4 }}>
               {pages.map((page) => (
-                <Button
-                  href={"/" + page}
+                <NavLink
+                  to={"/" + page}
                   key={page}
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  style={{ marginRight: '1rem', color: 'white', display: 'block', textDecoration: 'none' }}
                 >
                   {page}
-                </Button>
+                </NavLink>
               ))}
+              {(!!keycloak.tokenParsed.roles.includes("admin") || !!keycloak.tokenParsed.roles.includes("contributor")) && (
+                <NavLink to="/Contributors"
+                  key={"contributors"}
+                  onClick={handleCloseNavMenu}
+                  style={{ my: 2, color: 'white', display: 'block', textDecoration: 'none' }}>
+                  Contributors
+                </NavLink>
+              )}
             </Box>
           )}
 
@@ -212,38 +221,43 @@ const ResponsiveAppBar = () => {
 
           {/* User Profile Icon */}
           {!!keycloak.authenticated && (
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt={keycloak.tokenParsed.name} src="" />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Link href={"/" + setting} textalign="center" style={{ textDecoration: 'none' }}>{setting}</Link>
+            <Box sx={{display: 'flex', alignItems: 'center'}}>
+              <Typography sx={{mr: '1rem'}}>
+                {keycloak.tokenParsed.name}
+              </Typography>
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt={keycloak.tokenParsed.name} src="" />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: '45px' }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {settings.map((setting) => (
+                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                      <NavLink to={"/" + setting} textalign="center" style={{ textDecoration: 'none', color: '#1976d2' }}>{setting}</NavLink>
+                    </MenuItem>
+                  ))}
+                  <MenuItem>
+                    <Button textalign="center" style={{ textDecoration: 'none' }} onClick={() => keycloak.logout()}>Logout</Button>
                   </MenuItem>
-                ))}
-                <MenuItem>
-                  <Button textalign="center" style={{ textDecoration: 'none' }} onClick={() => keycloak.logout()}>Logout</Button>
-                </MenuItem>
-              </Menu>
-              {/* <Button variant="contained" onClick={() => printCurrentUser()}>Print user</Button> */}
+                </Menu>
+                {/* <Button variant="contained" onClick={() => printCurrentUser()}>Print user</Button> */}
+              </Box>
             </Box>
           )}
         </Toolbar>
@@ -251,4 +265,5 @@ const ResponsiveAppBar = () => {
     </AppBar>
   );
 };
+ResponsiveAppBar.propTypes = {};
 export default ResponsiveAppBar;

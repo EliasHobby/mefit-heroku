@@ -27,9 +27,8 @@ function App() {
       onEvent={(ev, err) => console.log(ev + '   ' + err)
       }
     >
-      <ResponsiveAppBar />
       <BrowserRouter>
-
+      <ResponsiveAppBar />
         <div className='App'>
           <Routes>
             <Route path="/" element={
@@ -84,3 +83,6 @@ function App() {
 }
 
 export default App;
+
+
+//programs[] = json.parse("mefit-backend-api.com/api/programs/{keykloakid}" + { keycloak.tokenParsed.user.id })
