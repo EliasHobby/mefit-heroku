@@ -29,8 +29,8 @@ const Programs = () => {
             <h1>Exercises</h1>
             <Grid container spacing={2}>
 
-                {programs.map((program) => (
-                    <Grid item xs={3}>
+                {programs.map((program, index) => (
+                    <Grid item xs={4} key={index}>
                         <DisplayCard exercise={program} />
                     </Grid>
                 ))}

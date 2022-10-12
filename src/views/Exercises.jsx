@@ -31,10 +31,10 @@ const Exercises = () => {
     return (
         <>
             <h1>Exercises</h1>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} >
 
-                {exercises.map((exercise) => (
-                    <Grid item xs={3}>
+                {exercises.map((exercise, index) => (
+                    <Grid item xs={4} mb={4} key={index} >
                         <DisplayCard exercise={exercise} />
                     </Grid>
                 ))}
