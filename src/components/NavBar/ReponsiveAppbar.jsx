@@ -40,16 +40,16 @@ const ResponsiveAppBar = () => {
   };
 
 
-  const printCurrentUser = () => {
-    console.log(keycloak.tokenParsed.preferred_username)
-    console.log(keycloak.tokenParsed.given_name)
-    console.log(keycloak.tokenParsed.family_name)
-    console.log(keycloak.tokenParsed.name)
-    console.log(keycloak.tokenParsed.roles)
-    if (keycloak.tokenParsed.roles.includes("admin")) {
-      console.log("User is an admin")
-    } else console.log("User is NOT an admin")
-  }
+  // const printCurrentUser = () => {
+  //   console.log(keycloak.tokenParsed.preferred_username)
+  //   console.log(keycloak.tokenParsed.given_name)
+  //   console.log(keycloak.tokenParsed.family_name)
+  //   console.log(keycloak.tokenParsed.name)
+  //   console.log(keycloak.tokenParsed.roles)
+  //   if (keycloak.tokenParsed.roles.includes("admin")) {
+  //     console.log("User is an admin")
+  //   } else console.log("User is NOT an admin")
+  // }
 
 
   return (
