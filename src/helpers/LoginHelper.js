@@ -11,12 +11,19 @@ const FetchAccountDetails = () => {
     useEffect(() => {
         const fetchUser = async () => {
             fetch("https://mefitapi.azure-api.net/api/accounts/" + keycloak.tokenParsed.sub + "/KeyCloak")
-                .then(response => {
+                .then(async response => {
                     if (response.ok) {
                         console.log(response)
                         return response.json()
                     }
-                    CreateNewUser();
+                    await CreateNewUser("https://mefitapi.azure-api.net/api/accounts/", {
+                        "keycloakId": keycloak.tokenParsed.sub,
+                        "firstname": keycloak.tokenParsed.given_name,
+                        "lastname": keycloak.tokenParsed.family_name
+                    })
+                    .then((data) => {
+                        console.log(data);
+                    })
                 })
                 .then(data => {
                     console.log(data);
@@ -38,33 +45,15 @@ const FetchAccountDetails = () => {
     }, [])
 }
 
-const CreateNewUser = () => {
-    const { keycloak } = useKeycloak();
-    
-    const headers = {
-        "Content-Type": "application/json",
-    };
-    useEffect(() => {
-        const postUser = async () => {
+async function CreateNewUser(url = '', data = {}) {
 
-            fetch("https://mefitapi.azure-api.net/api/accounts", {
-                method: "POST",
-                headers,
-                body: JSON.stringify({
-                    keycloakId: keycloak.tokenParsed.sub,
-                    firstname: keycloak.tokenParsed.given_name,
-                    lastname: keycloak.tokenParsed.family_name
-                }),
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            })
-        }
-        postUser();
-        }, [])
-    }
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    })
+    return response.json();
+}
 export default FetchAccountDetails;
