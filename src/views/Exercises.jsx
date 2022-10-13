@@ -1,8 +1,13 @@
 import DisplayCard from "../components/DisplayCard/DisplayCard";
 import '../App.css';
 import { Grid } from "@mui/material";
+import { Exercise } from "../models/exercise";
+import {listOfExercises} from "../utils/ExerciseContext"
 
 const Exercises = () => {
+    //Add all exercises to put in cards
+    //const allExercises = listOfExercises
+    //console.log(allExercises)
 
     const exercises = [
         {

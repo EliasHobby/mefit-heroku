@@ -1,6 +1,6 @@
 export class Exercise {
 
-    constructor(Id, Name, Description, Image, Target_muscle_group ){
+    constructor(Id, Name, Description, Target_muscle_group, Image ){
         this.id = Id
         this.name = Name
         this.description = Description

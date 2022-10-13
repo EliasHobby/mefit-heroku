@@ -8,6 +8,7 @@ import Workouts from './views/Workouts';
 import Exercises from './views/Exercises';
 import Dashboard from './views/Dashboard';
 import Programs from './views/Programs';
+import Exercisepage from './views/Exercisepage';
 import Contributors from './views/Contributors';
 import PrivateRoute from './helpers/PrivateRoute';
 import * as React from 'react';
@@ -36,7 +37,13 @@ function App() {
                 <Login />
               </LoggedInRoute>
             } />
-
+            
+            <Route path="/exercisePage" element={
+              <PrivateRoute>
+                <Exercisepage />
+              </PrivateRoute>
+            }
+            />
             <Route path="/profile" element={
               <PrivateRoute>
                 <Profile />

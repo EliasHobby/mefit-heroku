@@ -9,21 +9,18 @@ export class Goal {
 
 
     // Get methods for Exercise field fields
-    getName() {
-        return this.name();
+    getGoalId() {
+        return this.goal_id;
     }
-    getDescription() {
-        return this.lastName();
+    getEndDate() {
+        return this.end_date;
     }
-    getTargetMuscleGroup() {
-        return this.target_muscle_group();
-    }
-    getImage() {
-        return this.image();
+
+    getAchieved() {
+        return this.achieved;
     }
 
     setAchieved() {
         this.achieved = true
     }
-
 }

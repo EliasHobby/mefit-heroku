@@ -1,33 +1,38 @@
 import {Exercise} from "../models/exercise"
 
-//add api-call for fetching user by ID 
-fetch("https://randomuser.me/api?results=2")
-.then(function (response) {
-    console.log("Response Data:", response);
-    return response.json()
-})
-.then(function(json) {
-    console.log("JSON Data:", json);
-    //create user by userdata api request. Needs updating when APi is ready
-    
-    //Set and export current user
-  
-    const exercise = new Exercise(json.results)
-})
-
-.catch(function(error) {
-    console.log(error);
-})
-console.log("After the fetch");
+//add api-call for fetching exercises
 
 
-async function fetchUserData() {
-  try {
-      const response = await fetch("https://meFit.herokuapp.com/id=1212")
-      const userData= await response.json()
-      return userData
-  }
-  catch (error) {
-      console.error("Error: ", error.message)
-  }
+async function fetchExercises() {
+    try {
+        const response = await fetch("https://mefitapi.azure-api.net/api/Exercises")
+        console.log(response)
+        const jsonExercises = await response.json()
+        console.log(jsonExercises)
+        return jsonExercises
+    }
+    catch (error) {
+        console.error("Error: ", error.message)
+    }
 }
+
+
+
+// Return a list of excerises 
+export const listOfExercises =  (async () =>{
+
+    // Variables
+    const exercises = fetchExercises()
+    let list = []
+
+    for (const exercise in exercises) {
+        let thisExercise = new Exercise(exercise.id, exercise.name, exercise.description, exercise.target_Muscle_Group, exercise.image  )
+        list.push(thisExercise)
+
+    }
+    console.log(list)
+    return list
+})()
+
+
+export default listOfExercises;

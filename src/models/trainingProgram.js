@@ -1,41 +1,42 @@
 export class TrainingProgram {
     
-    constructor(TrainingProgramId, Name, Description, Image, Target_muscle_group ){
-        this.id = TrainingProgramId
+    constructor(TrainingProgramId, Name, Category, Description, Image ){
+        this.trainingProgramId = TrainingProgramId
         this.name = Name
+        this.category = Category
         this.description = Description
-        this.target_muscle_group = Target_muscle_group
         this.image = Image
     }
 
 
-    // Get methods for Exercise field fields
+    // Get methods for Training programs fields
+    getTrainingProgramId() {
+        return this.trainingProgramId;
+    }
+
     getName() {
-        return this.name();
+        return this.name;
     }
     getDescription() {
-        return this.lastName();
+        return this.description;
     }
-    getTargetMuscleGroup() {
-        return this.target_muscle_group();
+    getCategory() {
+        return this.category;
     }
     getImage() {
-        return this.image();
+        return this.image;
     }
 
 
-    // Set methods for Exercise field fields
+    // Set methods for Training programs fields
     setName(newName) {
         this.name = newName;
     }
     setDescription(newDescription) {
-        this.lastName = newDescription;
+        this.description = newDescription;
     }
-    setTargetMuscleGroup(newMuscleGroup) {
-        this.target_muscle_group = newMuscleGroup;
-    }
+
     setImage(url) {
         this.image = url;
     }
-
 }
