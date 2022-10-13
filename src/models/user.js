@@ -1,18 +1,19 @@
 
 //Fields for user object
 export class User{
-    constructor(Firstname, Lastname, Email, Weight, Height, Disabilities, ProfilePicture, AddressId, KeycloackId, TrainingprogramId, GoalId ){
+    constructor(Firstname, Lastname, Email ){
+        //default field: Weight, Height, Disabilities, ProfilePicture, AddressId, KeycloackId, TrainingprogramId, GoalId 
         this.firstName = Firstname
         this.lastName = Lastname
         this.email = Email
-        this.height = Height
-        this.weight = Weight
-        this.disabilities = Disabilities
-        this.profilePicture = ProfilePicture
-        this.addressId = AddressId
-        this.keycloackId = KeycloackId
-        this.trainingprogramId = TrainingprogramId
-        this.goalId = GoalId
+        this.height = -1
+        this.weight = -1
+        this.disabilities = ""
+        this.profilePicture = ""
+        this.addressId = 0
+        this.keycloackId = ""
+        this.trainingprogramId = ""
+        this.goalId = ""
     }
 
 
