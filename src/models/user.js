@@ -19,84 +19,84 @@ export class User{
 
     // Getters for user fields
     getFirstName() {
-        return this.firstName();
+        return this.firstName;
     }
     getLastName() {
-        return this.lastName();
+        return this.lastName;
     }
     getEmail() {
-        return this.email();
+        return this.email;
     }
     getHeight() {
-        return this.height();
+        return this.height;
     }
     getWeight() {
-        return this.weight();
+        return this.weight;
     }
 
     getDisabilities() {
-        return this.disabilities();
+        return this.disabilities;
     }
 
     getProfilePicture() {
-        return this.profilePicture();
+        return this.profilePicture;
     }
 
     getAddressId() {
-        return this.addressId();
+        return this.addressId;
     }
 
     getKeycloackId() {
-        return this.keycloakId();
+        return this.keycloakId;
     }
 
     getTrainingprogramId() {
-        return this.trainingprogramId();
+        return this.trainingprogramId;
     }
     getGoalId() {
-        return this.trainingprogramId();
+        return this.trainingprogramId;
     }
 
     //Setters for user fields
     setFName(newFName) {
         newFName = newFName.trim();
         if (newFName === '') {
-            throw'Enter an Employee name';
+            throw new Error('Enter an Employee name');
         }
         this.firstName = newFName;
     }
     setLName(newLName) {
         newLName = newLName.trim();
         if (newLName === '') {
-            throw'Enter an Employee name';
+            throw new Error('Enter an Employee name');
         }
         this.lastName = newLName;
     }
     setWeight(newWeight) {
         newWeight = newWeight.trim();
         if (newWeight < 0) {
-            throw'Enter a valid weight';
+            throw new Error('Enter a valid weight');
         }
         this.weight = newWeight;
     }
     setHeight(newHeight) {
         newHeight = newHeight.trim();
         if (newHeight < 0) {
-            throw'Enter a valid height';
+            throw new Error('Enter a valid height');
         }
         this.height = newHeight;
     }
     setProfilePicture(url) {
         url = url.trim();
         if (url.length() < 0) {
-            throw'Enter a valid url';
+            throw new Error('Enter a valid url');
         }
         this.profilePicture = url;
     }
     setEmail(newEmail) {
         newEmail = newEmail.trim();
         if (newEmail.length() < 0) {
-            throw'Enter a valid Email';
+            throw new Error('Enter a valid Email');
         }
         this.email = newEmail;
     }

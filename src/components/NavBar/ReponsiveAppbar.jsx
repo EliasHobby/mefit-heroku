@@ -30,6 +30,7 @@ const ResponsiveAppBar = () => {
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
+    console.log(keycloak.subject) // keycloak.subject is the keycloak UUID
   };
 
   const handleCloseNavMenu = () => {
