@@ -36,7 +36,7 @@ const Profile = () => {
     // User details card
      const fitDeetails =   
      <div>
-         <h3 id = "height">height:</h3> {user.getHeight()}
+         <h3 id = "height">height:</h3> {user.getHeight ? <h3>{user.getHeight} </h3> : <p>No user logged in</p>}
          {/* <h3 id = "weight">weight: {user.getWeight()}</h3>
          <h3 id = "email">email: {user.getEmail()}</h3>
          <h3 id = "disabilities">disabilities: {user.getDisabilities()}</h3> */}
