@@ -14,6 +14,7 @@ import * as React from 'react';
 import ResponsiveAppBar from './components/NavBar/ReponsiveAppbar';
 import ContributorRoute from './helpers/ContributorRoute';
 import LoggedInRoute from './helpers/LoggedInRoute';
+import NotFound from './components/NotFound/NotFound';
 
 function App() {
   return (
@@ -73,6 +74,10 @@ function App() {
                   <Contributors />
                 </ContributorRoute>
               </PrivateRoute>
+            }
+            />
+            <Route path="/*" element={
+                <NotFound />
             }
             />
           </Routes>
