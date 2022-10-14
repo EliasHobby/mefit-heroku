@@ -5,7 +5,7 @@ async function fetchWorkouts() {
     try {
         //placeholder url assumed to be right
         const response = await fetch("https://mefitapi.azure-api.net/api/workouts")
-        const jsonWorkoouts = await response.json()
+        const jsonWorkouts = await response.json()
         
         return jsonWorkouts
     }
