@@ -15,8 +15,11 @@ import * as React from 'react';
 import ResponsiveAppBar from './components/NavBar/ReponsiveAppbar';
 import ContributorRoute from './helpers/ContributorRoute';
 import LoggedInRoute from './helpers/LoggedInRoute';
+import NotFound from './components/NotFound/NotFound';
+import HandleLogin from './views/HandleLogin';
 
 function App() {
+
   return (
     <ReactKeycloakProvider
       authClient={keycloak}
@@ -29,7 +32,7 @@ function App() {
       }
     >
       <BrowserRouter>
-      <ResponsiveAppBar />
+        <ResponsiveAppBar />
         <div className='App'>
           <Routes>
             <Route path="/" element={
@@ -37,7 +40,12 @@ function App() {
                 <Login />
               </LoggedInRoute>
             } />
-            
+                        <Route path="/handlelogin" element={
+              <PrivateRoute>
+                <HandleLogin />
+              </PrivateRoute>
+            }
+            />
             <Route path="/exercisePage" element={
               <PrivateRoute>
                 <Exercisepage />
@@ -80,6 +88,10 @@ function App() {
                   <Contributors />
                 </ContributorRoute>
               </PrivateRoute>
+            }
+            />
+            <Route path="/*" element={
+              <NotFound />
             }
             />
           </Routes>

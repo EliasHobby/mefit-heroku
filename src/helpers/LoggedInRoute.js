@@ -6,7 +6,7 @@ const LoggedInRoute = ({ children }) => {
 
  const isLoggedIn = keycloak.authenticated;
 
- return isLoggedIn ? <Navigate to="/dashboard" /> : children;
+ return isLoggedIn ? <Navigate to="/handlelogin" /> : children;
 };
 
 export default LoggedInRoute;

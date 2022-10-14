@@ -41,6 +41,11 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
+  const handleLogout = () => {
+    localStorage.clear();
+    keycloak.logout();
+  }
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -54,7 +59,7 @@ const ResponsiveAppBar = () => {
               variant="h6"
               noWrap
               component="a"
-              href="/dashboard"
+              href="/"
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
@@ -200,13 +205,6 @@ const ResponsiveAppBar = () => {
             </Box>
           )}
 
-          {/* Login button */}
-          {/* <Box sx={{ flexGrow: 0 }}>
-            {!keycloak.authenticated && (
-              <Button color="primary" variant="contained" onClick={() => keycloak.login() }>Login</Button>
-            )}
-          </Box> */}
-
           {/* User Profile Icon */}
           {!!keycloak.authenticated && (
             <Box sx={{display: 'flex', alignItems: 'center'}}>
@@ -241,10 +239,9 @@ const ResponsiveAppBar = () => {
                     </MenuItem>
                   ))}
                   <MenuItem>
-                    <Button textalign="center" style={{ textDecoration: 'none' }} onClick={() => keycloak.logout()}>Logout</Button>
+                    <Button textalign="center" style={{ textDecoration: 'none' }} onClick={() => handleLogout()}>Logout</Button>
                   </MenuItem>
                 </Menu>
-                {/* <Button variant="contained" onClick={() => printCurrentUser()}>Print user</Button> */}
               </Box>
             </Box>
           )}
