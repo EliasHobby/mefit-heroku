@@ -5,9 +5,36 @@ import { Exercise } from "../models/exercise";
 import {listOfExercises} from "../utils/ExerciseContext"
 
 const Exercises = () => {
-    //Add all exercises to put in cards
-    //const allExercises = listOfExercises
-    //console.log(allExercises)
+
+
+    async function fetchExercises() {
+        try {
+            const response = await fetch("https://mefitapi.azure-api.net/api/Exercises")
+            const jsonExercises = await response.json()
+            return jsonExercises
+        }
+        catch (error) {
+            console.error("Error: ", error.message)
+        }
+    }
+        // Return a list of excerises 
+    const listOfExercises =  (async () =>{
+
+        // Variables
+        let exercises = await fetchExercises()
+        let list = []
+
+        for (const exercise of exercises) {
+            console.log(exercise.id)
+            let thisExercise =  new Exercise(exercise.id, exercise.name, exercise.description, exercise.target_Muscle_Group, exercise.image  )
+            console.log(thisExercise)
+            list.push(thisExercise)
+        }
+
+        console.log(list)
+        return list
+    })()
+
 
     const exercises = [
         {
@@ -43,7 +70,6 @@ const Exercises = () => {
                         <DisplayCard exercise={exercise} />
                     </Grid>
                 ))}
-
             </Grid>
         </>
     )

@@ -6,9 +6,7 @@ import {Exercise} from "../models/exercise"
 async function fetchExercises() {
     try {
         const response = await fetch("https://mefitapi.azure-api.net/api/Exercises")
-        console.log(response)
         const jsonExercises = await response.json()
-        console.log(jsonExercises)
         return jsonExercises
     }
     catch (error) {
@@ -22,17 +20,18 @@ async function fetchExercises() {
 export const listOfExercises =  (async () =>{
 
     // Variables
-    const exercises = fetchExercises()
+    let exercises = await fetchExercises()
     let list = []
 
-    for (const exercise in exercises) {
-        let thisExercise = new Exercise(exercise.id, exercise.name, exercise.description, exercise.target_Muscle_Group, exercise.image  )
+    for (const exercise of exercises) {
+        console.log(exercise.id)
+        let thisExercise =  new Exercise(exercise.id, exercise.name, exercise.description, exercise.target_Muscle_Group, exercise.image  )
+        console.log(thisExercise)
         list.push(thisExercise)
-
     }
+
     console.log(list)
     return list
 })()
 
 
-export default listOfExercises;
