@@ -15,7 +15,7 @@ const DisplayCard = ({ exercise }) => {
         <CardMedia
           component="img"
           height="180"
-          image={exercise.img}
+          image={exercise.image}
           alt={exercise.name}
         />
 

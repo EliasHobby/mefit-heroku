@@ -1,33 +1,32 @@
-import {Exercise} from "../models/exercise"
+import { useEffect, useState } from "react";
 
-//add api-call for fetching exercises
+const FetchExercises = () => {
 
-
-async function fetchExercises() {
-    try {
-        const response = await fetch("https://mefitapi.azure-api.net/api/Exercises")
-        const jsonExercises = await response.json()
-        return jsonExercises
+    
+    const [data, setData] = useState({})
+    
+    useEffect(() => {
+        const fetchExercises = async () => {
+            fetch("https://mefitapi.azure-api.net/api/Exercises")
+        .then(async response => {
+            if (response.ok) {
+                console.log(response)
+                return response.json()
+            }
+        })
+        .then(data => {
+            setData(data)
+        })
+        .catch(error => {
+            console.error(error.message)
+        })
     }
-    catch (error) {
-        console.error("Error: ", error.message)
-    }
+    fetchExercises();
+}, [])
+
+return data;
+
 }
 
 
-
-// Return a list of excerises 
-export const listOfExercises =  (async () =>{
-
-    // Variables
-    let exercises = await fetchExercises()
-    let list = []
-
-    for (const exercise of exercises) {
-        let thisExercise =  new Exercise(exercise.id, exercise.name, exercise.description, exercise.target_Muscle_Group, exercise.image  )
-        list.push(thisExercise)
-    }
-    return list
-})()
-
-
+export default FetchExercises;
