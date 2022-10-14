@@ -8,13 +8,23 @@ import { useKeycloak } from "@react-keycloak/web";
 
 
 
+async function fetchGivenExerciseById() {
+    try {
+        const response = await fetch("https://mefitapi.azure-api.net/api/Exercises/" + this.exercise.id)
+        const jsonExercises = await response.json()
+        return jsonExercises
+    }
+    catch (error) {
+        console.error("Error: ", error.message)
+    }
+}
 
 const Exercisepage = () => {
     const thisExercise = new defaultExercise ( 12, "burpees" )
     const { keycloak } = useKeycloak();
 
 
-    //user name 
+    //Exercise card
     const exerciseCard =     
     <div id= "ExerciseComponent">
     <img src="{thisExercise.getImage}" alt="Exercise pic"></img>

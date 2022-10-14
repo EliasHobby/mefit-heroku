@@ -24,13 +24,9 @@ export const listOfExercises =  (async () =>{
     let list = []
 
     for (const exercise of exercises) {
-        console.log(exercise.id)
         let thisExercise =  new Exercise(exercise.id, exercise.name, exercise.description, exercise.target_Muscle_Group, exercise.image  )
-        console.log(thisExercise)
         list.push(thisExercise)
     }
-
-    console.log(list)
     return list
 })()
 

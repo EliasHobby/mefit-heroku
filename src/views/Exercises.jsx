@@ -35,6 +35,9 @@ const Exercises = () => {
         return list
     })()
 
+    const exxee =   listOfExercises
+    const y = exxee.then(result => result.map((x) => <li>{x.description}</li>))
+    console.log(y)
 
     const exercises = [
         {
@@ -64,7 +67,6 @@ const Exercises = () => {
         <>
             <h1>Exercises</h1>
             <Grid container spacing={2} >
-
                 {exercises.map((exercise, index) => (
                     <Grid item xs={4} mb={4} key={index} >
                         <DisplayCard exercise={exercise} />
