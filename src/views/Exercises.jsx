@@ -1,48 +1,26 @@
 import DisplayCard from "../components/DisplayCard/DisplayCard";
 import '../App.css';
 import { Grid } from "@mui/material";
-import { useEffect, useState } from "react";
+import FetchExercises from "../utils/ExerciseContext";
 
 
 const Exercises = () => {
 
+    const data = FetchExercises();
 
-    const [data, setData] = useState({})
-    const oo = [
-        {
-            image: 'https://w0.peakpx.com/wallpaper/346/646/HD-wallpaper-funny-frog-frog-cool-funny.jpg',
-            name: 'im freg',
-            description: 'ribbit'
-        }
-    ]
-
-    useEffect(() => {
-        const fetchExercises = async () => {
-            fetch("https://mefitapi.azure-api.net/api/Exercises")
-                .then(async response => {
-                    if (response.ok) {
-                        console.log(response)
-                        return response.json()
-                    }
-                })
-                .then(data => {
-                    setData(data)
-                })
-                .catch(error => {
-                    console.error(error.message)
-                })
-        }
-        fetchExercises();
-    }, [])
+    if (data === undefined) {
+        return <>Fetching exercises...</>
+    }
 
     return (
         <>
             <h1>Exercises</h1>
+
             <Grid container spacing={2} >
 
-                {oo.map((exercise, index) => (
-                    <Grid item xs={4} mb={4} key={index} >
-                        <DisplayCard exercise={exercise} />
+                {data.map((exercise, index) => (
+                    <Grid item xs={4} mb={4} key={index}>
+                        <DisplayCard element={exercise} id={index} type="Exercises" />
                     </Grid>
                 ))}
             </Grid>

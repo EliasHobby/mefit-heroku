@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const FetchExercises = () => {
 
     
-    const [data, setData] = useState({})
+    const [data, setData] = useState()
     
     useEffect(() => {
         const fetchExercises = async () => {
