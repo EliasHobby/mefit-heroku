@@ -8,14 +8,18 @@ import Workouts from './views/Workouts';
 import Exercises from './views/Exercises';
 import Dashboard from './views/Dashboard';
 import Programs from './views/Programs';
+import Exercisepage from './views/Exercisepage';
 import Contributors from './views/Contributors';
 import PrivateRoute from './helpers/PrivateRoute';
 import * as React from 'react';
 import ResponsiveAppBar from './components/NavBar/ReponsiveAppbar';
 import ContributorRoute from './helpers/ContributorRoute';
 import LoggedInRoute from './helpers/LoggedInRoute';
+import NotFound from './components/NotFound/NotFound';
+import HandleLogin from './views/HandleLogin';
 
 function App() {
+
   return (
     <ReactKeycloakProvider
       authClient={keycloak}
@@ -28,7 +32,7 @@ function App() {
       }
     >
       <BrowserRouter>
-      <ResponsiveAppBar />
+        <ResponsiveAppBar />
         <div className='App'>
           <Routes>
             <Route path="/" element={
@@ -36,7 +40,18 @@ function App() {
                 <Login />
               </LoggedInRoute>
             } />
-
+                        <Route path="/handlelogin" element={
+              <PrivateRoute>
+                <HandleLogin />
+              </PrivateRoute>
+            }
+            />
+            <Route path="/exercisePage" element={
+              <PrivateRoute>
+                <Exercisepage />
+              </PrivateRoute>
+            }
+            />
             <Route path="/profile" element={
               <PrivateRoute>
                 <Profile />
@@ -73,6 +88,10 @@ function App() {
                   <Contributors />
                 </ContributorRoute>
               </PrivateRoute>
+            }
+            />
+            <Route path="/*" element={
+              <NotFound />
             }
             />
           </Routes>
