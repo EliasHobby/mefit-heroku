@@ -1,9 +1,10 @@
 import { Card, Typography, Box, IconButton } from "@mui/material";
-import CheckboxListSecondary from "../components/CheckedList/CheckedList";
+import { WorkoutList } from "../components/WorkoutList/WorkoutList";
 import LinearWithValueLabel from "../components/LinearProgressWithLabel/LinearProgressWithLabel";
 import { useState } from "react";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import WeekDayAccordion from '../components/WeekdayAccordion/WeekdayAccordion';
 
 const Dashboard = () => {
 
@@ -105,9 +106,8 @@ const Dashboard = () => {
                     <LinearWithValueLabel />
                 </Box>
                 <Card>
-                    <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <CheckboxListSecondary />
-                        <img style={{ width: 600, maxHeight: 400 }} src="https://image-cdn.essentiallysports.com/wp-content/uploads/arnold-schwarzenegger.jpg" alt="Arnold" />
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
+                        <WeekDayAccordion />
                     </Box>
                 </Card>
             </Card>
