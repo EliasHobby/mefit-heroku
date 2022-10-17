@@ -46,12 +46,6 @@ function App() {
               </PrivateRoute>
             }
             />
-            <Route path="/exercisePage" element={
-              <PrivateRoute>
-                <Exercisepage />
-              </PrivateRoute>
-            }
-            />
             <Route path="/profile" element={
               <PrivateRoute>
                 <Profile />
@@ -79,6 +73,12 @@ function App() {
             <Route path="/programs" element={
               <PrivateRoute>
                 <Programs />
+              </PrivateRoute>
+            }
+            />
+            <Route path="/exercise/:id" element={
+              <PrivateRoute>
+                <Exercisepage />
               </PrivateRoute>
             }
             />
