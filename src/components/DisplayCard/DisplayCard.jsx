@@ -12,7 +12,7 @@ const DisplayCard = ({ element, type, id }) => {
   return (
     <>
       <Card sx={{ maxWidth: 360, maxHeight: 360 }}>
-        <CardActionArea component={NavLink} to={`/${type}/${id+1}`}>
+        <CardActionArea component={NavLink} to={{pathname: `/${type}/${id+1}`, state: {objectId: "balls"}}}>
           <CardMedia
             component="img"
             height="180"
