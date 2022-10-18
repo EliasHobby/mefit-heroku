@@ -12,17 +12,19 @@ const FetchAccountDetails = () => {
         const fetchUser = async () => {
             fetch("https://mefitapi.azure-api.net/api/accounts/" + keycloak.tokenParsed.sub + "/KeyCloak")
                 .then(async response => {
+                    // If the user does have a profile
                     if (response.ok) {
                         console.log(response)
-                        return response.json()
+                        return response.json() // If breaks here, goes to next .then
                     }
+                    // If the user does not have a profile already, create a new one
                     await CreateNewUser("https://mefitapi.azure-api.net/api/accounts/", {
                         "keycloakId": keycloak.tokenParsed.sub,
                         "firstname": keycloak.tokenParsed.given_name,
                         "lastname": keycloak.tokenParsed.family_name
                     })
                     .then((data) => {
-                        console.log(data);
+                        console.log(data); // Debugging purposes
                     })
                 })
                 .then(data => {

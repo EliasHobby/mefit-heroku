@@ -1,5 +1,4 @@
 import { Card, Typography, Box, IconButton } from "@mui/material";
-import { WorkoutList } from "../components/WorkoutList/WorkoutList";
 import LinearWithValueLabel from "../components/LinearProgressWithLabel/LinearProgressWithLabel";
 import { useState } from "react";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
@@ -7,7 +6,6 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import WeekDayAccordion from '../components/WeekdayAccordion/WeekdayAccordion';
 
 const Dashboard = () => {
-
 
     // Get the current week
     let goalDate = new Date();
@@ -19,18 +17,24 @@ const Dashboard = () => {
     // Get first and last day of the week
     const [firstDay, setFirstDay] = useState(new Date(goalDate.setDate(goalDate.getDate() + 1 - goalDate.getDay())));
     const [lastDay, setLastDay] = useState(new Date(goalDate.setDate(goalDate.getDate() + 1 - goalDate.getDay() + 6)));
-
-    // Format to dd.mm
     let fmm = firstDay.getMonth() + 1; // Months start at 0!
     let fdd = firstDay.getDate();
     let lmm = lastDay.getMonth() + 1;
     let ldd = lastDay.getDate();
 
-    // Add leading 0's if the number is below 10
-    if (fdd < 10) fdd = '0' + fdd;
-    if (fmm < 10) fmm = '0' + fmm;
-    if (ldd < 10) ldd = '0' + ldd;
-    if (lmm < 10) lmm = '0' + lmm;
+    // Method to call to update first and last day of the week when navigating to next/previous week
+    const getWeekDates = () => {
+        fmm = firstDay.getMonth() + 1; // Months start at 0!
+        fdd = firstDay.getDate();
+        lmm = lastDay.getMonth() + 1;
+        ldd = lastDay.getDate();
+
+        // Add leading 0's if the number is below 10
+        if (fdd < 10) fdd = '0' + fdd;
+        if (fmm < 10) fmm = '0' + fmm;
+        if (ldd < 10) ldd = '0' + ldd;
+        if (lmm < 10) lmm = '0' + lmm;
+    }
 
 
     const handleNextWeek = () => {
@@ -43,14 +47,7 @@ const Dashboard = () => {
         setLastDay(new Date(lastDay.getTime() + (7 * 24 * 60 * 60 * 1000)))
 
         // Format
-        fmm = firstDay.getMonth() + 1; // Months start at 0!
-        fdd = firstDay.getDate();
-        lmm = lastDay.getMonth() + 1;
-        ldd = lastDay.getDate();
-        if (fdd < 10) fdd = '0' + fdd;
-        if (fmm < 10) fmm = '0' + fmm;
-        if (ldd < 10) ldd = '0' + ldd;
-        if (lmm < 10) lmm = '0' + lmm;
+        getWeekDates();
 
     }
 
@@ -64,15 +61,9 @@ const Dashboard = () => {
         setLastDay(new Date(lastDay.getTime() - (7 * 24 * 60 * 60 * 1000)))
 
         // Format
-        fmm = firstDay.getMonth() + 1; // Months start at 0!
-        fdd = firstDay.getDate();
-        lmm = lastDay.getMonth() + 1;
-        ldd = lastDay.getDate();
-        if (fdd < 10) fdd = '0' + fdd;
-        if (fmm < 10) fmm = '0' + fmm;
-        if (ldd < 10) ldd = '0' + ldd;
-        if (lmm < 10) lmm = '0' + lmm;
+        getWeekDates()
     }
+
 
     return (
         <>
