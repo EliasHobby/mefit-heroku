@@ -4,8 +4,13 @@ import { useState } from "react";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import WeekDayAccordion from '../components/WeekdayAccordion/WeekdayAccordion';
+import goalfuncs from "../utils/DashboardContext";
 
 const Dashboard = () => {
+
+    //Fetch the users' goals
+    const goals = goalfuncs.FetchGoals();
+    console.log(goals)
 
     // Get the current week
     let goalDate = new Date();
