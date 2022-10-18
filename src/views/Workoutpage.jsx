@@ -1,11 +1,20 @@
 import '../App.css';
 import { Grid, Typography, CircularProgress } from "@mui/material";
-import funcs from "../utils/WorkoutContext"
+import workoutFuncs from "../utils/WorkoutContext"
+import { useEffect } from 'react'; 
 
 const Workoutpage = () => {
 
     const workoutId = window.location.pathname.match(/\d+/)[0];
-    const data = funcs.FetchWorkout(workoutId);
+    const data = workoutFuncs.FetchWorkout(workoutId);
+    //   //gets last ten translations in list and return it to list
+    // useEffect(() => {
+    //     getTranslationsByUserId(user.id)
+    //     .then(
+    //     result => setUserTranslations(result.slice(-10).map((x) => <li>{x}</li>))
+    //     )
+    // }, [user.id])
+
     console.log(data)
 
     if (data === undefined) {

@@ -16,11 +16,11 @@ const Programs = () => {
 
   //const listex = data.map((program, index) => <li>{funcs.FetchExercise(program.workoutId[index])}</li>)
 
-  //const listOfEx = data.workoutId.map((x) => <li>{x}</li>)
+  // const listOfEx = data.workoutId.map((x) => <li>{x}</li>)
 
-  for (let x in data.workoutId){
-    console.log(funcs.FetchWorkout(x).name)
-  }
+  // for (let x in data.workoutId){
+  //   console.log(funcs.FetchWorkout(x).name)
+  // }
 
   return (
       <>
