@@ -1,35 +1,62 @@
-import {TrainingProgram} from "../models/trainingProgram"
+import { useEffect, useState } from "react";
 
 
-async function fetchTrainingProgram() {
-    try {
-        //placeholder url (assumed to be right)
-        const response = await fetch("https://mefitapi.azure-api.net/api/trainingprogram")
-        const jsonPrograms = await response.json()
-        return jsonPrograms
-    }
-    catch (error) {
-        console.error("Error: ", error.message)
-    }
+function FetchTrainingPrograms() {
+
+
+    const [data, setData] = useState()
+
+    useEffect(() => {
+        const fetchTrainingPrograms = async () => {
+            fetch("https://mefitapi.azure-api.net/api/trainingprograms")
+                .then(async response => {
+                    if (response.ok) {
+                        console.log(response)
+                        return response.json()
+                    }
+                })
+                .then(data => {
+                    setData(data)
+                })
+                .catch(error => {
+                    console.error(error.message)
+                })
+        }
+        fetchTrainingPrograms();
+    }, [])
+
+    return data;
+
 }
 
+function FetchTrainingProgram(id) {
+    const [trainingProgram, setData] = useState()
 
+    useEffect(() => {
+        const fetchTrainingProgram = async () => {
+            fetch("https://mefitapi.azure-api.net/api/trainingprograms/" + id)
+                .then(async response => {
+                    if (response.ok) {
+                        console.log(response)
+                        return response.json()
+                    }
+                })
+                .then(trainingProgram => {
+                    setData(trainingProgram)
+                })
+                .catch(error => {
+                    console.error(error.message)
+                })
+        }
+        fetchTrainingProgram();
+    }, [])
 
-// Return a list of Goals to be fetched to goals page 
-export const listOfPrograms =  (async () =>{
+    return trainingProgram;
+}
 
-    // Variables
-    const programs = fetchTrainingProgram()
-    let list = []
+const programFuncs = {
+    FetchTrainingPrograms,
+    FetchTrainingProgram
+}
 
-    for (const program in programs) {
-        let thisProgram = new TrainingProgram(program.trainingProgramId , program.name, program.Category, program.Description, program.image ) 
-        list.push(thisProgram)
-
-    }
-    console.log(list)
-    return list
-})()
-
-
-export default listOfPrograms;
+export default programFuncs
