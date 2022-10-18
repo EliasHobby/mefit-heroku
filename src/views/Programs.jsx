@@ -1,47 +1,43 @@
 import DisplayCard from "../components/DisplayCard/DisplayCard";
 import '../App.css';
-import { Grid } from "@mui/material";
+import { Grid ,Typography, CircularProgress } from "@mui/material";
+import '../App.css';
+import programFuncs from "../utils/TrainingProgramContext"
+import funcs from "../utils/WorkoutContext"
 
 const Programs = () => {
-    
-    const programs = [
-        {
-          name: 'Get Fit in One Month with Arnold Swarzchszenegger',
-          description: 'Join Arnold on a one month journey to peak athletisism. This program focuses on weightlifting and steroids.',
-          img: 'https://image-cdn.essentiallysports.com/wp-content/uploads/arnold-schwarzenegger.jpg'
-        },
-        {
-          name: 'Go Crazy with Kari Jaquesson',
-          description: 'Did the Covid-vaccine make you autistic? Do you radiate 5G wherever you go? Join Kari in her Aerobic workout to shake it all off.',
-          img: 'https://images.dn.no/image/TlZQUVVmOGR5ZDlKL1ZmUWhSK0F0UCtXdXNLaHQxNERRM255czk3cEpkYz0=/nhst/binary/5c26263260ad5601924b073e455e3f1e?image_version=720'
-        },
-        {
-          name: 'No shortcuts with bigboy Zyzz',
-          description: 'No Bitches? No money? Zyzz got you bro. Join my all natural body building program and get ripped - FAST',
-          img: 'https://melmagazine.com/wp-content/uploads/2022/04/Zyzz.jpg' 
-        },
-        {
-            name: 'From Dadbod to Fuckboi using Calisthenics',
-            description: 'If you weight 200kg, why spend money on weights when you can just use your own bodyweight? Try out this cheap training program and make your wife love you again.',
-            img: 'https://d3h9ln6psucegz.cloudfront.net/wp-content/uploads/2021/07/Dad-Bods-Are-Hot-Fake-News-vs.-Science.jpeg' 
-          },
-        
-      
-      ]
-
-    return (
-        <>
-            <h1>Exercises</h1>
-            <Grid container spacing={2}>
-
-                {programs.map((program, index) => (
-                    <Grid item xs={4} mb={4} key={index}>
-                        <DisplayCard exercise={program} />
-                    </Grid>
-                ))}
-
-            </Grid>
-        </>
-    )
+  const data = programFuncs.FetchTrainingPrograms();
+ 
+  if (data === undefined) {
+    return <>Fetching traingasjginasnd programs...</>
 }
+
+  // <ul>{data.workoutId.map((x) => <li>{funcs.FetchWorkout(x).name}</li>)}</ul>
+
+  //const listex = data.map((program, index) => <li>{funcs.FetchExercise(program.workoutId[index])}</li>)
+
+  // const listOfEx = data.workoutId.map((x) => <li>{x}</li>)
+
+  // for (let x in data.workoutId){
+  //   console.log(funcs.FetchWorkout(x).name)
+  // }
+
+  return (
+      <>
+          <h1>Training Programs</h1>
+
+          <Grid container spacing={2} >
+
+              {data.map((program, index) => (
+                  <Grid item xs={4} mb={4} key={index}>
+                      <DisplayCard element={program} id={index} type="program" />
+                      <Typography variant="h5">Hi {data.type} from {data.country}.</Typography>
+                  </Grid>
+              ))}                  
+              
+            </Grid>
+      </>
+  )
+}
+
 export default Programs;

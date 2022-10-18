@@ -17,6 +17,8 @@ import ContributorRoute from './helpers/ContributorRoute';
 import LoggedInRoute from './helpers/LoggedInRoute';
 import NotFound from './components/NotFound/NotFound';
 import HandleLogin from './views/HandleLogin';
+import Workoutpage from './views/Workoutpage';
+import Programpage from './views/Programpage';
 
 function App() {
 
@@ -55,6 +57,18 @@ function App() {
             <Route path="/workouts" element={
               <PrivateRoute>
                 <Workouts />
+              </PrivateRoute>
+            }
+            />
+            <Route path="/workout/:id" element={
+              <PrivateRoute>
+                <Workoutpage />
+              </PrivateRoute>
+            }
+            />
+            <Route path="/program/:id" element={
+              <PrivateRoute>
+                <Programpage />
               </PrivateRoute>
             }
             />

@@ -1,35 +1,62 @@
-import {Goal} from "../models/goal"
+import { useEffect, useState } from "react";
 
 
-async function fetchGoals() {
-    try {
-        //placeholder url assumed to be right
-        const response = await fetch("https://mefitapi.azure-api.net/api/Goals")
-        const jsonGoals = await response.json()
-        return jsonGoals
-    }
-    catch (error) {
-        console.error("Error: ", error.message)
-    }
+function FetchGoals() {
+
+
+    const [data, setData] = useState()
+
+    useEffect(() => {
+        const fetchGoals = async () => {
+            fetch("https://mefitapi.azure-api.net/api/goals")
+                .then(async response => {
+                    if (response.ok) {
+                        console.log(response)
+                        return response.json()
+                    }
+                })
+                .then(data => {
+                    setData(data)
+                })
+                .catch(error => {
+                    console.error(error.message)
+                })
+        }
+        fetchGoals();
+    }, [])
+
+    return data;
+
 }
 
+function FetchGoal(id) {
+    const [goal, setData] = useState()
 
+    useEffect(() => {
+        const fetchGoal = async () => {
+            fetch("https://mefitapi.azure-api.net/api/goals/" + id)
+                .then(async response => {
+                    if (response.ok) {
+                        console.log(response)
+                        return response.json()
+                    }
+                })
+                .then(goal => {
+                    setData(goal)
+                })
+                .catch(error => {
+                    console.error(error.message)
+                })
+        }
+        fetchGoal();
+    }, [])
 
-// Return a list of Goals to be fetched to goals page 
-export const listOfGoals =  (async () =>{
+    return goal;
+}
 
-    // Variables
-    const goals = fetchGoals()
-    let list = []
+const funcs = {
+    FetchGoals,
+    FetchGoal
+}
 
-    for (const goal in goals) {
-        let thisGoal = new Goal(goal.goal_id, goal.end_date, goal.achieved )
-        list.push(thisGoal)
-
-    }
-    console.log(list)
-    return list
-})()
-
-
-export default listOfGoals;
+export default funcs
