@@ -8,7 +8,7 @@ function FetchUser() {
     // First fetch the user account so we know which id to fetch goals from
     useEffect(() => {
         const fetchUser = async () => {
-            fetch("https://mefitapi.azure-api.net/api/accounts/" + keycloak.tokenParsed.sub + "/KeyCloak")
+            fetch("https://mefitapi.azure-api.net/api/Accounts/" + keycloak.tokenParsed.sub + "/KeyCloak")
                 .then(async response => {
                     if (response.ok) {
                         console.log(response)
@@ -23,7 +23,7 @@ function FetchUser() {
                 })
         }
         fetchUser();
-    }, [])
+    }, [keycloak.tokenParsed.sub])
     return user;
 }
 

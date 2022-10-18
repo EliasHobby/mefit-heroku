@@ -10,7 +10,7 @@ const FetchAccountDetails = () => {
 
     useEffect(() => {
         const fetchUser = async () => {
-            fetch("https://mefitapi.azure-api.net/api/accounts/" + keycloak.tokenParsed.sub + "/KeyCloak")
+            fetch("https://mefitapi.azure-api.net/api/Accounts/" + keycloak.tokenParsed.sub + "/KeyCloak")
                 .then(async response => {
                     // If the user does have a profile
                     if (response.ok) {
