@@ -5,24 +5,26 @@ import { useKeycloak } from "@react-keycloak/web"
 const FetchAccountDetails = () => {
 
     const { keycloak } = useKeycloak();
-    const [user, setUser] = useState({})
-    const [data, setData] = useState({})
+    const [user, setUser] = useState()
+    const [data, setData] = useState()
 
     useEffect(() => {
         const fetchUser = async () => {
-            fetch("https://mefitapi.azure-api.net/api/Accounts/" + keycloak.tokenParsed.sub + "/KeyCloak")
+            fetch("https://mefitapi.azure-api.net/api/accounts/user")
                 .then(async response => {
                     // If the user does have a profile
                     if (response.ok) {
                         console.log(response)
                         return response.json() // If breaks here, goes to next .then
                     }
-                    // If the user does not have a profile already, create a new one
-                    await CreateNewUser("https://mefitapi.azure-api.net/api/accounts/", {
+                    // If the user does not exist in the database (first time login) create a new one
+                    CreateNewUser("https://mefitapi.azure-api.net/api/accounts/", {
                         "keycloakId": keycloak.tokenParsed.sub,
                         "firstname": keycloak.tokenParsed.given_name,
-                        "lastname": keycloak.tokenParsed.family_name
+                        "lastname": keycloak.tokenParsed.family_name,
+                        "email": keycloak.tokenParsed.email
                     })
+                    console.log("Created new user")
                     .then((data) => {
                         console.log(data); // Debugging purposes
                     })
@@ -44,7 +46,7 @@ const FetchAccountDetails = () => {
                 })
         }
         fetchUser();
-    }, [])
+    }, [keycloak.tokenParsed.email, keycloak.tokenParsed.family_name, keycloak.tokenParsed.given_name, keycloak.tokenParsed.sub])
 }
 
 async function CreateNewUser(url = '', data = {}) {
@@ -53,6 +55,8 @@ async function CreateNewUser(url = '', data = {}) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Credentials": true
         },
         body: JSON.stringify(data),
     })

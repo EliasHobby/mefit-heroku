@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 function FetchExercises() {
 
-
     const [data, setData] = useState()
 
     useEffect(() => {
