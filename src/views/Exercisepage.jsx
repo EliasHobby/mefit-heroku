@@ -25,10 +25,9 @@ const Exercisepage = () => {
 
     return (
         <>
-            <h1>Exercises</h1>
+            <h1>{data.name}</h1>
             <img src={data.image} alt="workout" />
-            <Typography variant="h3">{data.name}</Typography>
-            <Typography>Description: {data.description}</Typography>
+            <Typography>{data.description}</Typography>
         </>
     )
 }
