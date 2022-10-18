@@ -1,37 +1,62 @@
-import {Workout} from "../models/workout"
+import { useEffect, useState } from "react";
 
 
-async function fetchWorkouts() {
-    try {
-        //placeholder url assumed to be right
-        const response = await fetch("https://mefitapi.azure-api.net/api/workouts")
-        const jsonWorkouts = await response.json()
-        
-        return jsonWorkouts
-    }
-    catch (error) {
-        console.error("Error: ", error.message)
-    }
+function FetchWorkouts() {
+
+
+    const [data, setData] = useState()
+
+    useEffect(() => {
+        const fetchWorkouts = async () => {
+            fetch("https://mefitapi.azure-api.net/api/workouts")
+                .then(async response => {
+                    if (response.ok) {
+                        console.log(response)
+                        return response.json()
+                    }
+                })
+                .then(data => {
+                    setData(data)
+                })
+                .catch(error => {
+                    console.error(error.message)
+                })
+        }
+        fetchWorkouts();
+    }, [])
+
+    return data;
+
 }
 
+function FetchWorkout(id) {
+    const [workout, setData] = useState()
 
+    useEffect(() => {
+        const fetchWorkout = async () => {
+            fetch("https://mefitapi.azure-api.net/api/workouts/" + id)
+                .then(async response => {
+                    if (response.ok) {
+                        console.log(response)
+                        return response.json()
+                    }
+                })
+                .then(workout => {
+                    setData(workout)
+                })
+                .catch(error => {
+                    console.error(error.message)
+                })
+        }
+        fetchWorkout();
+    }, [])
 
-// Return a list of Goals to be fetched to goals page 
-export const listOfWorkouts =  (async () =>{
+    return workout;
+}
 
-    // Variables
-    const workouts = fetchWorkouts()
-        let list = []
+const workoutFuncs = {
+    FetchWorkouts,
+    FetchWorkout
+}
 
-    for (const workout in workouts) {
-        let thisWorkout = new Workout(workout.workoutId, workout.name, workout.type, workout.image )
-        list.push(thisWorkout)
-
-    }
-
-    console.log(list)
-    return list
-})()
-
-
-export default listOfWorkouts;
+export default workoutFuncs
