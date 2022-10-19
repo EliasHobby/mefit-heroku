@@ -1,11 +1,11 @@
 import '../App.css';
 import { Grid, Typography, CircularProgress } from "@mui/material";
-import funcs from "../utils/ExerciseContext"
+import exerciseFuncs from "../utils/ExerciseContext"
 
 const Exercisepage = () => {
 
     const exerciseId = window.location.pathname.match(/\d+/)[0];
-    const data = funcs.FetchExercise(exerciseId);
+    const data = exerciseFuncs.FetchExercise(exerciseId);
     console.log(data)
 
     if (data === undefined) {

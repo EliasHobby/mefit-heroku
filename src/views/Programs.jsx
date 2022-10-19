@@ -3,11 +3,13 @@ import '../App.css';
 import { Grid ,Typography, CircularProgress } from "@mui/material";
 import '../App.css';
 import programFuncs from "../utils/TrainingProgramContext"
-import funcs from "../utils/WorkoutContext"
+import workoutFuncs from "../utils/WorkoutContext"
 
+// Page of all programs, Catalogue of programs for user
 const Programs = () => {
   const data = programFuncs.FetchTrainingPrograms();
- 
+  localStorage.setItem("data", data)
+  console.log(localStorage.getItem(data))
   if (data === undefined) {
     return <>Fetching traingasjginasnd programs...</>
 }
@@ -31,11 +33,12 @@ const Programs = () => {
               {data.map((program, index) => (
                   <Grid item xs={4} mb={4} key={index}>
                       <DisplayCard element={program} id={index} type="program" />
-                      <Typography variant="h5">Hi {data.type} from {data.country}.</Typography>
+                      <Typography variant="h5"><ul>Workouts:  {program.workoutId.map((x) => <li>{x}</li>)} </ul> </Typography>
                   </Grid>
               ))}                  
               
             </Grid>
+
       </>
   )
 }

@@ -98,7 +98,7 @@ const Dashboard = () => {
                 </Box>
                 <Card>
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
-                        <WeekDayAccordion />
+                        {/* <WeekDayAccordion /> */}
                     </Box>
                 </Card>
             </Card>
