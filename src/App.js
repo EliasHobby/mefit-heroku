@@ -9,7 +9,7 @@ import Exercises from './views/Exercises';
 import Dashboard from './views/Dashboard';
 import Programs from './views/Programs';
 import Exercisepage from './views/Exercisepage';
-import Contributors from './views/Contributors';
+//import Contributors from './views/Contributors';
 import PrivateRoute from './helpers/PrivateRoute';
 import * as React from 'react';
 import ResponsiveAppBar from './components/NavBar/ReponsiveAppbar';
@@ -19,6 +19,7 @@ import NotFound from './components/NotFound/NotFound';
 import HandleLogin from './views/HandleLogin';
 import Workoutpage from './views/Workoutpage';
 import Programpage from './views/Programpage';
+import Contributorpage from './views/ContributersPage';
 
 function App() {
 
@@ -98,12 +99,13 @@ function App() {
             />
             <Route path="/contributors" element={
               <PrivateRoute>
-                <ContributorRoute>
-                  <Contributors />
-                </ContributorRoute>
+                <ContributorRoute> 
+                  <Contributorpage />
+                </ContributorRoute> 
               </PrivateRoute>
             }
             />
+            
             <Route path="/*" element={
               <NotFound />
             }
