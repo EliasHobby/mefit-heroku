@@ -19,6 +19,7 @@ import NotFound from './components/NotFound/NotFound';
 import HandleLogin from './views/HandleLogin';
 import Workoutpage from './views/Workoutpage';
 import Programpage from './views/Programpage';
+import AddExercise from './views/AddExercise';
 
 function App() {
 
@@ -96,6 +97,12 @@ function App() {
               </PrivateRoute>
             }
             />
+            <Route path="/addExercise" element={
+              <PrivateRoute>
+                <AddExercise />
+              </PrivateRoute>
+            }
+            />
             <Route path="/contributors" element={
               <PrivateRoute>
                 <ContributorRoute>
@@ -104,6 +111,7 @@ function App() {
               </PrivateRoute>
             }
             />
+
             <Route path="/*" element={
               <NotFound />
             }

@@ -1,0 +1,49 @@
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+
+const AddProgramForm = () =>  {
+  return (
+    <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <div>
+        <TextField
+          required
+          id="outlined-required"
+          label="Name of Program"
+          defaultValue=""
+        />
+
+        <TextField
+          required
+          id="outlined-required"
+          label="Category for program"
+          defaultValue=""
+        />
+
+        <TextField
+          required
+          id="outlined-required"
+          label="Description of program"
+          defaultValue=""
+        />
+        <TextField
+          required
+          id="outlined-required"
+          label="ImageURL"
+          defaultValue=""
+        />
+
+
+        
+        </div>
+    </Box>
+  );
+}
+export default AddProgramForm;
