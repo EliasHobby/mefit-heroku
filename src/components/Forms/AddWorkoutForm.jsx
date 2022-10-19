@@ -23,7 +23,7 @@ const AddWorkoutForm = () =>  {
         <TextField
           required
           id="outlined-required"
-          label="type of exercise"
+          label="type of workout"
           defaultValue=""
         />
         
