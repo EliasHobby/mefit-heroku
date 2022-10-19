@@ -2,33 +2,42 @@ import { useState } from "react"
 import { useEffect } from "react"
 import { useKeycloak } from "@react-keycloak/web"
 
-let token;
-
 const FetchAccountDetails = () => {
-    
+
     const { keycloak } = useKeycloak();
     const [data, setData] = useState();
-    token = keycloak.tokenParsed.sub;
 
     useEffect(() => {
         const fetchUser = async () => {
-            fetch("https://mefitapi.azure-api.net/api/accounts/user")
+            console.log(keycloak.token)
+            await fetch("https://apimefit.azurewebsites.net/api/Accounts/user", { "X-Authorization": `Bearer Token ${keycloak.token}`})
                 .then(async response => {
                     // If the user exists in the database
                     if (response.ok) {
                         console.log(response)
+                        console.log("OK")
                         return response.json() // If return is trigged here, go to next .then
                     }
-                    // If the user does not exist in the database (first time login) create a new one
-                    CreateNewUser("https://mefitapi.azure-api.net/api/accounts/", {
-                        'keycloackId': keycloak.tokenParsed.sub,
-                        'firstname': keycloak.tokenParsed.given_name,
-                        'lastname': keycloak.tokenParsed.family_name,
-                    })
-                    console.log("Created new user")
-                        .then((data) => {
-                            console.log(data); // Debugging purposes
-                        })
+                    else {
+                        // If response wasn't OK, create a new user in the DB (first time login)
+                        const requestOptions = {
+                            authorization: `bearer: ${keycloak.token}`,
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+
+                            },
+                            body: JSON.stringify({
+                                'keycloackId': keycloak.tokenParsed.sub,
+                                'firstname': keycloak.tokenParsed.given_name,
+                                'lastname': keycloak.tokenParsed.family_name
+                            }),
+                        }
+                        fetch("https://apimefit.azurewebsites.net/api/Accounts", requestOptions)
+                            .then(response => response.json())
+                            .then(data => setData(data))
+                        console.log("Created new user")
+                    }
                 })
                 .then(data => {
                     console.log(data);
@@ -46,22 +55,8 @@ const FetchAccountDetails = () => {
                     console.error(error.message)
                 })
         }
-        fetchUser();
-    }, [keycloak.tokenParsed.email, keycloak.tokenParsed.family_name, keycloak.tokenParsed.given_name, keycloak.tokenParsed.sub])
+        if (keycloak.token) fetchUser();
+    }, [keycloak.token, keycloak.tokenParsed.email, keycloak.tokenParsed.family_name, keycloak.tokenParsed.given_name, keycloak.tokenParsed.sub])
 }
 
-async function CreateNewUser(url = '', data = {}) {
-    const response = await fetch(url, {
-        method: "POST",
-        headers: {
-            "Authorization": `bearer ${token}`,
-            "Accept": "application/json, text/plain",
-            "Content-Type": "application/json",
-
-        },
-        body: JSON.stringify(data),
-    })
-    console.log(JSON.stringify(data))
-    return response.json();
-}
 export default FetchAccountDetails;
