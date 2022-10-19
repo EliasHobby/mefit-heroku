@@ -1,17 +1,13 @@
-import { Card, Typography, Box, IconButton } from "@mui/material";
+import { Card, Typography, Box, Button } from "@mui/material";
 import LinearWithValueLabel from "../components/LinearProgressWithLabel/LinearProgressWithLabel";
 import WeekDateDisplayer from "../components/WeekDateDisplayer/WeekDateDisplayer";
-
-import goalfuncs from "../utils/DashboardContext";
+import dashboardfuncs from "../utils/DashboardContext";
 
 const Dashboard = () => {
 
     //Fetch the users' goals
-    const goals = goalfuncs.FetchGoals();
+    const goals = dashboardfuncs.FetchGoals();
     console.log(goals)
-
-    
-
 
     return (
         <>

@@ -2,32 +2,33 @@ import { useState } from "react"
 import { useEffect } from "react"
 import { useKeycloak } from "@react-keycloak/web"
 
-const FetchAccountDetails = () => {
+let token;
 
+const FetchAccountDetails = () => {
+    
     const { keycloak } = useKeycloak();
-    const [user, setUser] = useState()
-    const [data, setData] = useState()
+    const [data, setData] = useState();
+    token = keycloak.tokenParsed.sub;
 
     useEffect(() => {
         const fetchUser = async () => {
             fetch("https://mefitapi.azure-api.net/api/accounts/user")
                 .then(async response => {
-                    // If the user does have a profile
+                    // If the user exists in the database
                     if (response.ok) {
                         console.log(response)
-                        return response.json() // If breaks here, goes to next .then
+                        return response.json() // If return is trigged here, go to next .then
                     }
                     // If the user does not exist in the database (first time login) create a new one
                     CreateNewUser("https://mefitapi.azure-api.net/api/accounts/", {
-                        "keycloakId": keycloak.tokenParsed.sub,
-                        "firstname": keycloak.tokenParsed.given_name,
-                        "lastname": keycloak.tokenParsed.family_name,
-                        "email": keycloak.tokenParsed.email
+                        'keycloackId': keycloak.tokenParsed.sub,
+                        'firstname': keycloak.tokenParsed.given_name,
+                        'lastname': keycloak.tokenParsed.family_name,
                     })
                     console.log("Created new user")
-                    .then((data) => {
-                        console.log(data); // Debugging purposes
-                    })
+                        .then((data) => {
+                            console.log(data); // Debugging purposes
+                        })
                 })
                 .then(data => {
                     console.log(data);
@@ -50,16 +51,17 @@ const FetchAccountDetails = () => {
 }
 
 async function CreateNewUser(url = '', data = {}) {
-
     const response = await fetch(url, {
         method: "POST",
         headers: {
+            "Authorization": `bearer ${token}`,
+            "Accept": "application/json, text/plain",
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Credentials": true
+
         },
         body: JSON.stringify(data),
     })
+    console.log(JSON.stringify(data))
     return response.json();
 }
 export default FetchAccountDetails;

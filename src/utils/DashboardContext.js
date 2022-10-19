@@ -28,8 +28,8 @@ function FetchGoals() {
     return goals;
 }
 
-const goalfuncs = {
+const dashboardfuncs = {
     FetchGoals,
 }
 
-export default goalfuncs;
+export default dashboardfuncs;
