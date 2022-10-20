@@ -10,8 +10,21 @@ const FetchAccountDetails = () => {
     useEffect(() => {
         const fetchUser = async () => {
             console.log(keycloak.token)
-            await fetch("https://apimefit.azurewebsites.net/api/Accounts/user", { "X-Authorization": `Bearer Token ${keycloak.token}`})
-                .then(async response => {
+
+            // Headers for HTTP Get request
+            const myHeaders = new Headers();
+            myHeaders.append("Authorization", `Bearer ${keycloak.token}`);
+            myHeaders.append("Content-Type", "application/json");
+
+            // Request options for HTTP Get request
+            const getRequestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            await fetch("https://apimefit.azurewebsites.net/api/Accounts/user", getRequestOptions)
+                .then(response => {
                     // If the user exists in the database
                     if (response.ok) {
                         console.log(response)
@@ -20,8 +33,8 @@ const FetchAccountDetails = () => {
                     }
                     else {
                         // If response wasn't OK, create a new user in the DB (first time login)
-                        const requestOptions = {
-                            authorization: `bearer: ${keycloak.token}`,
+                        const postRequestOptions = {
+                            authorization: keycloak.token,
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -33,10 +46,11 @@ const FetchAccountDetails = () => {
                                 'lastname': keycloak.tokenParsed.family_name
                             }),
                         }
-                        fetch("https://apimefit.azurewebsites.net/api/Accounts", requestOptions)
+                        fetch("https://apimefit.azurewebsites.net/api/Accounts", postRequestOptions)
                             .then(response => response.json())
                             .then(data => setData(data))
                         console.log("Created new user")
+                        return response.json()
                     }
                 })
                 .then(data => {

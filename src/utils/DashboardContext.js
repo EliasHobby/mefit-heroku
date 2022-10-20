@@ -7,7 +7,7 @@ function FetchGoals() {
     // Then we fetch the goals using the users id
     useEffect(() => {
         const fetchGoals = async () => {
-            fetch("https://mefitapi.azure-api.net/api/goals/")
+            fetch("https://apimefit.azurewebsites.net/api/goals/")
                 .then(async response => {
                     if (response.ok) {
                         console.log("FetchGoals response:")

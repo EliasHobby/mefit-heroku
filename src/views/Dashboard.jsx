@@ -6,8 +6,8 @@ import dashboardfuncs from "../utils/DashboardContext";
 const Dashboard = () => {
 
     //Fetch the users' goals
-    // const goals = dashboardfuncs.FetchGoals();
-    // console.log(goals)
+    const goals = dashboardfuncs.FetchGoals();
+    console.log(goals)
 
     return (
         <>
