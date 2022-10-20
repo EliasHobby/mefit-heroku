@@ -2,6 +2,8 @@ import { Card, Typography, Box, Button } from "@mui/material";
 import LinearWithValueLabel from "../components/LinearProgressWithLabel/LinearProgressWithLabel";
 import WeekDateDisplayer from "../components/WeekDateDisplayer/WeekDateDisplayer";
 import dashboardfuncs from "../utils/DashboardContext";
+import WeekDayAccordion from "../components/WeekdayAccordion/WeekdayAccordion"
+import GoalButton from "../components/GoalButton/GoalButton";
 
 const Dashboard = () => {
 
@@ -17,9 +19,12 @@ const Dashboard = () => {
                     <Typography sx={{ mr: '1rem' }}>Completion: </Typography>
                     <LinearWithValueLabel />
                 </Box>
+                <Box>
+                    <GoalButton></GoalButton>
+                </Box>
                 <Card>
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
-                        {/* <WeekDayAccordion /> */}
+                        <WeekDayAccordion />
                     </Box>
                 </Card>
             </Card>

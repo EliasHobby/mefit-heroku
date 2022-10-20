@@ -33,7 +33,6 @@ const Programs = () => {
               {data.map((program, index) => (
                   <Grid item xs={4} mb={4} key={index}>
                       <DisplayCard element={program} id={index} type="program" />
-                      <Typography variant="h5"><ul>Workouts:  {program.workoutId.map((x) => <li>{x}</li>)} </ul> </Typography>
                   </Grid>
               ))}                  
               
