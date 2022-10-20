@@ -1,9 +1,15 @@
+import { Description, JavascriptOutlined } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 
 
+const apiUrl = "https://mefitapi.azure-api.net/api/Exercises"
+
 function FetchExercises() {
 
+
     const [data, setData] = useState()
+
+    
 
     useEffect(() => {
         const fetchExercises = async () => {
@@ -48,14 +54,42 @@ function FetchExercise(id) {
                 })
         }
         fetchExercises();
-    }, [])
+    }, [id])
 
     return exercise;
 }
 
+async function CreateExercise (exercise)  {
+    try{
+        const response = await fetch(apiUrl, {
+            method: "POST",
+            header: { Accept: "application/json, */*",
+            "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({
+               Name: exercise.Name, 
+               Description: exercise.Description,
+               Target_Muscle_Group: exercise.Target_Muscle_Group,
+               Image: exercise.Image
+
+            })
+        })
+        if(!response.ok){
+            throw new Error("Could not create exercise with exercise name " + exercise)
+        } 
+        const data = await response.json();
+        return [null, data]
+    }
+    catch(error) {
+        return [error.message, []]
+    }
+}
+
 const exerciseFuncs = {
     FetchExercises,
-    FetchExercise
+    FetchExercise,
+    CreateExercise
+
 }
 
 export default exerciseFuncs
