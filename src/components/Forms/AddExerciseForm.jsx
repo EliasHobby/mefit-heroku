@@ -6,11 +6,11 @@ import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 
 const AddExerciseForm = () =>  {
-  const [exData, setExData] = useState("")
-  const [name, setName] = useState("")
-  const [description, setDescription] = useState("")
-  const [target_Muscle_Group, setTargetGroup] = useState("")
-  const [imageURL, setImageUrl] = useState("")
+  const [exData, setExData] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [target_Muscle_Group, setTargetGroup] = useState("");
+  const [imageURL, setImageUrl] = useState("");
 
 
   return (
@@ -56,12 +56,13 @@ const AddExerciseForm = () =>  {
         />
         <TextField
           required
+          onChange = {(event) => setExData(event.target.value)}
           id="outlined-required"
           label="exData"
           defaultValue={exData}
           value ={exData}
         />
-        <Button variant="contained"   onClick={() => setExData("name: " + {name} + ","  + "description" + {description} + "," + "target_Muscle_Group: " + {target_Muscle_Group} + ","  + "imageURL" + {imageURL} )}>
+        <Button type="submit" variant="contained"  onClick={() => setExData({exData} + {name} + " , "  + " description: " + {description} + " , " + "target_Muscle_Group: " + {target_Muscle_Group} + " , "  + "imageURL: " + {imageURL} )}>
             Submit Exercise
             </Button>
         </div>
