@@ -4,7 +4,6 @@ import {Button} from '@mui/material';
 import exerciseFuncs from '../../utils/ExerciseContext'
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
-import { defaultExercise } from '../../models/exercise';
 
 export function AddExerciseForm () {
   const [ exercise, setExercise] = useState({

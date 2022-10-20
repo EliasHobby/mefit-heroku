@@ -2,11 +2,36 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Input from '@mui/material'
 import TextField from '@mui/material/TextField';
+import { useState } from 'react';
+import {Button} from '@mui/material';
+import programFuncs from '../../utils/TrainingProgramContext'
 
 const AddProgramForm = () =>  {
+  const [ trainingProgram, setTrainingProgram] = useState({
+    name: "",
+    category: "",
+    description: "",
+    image: "",
+
+    });
+
+               
+
+    // Handler to update local state
+    const handleChange = (event) => {
+      const {name, value} = event.target;
+        
+        // Updating state of exercise
+        setTrainingProgram({
+          ...trainingProgram,
+          [name]: value
+      });
+  }
 
 
-  
+
+
+
   return (
     <Box
       component="form"
@@ -16,39 +41,59 @@ const AddProgramForm = () =>  {
       noValidate
       autoComplete="off"
     >
+
       <div>
-        <TextField
+        <form>
+        <input
           required
+          onChange = {handleChange}
           id="outlined-required"
-          value="programeName"
-          label="Name of Program"
-          defaultValue=""
+          label="Name of program"
+          name="name"
+          value= {trainingProgram.name}
         />
-
-        <TextField
+        <input
           required
+          onChange = {handleChange}
           id="outlined-required"
-          value="category"
-          label="Category for program"
-          defaultValue=""
+          label="category of program"
+          name= "category"
+          value= {trainingProgram.category}
         />
-
-        <TextField
+        
+        <input
           required
+          onChange = {handleChange}
           id="outlined-required"
-          value="description"
-          label="Description of program"
-          defaultValue=""
+          label="program description"
+          name= "description"
+          value= {trainingProgram.description}
         />
-        <TextField
+        
+        <input
           required
+          onChange = {handleChange}
           id="outlined-required"
-          value="imageURL"
           label="ImageURL"
-          defaultValue=""
+          name= "image"
+          value={trainingProgram.image}
         />
 
-      </div>
+
+        <TextField
+          id="outlined-required"
+          name= "exe"
+          value={trainingProgram.name + "   " + trainingProgram.description + "   "+ trainingProgram.image+ "   " + trainingProgram.category}
+        />
+
+
+
+        <Button variant="contained"  onClick={() => programFuncs.CreateTrainingProgram(trainingProgram)}>
+            Create New program
+            </Button>
+
+          </form>
+        </div>
     </Box>
   );
 }
