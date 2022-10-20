@@ -54,9 +54,34 @@ function FetchWorkout(id) {
     return workout;
 }
 
+function FetchExercisesInWorkout(id) {
+    const [exercises, setData] = useState()
+
+    useEffect(() => {
+        const fetchExercisesInWorkout = async () => {
+            fetch("https://apimefit.azurewebsites.net/api/workouts/ExerciseInWorkout/" + id)
+                .then(async response => {
+                    if (response.ok) {
+                        console.log(response)
+                        return response.json()
+                    }
+                })
+                .then(exercises => {
+                    setData(exercises)
+                })
+                .catch(error => {
+                    console.error(error.message)
+                })
+        }
+        fetchExercisesInWorkout();
+    }, [])
+
+    return exercises;
+}
 const workoutFuncs = {
     FetchWorkouts,
-    FetchWorkout
+    FetchWorkout,
+    FetchExercisesInWorkout
 }
 
 export default workoutFuncs

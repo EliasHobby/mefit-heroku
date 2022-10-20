@@ -1,13 +1,15 @@
 import DisplayCard from "../components/DisplayCard/DisplayCard";
 import '../App.css';
 import { Grid, CircularProgress } from "@mui/material";
-import funcs from "../utils/ExerciseContext";
+import exerciseFuncs from "../utils/ExerciseContext";
 
 
+//Catalogue of all exercises in database
 const Exercises = () => {
+    //Fetch for all exercises
+    const data = exerciseFuncs.FetchExercises();
 
-    const data = funcs.FetchExercises();
-
+    //Check if data is received from database
     if (data === undefined) {
         return <>
         <Grid
