@@ -9,6 +9,7 @@ export class Exercise {
     }
 
 
+    
     // Get methods for Exercise field fields
     getName() {
         return this.name;

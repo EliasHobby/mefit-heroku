@@ -20,6 +20,9 @@ import HandleLogin from './views/HandleLogin';
 import Workoutpage from './views/Workoutpage';
 import Programpage from './views/Programpage';
 import AddExercise from './views/AddExercise';
+import AddWorkout from './views/AddWorkout';
+import AddProgram from './views/AddTrainingProgram';
+
 import Contributorpage from './views/ContributersPage';
 
 function App() {
@@ -112,7 +115,30 @@ function App() {
               </PrivateRoute>
             }
             />
-
+            <Route path="/contributors/exercise" element={
+              <PrivateRoute>
+                <ContributorRoute> 
+                  <AddExercise />
+                </ContributorRoute> 
+              </PrivateRoute>
+            }
+            />
+            <Route path="/contributors/workout" element={
+              <PrivateRoute>
+                <ContributorRoute> 
+                  <AddWorkout />
+                </ContributorRoute> 
+              </PrivateRoute>
+            }
+            />
+            <Route path="/contributors/trainingprogram" element={
+              <PrivateRoute>
+                <ContributorRoute> 
+                  <AddProgram />
+                </ContributorRoute> 
+              </PrivateRoute>
+            }
+            />
             
             <Route path="/*" element={
               <NotFound />

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import Input from '@mui/material'
 import TextField from '@mui/material/TextField';
 
 const AddProgramForm = () =>  {
@@ -16,6 +17,7 @@ const AddProgramForm = () =>  {
         <TextField
           required
           id="outlined-required"
+          value="programeName"
           label="Name of Program"
           defaultValue=""
         />
@@ -23,6 +25,7 @@ const AddProgramForm = () =>  {
         <TextField
           required
           id="outlined-required"
+          value="category"
           label="Category for program"
           defaultValue=""
         />
@@ -30,19 +33,19 @@ const AddProgramForm = () =>  {
         <TextField
           required
           id="outlined-required"
+          value="description"
           label="Description of program"
           defaultValue=""
         />
         <TextField
           required
           id="outlined-required"
+          value="imageURL"
           label="ImageURL"
           defaultValue=""
         />
 
-
-        
-        </div>
+      </div>
     </Box>
   );
 }
