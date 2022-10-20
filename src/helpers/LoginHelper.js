@@ -1,15 +1,13 @@
-import { useState } from "react"
 import { useEffect } from "react"
 import { useKeycloak } from "@react-keycloak/web"
 
 const FetchAccountDetails = () => {
 
     const { keycloak } = useKeycloak();
-    const [data, setData] = useState();
+    localStorage.clear()
 
     useEffect(() => {
         const fetchUser = async () => {
-            console.log(keycloak.token)
 
             // Headers for HTTP Get request
             const myHeaders = new Headers();
@@ -22,17 +20,14 @@ const FetchAccountDetails = () => {
                 headers: myHeaders,
                 redirect: 'follow'
             };
-
+            // HTTP Get the user
             await fetch("https://apimefit.azurewebsites.net/api/Accounts/user", getRequestOptions)
                 .then(response => {
-                    // If the user exists in the database
+                    // If the user exists in the database, we have the connection between keycloak login and user in database.
                     if (response.ok) {
-                        console.log(response)
-                        console.log("OK")
-                        return response.json() // If return is trigged here, go to next .then
-                    }
-                    else {
-                        // If response wasn't OK, create a new user in the DB (first time login)
+                        console.log("User found in database: logged in.")
+                        return response.json()
+                    } else {
                         const postRequestOptions = {
                             authorization: keycloak.token,
                             method: "POST",
@@ -43,34 +38,31 @@ const FetchAccountDetails = () => {
                             body: JSON.stringify({
                                 'keycloackId': keycloak.tokenParsed.sub,
                                 'firstname': keycloak.tokenParsed.given_name,
-                                'lastname': keycloak.tokenParsed.family_name
+                                'lastname': keycloak.tokenParsed.family_name,
+                                'email': keycloak.tokenParsed.email
                             }),
                         }
+                        // HTTP Post the user
                         fetch("https://apimefit.azurewebsites.net/api/Accounts", postRequestOptions)
-                            .then(response => response.json())
-                            .then(data => setData(data))
-                        console.log("Created new user")
-                        return response.json()
+                            .then(fetch("https://apimefit.azurewebsites.net/api/Accounts/user", getRequestOptions)
+                                .then(response => {
+                                    return response.json()
+                                })
+                                .then(data => localStorage.setItem("user", JSON.stringify(data)))
+                            )
+                        console.log("User not found in database: created new.");
                     }
                 })
                 .then(data => {
-                    console.log(data);
-
-                    const _userData = {
-                        id: data.id,
-                        weight: data.weight,
-                        height: data.height,
-                    }
-                    setData(_userData)
-                    localStorage.setItem('height', data.height)
-                    localStorage.setItem('weight', data.weight)
+                    localStorage.setItem("user", JSON.stringify(data))
                 })
                 .catch(error => {
                     console.error(error.message)
                 })
         }
-        if (keycloak.token) fetchUser();
+        fetchUser();
     }, [keycloak.token, keycloak.tokenParsed.email, keycloak.tokenParsed.family_name, keycloak.tokenParsed.given_name, keycloak.tokenParsed.sub])
 }
+
 
 export default FetchAccountDetails;
