@@ -18,17 +18,25 @@ const Workoutpage = () => {
     //Data for the exercises in the selected workout
     const exercisedata = workoutFuncs.FetchExercisesInWorkout(workoutId);
 
-    //List to hold specific data for the exercise
-    const list = []
 
-    // for (const x of dato){
-    //     list.push(x.name)
-    // }
-
-    // console.log(list)
 
     
-    if (data === undefined) {
+    if ( data === undefined) {
+        return <>
+            <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
+                style={{ minHeight: '80vh' }}
+            >
+                <CircularProgress />
+            </Grid>
+        </>
+    }
+
+    if ( exercisedata === undefined) {
         return <>
             <Grid
                 container
@@ -44,13 +52,13 @@ const Workoutpage = () => {
     }
 
 
+
     return (
         <>
             <h1>Workout  {data.id } :  {data.name }</h1>
             <img src={data.image} alt="workout.pic" />
             <Typography variant="h3">Type: {data.type}</Typography>
             <Typography variant="h3">Workout description:</Typography>
-            <Typography><ul>Exercises {list.map((x) => <li>{x}</li>)} </ul> </Typography>
             <Grid container spacing={2} >
 
             {exercisedata.map((exercise, index) => (
