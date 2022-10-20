@@ -6,7 +6,7 @@ import FetchAccountDetails from "../helpers/LoginHelper";
 const HandleLogin = () => {
     const { keycloak } = useKeycloak();
 
-    FetchAccountDetails(keycloak.tokenParsed.sub)
+    FetchAccountDetails();
 
     localStorage.setItem('keycloakId', keycloak.tokenParsed.sub);
     localStorage.setItem('name', keycloak.tokenParsed.given_name);
