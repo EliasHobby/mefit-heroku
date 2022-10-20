@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+const apiUrl = "https://mefitapi.azure-api.net/api/Workouts"
 
 function FetchWorkouts() {
 
@@ -78,10 +79,38 @@ function FetchExercisesInWorkout(id) {
 
     return exercises;
 }
+
+const CreateWorkout = async (workout) => {
+    try{
+        const response = await fetch(apiUrl, {
+            method: "POST",
+            header: { Accept: "application/json, */*",
+            "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({
+               Name: workout.Name, 
+               Type: workout.Type,
+               Image: workout.Image,
+               Day: workout.Day
+               
+
+            })
+        })
+        if(!response.ok){
+            throw new Error("Could not create exercise with exercise name " + workout)
+        } 
+        const data = await response.json();
+        return [null, data]
+    }
+    catch(error) {
+        return [error.message, []]
+    }
+}
 const workoutFuncs = {
     FetchWorkouts,
     FetchWorkout,
-    FetchExercisesInWorkout
+    FetchExercisesInWorkout,
+    CreateWorkout
 }
 
 export default workoutFuncs

@@ -16,9 +16,13 @@ const Contributorpage = () => {
 
                 
                     <Grid item xs={4} mb={4} >
-                        <ContributorCard img={exerciseimg} title="Exercise" />
-                        <ContributorCard img={workoutimg} title="Workout" />
-                        <ContributorCard img={trainingProgramimg} title="TrainingProgram" />
+                    <ContributorCard img={exerciseimg} title="Exercise" />
+                    </Grid>
+                    <Grid item xs={4} mb={4} >
+                    <ContributorCard img={workoutimg} title="Workout" />
+                    </Grid>
+                    <Grid item xs={4} mb={4} >
+                    <ContributorCard img={trainingProgramimg} title="TrainingProgram" />
                     </Grid>
                 
             </Grid>
