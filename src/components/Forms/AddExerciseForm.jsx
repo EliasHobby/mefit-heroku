@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import {Button} from '@mui/material';
-
+import CreateExercise from '../../utils/ExerciseContext'
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 
@@ -62,7 +62,10 @@ const AddExerciseForm = () =>  {
           defaultValue={exData}
           value ={exData}
         />
-        <Button type="submit" variant="contained"  onClick={() => setExData({exData} + {name} + " , "  + " description: " + {description} + " , " + "target_Muscle_Group: " + {target_Muscle_Group} + " , "  + "imageURL: " + {imageURL} )}>
+        <Button variant="contained"  onClick={() => CreateExercise(exData)}>
+            Create Exercise
+            </Button>
+        <Button  variant="contained"  onClick={() => setExData({exData} + {name} + " , "  + " description: " + {description} + " , " + "target_Muscle_Group: " + {target_Muscle_Group} + " , "  + "imageURL: " + {imageURL} )}>
             Submit Exercise
             </Button>
         </div>
