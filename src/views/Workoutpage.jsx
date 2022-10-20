@@ -28,7 +28,7 @@ const Workoutpage = () => {
     // console.log(list)
 
     
-    if (data === undefined) {
+    if ( data === undefined) {
         return <>
             <Grid
                 container

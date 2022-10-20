@@ -2,7 +2,7 @@ import { Description, JavascriptOutlined } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 
 
-const apiUrl = "https://mefitapi.azure-api.net/api/Exercises"
+const apiUrl = "https://apimefit.azurewebsites.net/api/exercises"
 
 function FetchExercises() {
 
@@ -58,30 +58,54 @@ function FetchExercise(id) {
 
     return exercise;
 }
+// const PostWorkout = async () => {
+//     const { keycloak } = useKeycloak();
+//     try {
+//         const response = await fetch("https://apimefit.azurewebsites.net/api/workouts", {
+//             method: "POST",
+//             headers: {
+//                 Accept: "application/json, */*",
+//                 "Content-Type": 'application/json'
+//             },
+//             body: JSON.stringify({
+//                 "name": "TESTPOST",
+//                 "type": "Strength",
+//                 "image": '',
+//                 "day": '',
+//                 "exerciseId": [0]
+//             }),
+//         });
+//         const data = await response.json();
+//         console.log(data);
+//     } catch (error) {
+//         console.error(error)
+//     }
+// }
 
 async function CreateExercise (exercise)  {
     try{
         const response = await fetch(apiUrl, {
             method: "POST",
-            header: { Accept: "application/json, */*",
+            header: { 
             "Content-Type": 'application/json'
             },
             body: JSON.stringify({
-               Name: exercise.Name, 
-               Description: exercise.Description,
-               Target_Muscle_Group: exercise.Target_Muscle_Group,
-               Image: exercise.Image
+               'name': exercise.name, 
+               'description': exercise.description,
+               'target_Muscle_Group': exercise.target_Muscle_Group,
+               'image': exercise.image
 
-            })
-        })
+            }),
+        });
         if(!response.ok){
-            throw new Error("Could not create exercise with exercise name " + exercise)
+            throw new Error("Could not create exercise with exercise name " + exercise.name)
         } 
         const data = await response.json();
-        return [null, data]
+        console.log(data)
     }
     catch(error) {
-        return [error.message, []]
+        console.log(error)
+        console.log(exercise)
     }
 }
 
@@ -91,5 +115,7 @@ const exerciseFuncs = {
     CreateExercise
 
 }
+
+
 
 export default exerciseFuncs

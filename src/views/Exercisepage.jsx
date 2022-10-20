@@ -6,6 +6,7 @@ const Exercisepage = () => {
 
     const exerciseId = window.location.pathname.match(/\d+/)[0];
     const data = exerciseFuncs.FetchExercise(exerciseId);
+    
     console.log(data)
 
     if (data === undefined) {
