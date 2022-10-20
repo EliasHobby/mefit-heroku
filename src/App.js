@@ -24,7 +24,7 @@ import AddWorkout from './views/AddWorkout';
 import AddProgram from './views/AddTrainingProgram';
 
 import Contributorpage from './views/ContributersPage';
-import UpdateProfile from './views/UpdateProfile';
+import NewUser from './views/NewUser';
 import ProfileFinishedRoute from './helpers/ProfileFinishedRoute';
 
 function App() {
@@ -125,9 +125,9 @@ function App() {
               </PrivateRoute>
             }
             />
-            <Route path="/updateprofile" element={
+            <Route path="/newuser" element={
               <PrivateRoute>
-                <UpdateProfile />
+                <NewUser />
               </PrivateRoute>
             }
             />

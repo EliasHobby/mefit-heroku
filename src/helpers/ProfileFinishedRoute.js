@@ -9,7 +9,7 @@ const ProfileFinishedRoute = ({ children }) => {
         profileIsFinished = false;
     }
 
-    return profileIsFinished ? children : <Navigate to="/updateprofile" />
+    return profileIsFinished ? children : <Navigate to="/newuser" />
 }
 
 export default ProfileFinishedRoute
