@@ -53,9 +53,9 @@ function FetchExercise(id) {
     return exercise;
 }
 
-const funcs = {
+const exerciseFuncs = {
     FetchExercises,
     FetchExercise
 }
 
-export default funcs
+export default exerciseFuncs

@@ -9,7 +9,7 @@ import Exercises from './views/Exercises';
 import Dashboard from './views/Dashboard';
 import Programs from './views/Programs';
 import Exercisepage from './views/Exercisepage';
-import Contributors from './views/Contributors';
+//import Contributors from './views/Contributors';
 import PrivateRoute from './helpers/PrivateRoute';
 import * as React from 'react';
 import ResponsiveAppBar from './components/NavBar/ReponsiveAppbar';
@@ -19,6 +19,11 @@ import NotFound from './components/NotFound/NotFound';
 import HandleLogin from './views/HandleLogin';
 import Workoutpage from './views/Workoutpage';
 import Programpage from './views/Programpage';
+import AddExercise from './views/AddExercise';
+import AddWorkout from './views/AddWorkout';
+import AddProgram from './views/AddTrainingProgram';
+
+import Contributorpage from './views/ContributersPage';
 
 function App() {
 
@@ -96,14 +101,45 @@ function App() {
               </PrivateRoute>
             }
             />
-            <Route path="/contributors" element={
+            <Route path="/addExercise" element={
               <PrivateRoute>
-                <ContributorRoute>
-                  <Contributors />
-                </ContributorRoute>
+                <AddExercise />
               </PrivateRoute>
             }
             />
+            <Route path="/contributors" element={
+              <PrivateRoute>
+                <ContributorRoute> 
+                  <Contributorpage />
+                </ContributorRoute> 
+              </PrivateRoute>
+            }
+            />
+            <Route path="/contributors/exercise" element={
+              <PrivateRoute>
+                <ContributorRoute> 
+                  <AddExercise />
+                </ContributorRoute> 
+              </PrivateRoute>
+            }
+            />
+            <Route path="/contributors/workout" element={
+              <PrivateRoute>
+                <ContributorRoute> 
+                  <AddWorkout />
+                </ContributorRoute> 
+              </PrivateRoute>
+            }
+            />
+            <Route path="/contributors/trainingprogram" element={
+              <PrivateRoute>
+                <ContributorRoute> 
+                  <AddProgram />
+                </ContributorRoute> 
+              </PrivateRoute>
+            }
+            />
+            
             <Route path="/*" element={
               <NotFound />
             }

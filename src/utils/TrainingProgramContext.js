@@ -28,6 +28,29 @@ function FetchTrainingPrograms() {
     return data;
 
 }
+function FetchWorkoutsInProgram(id) {
+    const [workouts, setData] = useState()
+
+    useEffect(() => {
+        const fetchWorkoutsInProgram = async () => {
+            fetch("https://apimefit.azurewebsites.net/api/trainingPrograms/WorkoutInTrainingProgram/" + id)
+                .then(async response => {
+                    if (response.ok) {
+                        console.log(response)
+                        return response.json()
+                    }
+                })
+                .then(workouts => {
+                    setData(workouts)
+                })
+                .catch(error => {
+                    console.error(error.message)
+                })
+        }
+        fetchWorkoutsInProgram();
+    }, [])
+    return workouts;
+}
 
 function FetchTrainingProgram(id) {
     const [trainingProgram, setData] = useState()
@@ -56,7 +79,8 @@ function FetchTrainingProgram(id) {
 
 const programFuncs = {
     FetchTrainingPrograms,
-    FetchTrainingProgram
+    FetchTrainingProgram,
+    FetchWorkoutsInProgram
 }
 
 export default programFuncs
