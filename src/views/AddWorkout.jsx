@@ -1,13 +1,17 @@
-import AddWorkoutForm from "../components/Forms/AddExerciseForm";
-
+import AddWorkoutForm from "../components/Forms/AddWorkoutForm";
+import { Button, Card, CardContent } from "@mui/material";
 const AddWorkout = () => {
 
 
       
     return (
         <>
-        <h1>Add A Workout Page</h1>
-        <AddWorkoutForm></AddWorkoutForm>
+        <Card sx={{minWidth:200, maxWidth: 300}}>
+            <CardContent >
+            <h1>Add A Workout Page</h1>
+                <AddWorkoutForm></AddWorkoutForm>
+            </CardContent>
+        </Card>
         </>
     )
 }

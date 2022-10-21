@@ -1,5 +1,5 @@
 import '../App.css';
-import { Grid, Typography, CircularProgress } from "@mui/material";
+import { Grid, Typography, CircularProgress, Box, Card } from "@mui/material";
 import workoutFuncs from "../utils/WorkoutContext"
 import { useEffect } from 'react'; 
 import exerciseFuncs  from "../utils/ExerciseContext"
@@ -18,17 +18,25 @@ const Workoutpage = () => {
     //Data for the exercises in the selected workout
     const exercisedata = workoutFuncs.FetchExercisesInWorkout(workoutId);
 
-    //List to hold specific data for the exercise
-    const list = []
 
-    // for (const x of dato){
-    //     list.push(x.name)
-    // }
-
-    // console.log(list)
 
     
-    if (data === undefined) {
+    if ( data === undefined) {
+        return <>
+            <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
+                style={{ minHeight: '80vh' }}
+            >
+                <CircularProgress />
+            </Grid>
+        </>
+    }
+
+    if ( exercisedata === undefined) {
         return <>
             <Grid
                 container
@@ -44,13 +52,20 @@ const Workoutpage = () => {
     }
 
 
+
     return (
         <>
             <h1>Workout  {data.id } :  {data.name }</h1>
             <img src={data.image} alt="workout.pic" />
-            <Typography variant="h3">Type: {data.type}</Typography>
-            <Typography variant="h3">Workout description:</Typography>
-            <Typography><ul>Exercises {list.map((x) => <li>{x}</li>)} </ul> </Typography>
+            
+            <Box sx={{ alignItems: 'center', mb: '2rem', mt: '1rem' }}>
+                <Typography variant="h5">Type: {data.type}</Typography>
+            </Box>
+
+            <Card>
+                <Typography marginBottom={2} variant="h4">Exercises In This Workout:</Typography>
+            
+
             <Grid container spacing={2} >
 
             {exercisedata.map((exercise, index) => (
@@ -59,6 +74,7 @@ const Workoutpage = () => {
                 </Grid>
             ))}
             </Grid>
+            </Card>
         </>
     )
     

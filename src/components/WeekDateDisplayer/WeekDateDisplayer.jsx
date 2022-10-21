@@ -5,13 +5,19 @@ import { Typography, Box, IconButton } from "@mui/material";
 
 const WeekDateDisplayer = () => {
 
+    //Get the current day
+    const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    const d = new Date();
+    let day = weekday[d.getDay()];
+    let daynumber = d.getDay();
 
     // Get the current week
     let goalDate = new Date();
     const oneJan = new Date(goalDate.getFullYear(), 0, 1);
     const numberOfDays = Math.floor((goalDate - oneJan) / (24 * 60 * 60 * 1000));
-    let currentWeek = Math.ceil((goalDate.getDay() + 1 + numberOfDays) / 7);
+    let currentWeek = Math.ceil((numberOfDays) / 7);
     const [weekKey, setWeekKey] = useState(currentWeek);
+    localStorage.set("thisWeek", currentWeek);
 
     // Get first and last day of the week
     const [firstDay, setFirstDay] = useState(new Date(goalDate.setDate(goalDate.getDate() + 1 - goalDate.getDay())));
@@ -70,6 +76,14 @@ const WeekDateDisplayer = () => {
             <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'baseline', mb: '2rem' }}>
                 <Typography variant="h4">Week {weekKey}</Typography>
             </Box>
+            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'baseline', mb: '0.5rem'}}>
+                <Typography variant="h5">{day}</Typography>
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'baseline', mb: '2rem'}}>
+                <Typography variant="h7">You have {7 - daynumber} days left to achieve your weekly goal.</Typography>
+            </Box>
+
+
             <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', mb: '2rem' }}>
                 <IconButton onClick={handlePreviousWeek}
                     size="small"

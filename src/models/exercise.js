@@ -34,6 +34,7 @@ export class defaultExercise {
         this.image = "https://i.ndtvimg.com/i/2016-06/pushups-625_625x350_51465978240.jpg"
     }
 
+    
     // Get methods for Exercise field fields
     getName() {
         return this.name;

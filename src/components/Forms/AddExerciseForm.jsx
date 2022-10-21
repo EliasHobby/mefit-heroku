@@ -1,16 +1,30 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import {Button} from '@mui/material';
-
+import exerciseFuncs from '../../utils/ExerciseContext'
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 
-const AddExerciseForm = () =>  {
-  const [exData, setExData] = useState("")
-  const [name, setName] = useState("")
-  const [description, setDescription] = useState("")
-  const [target_Muscle_Group, setTargetGroup] = useState("")
-  const [imageURL, setImageUrl] = useState("")
+export function AddExerciseForm () {
+  const [ exercise, setExercise] = useState({
+    name: "",
+    description: "",
+    target_Muscle_Group: "",
+    image: "",
+
+    });
+
+    // Handler to update local state
+    const handleChange = (event) => {
+      const {name, value} = event.target;
+        
+        // Updating state of exercise
+        setExercise({
+          ...exercise,
+          [name]: value
+      });
+  }
+
 
 
   return (
@@ -22,48 +36,58 @@ const AddExerciseForm = () =>  {
       noValidate
       autoComplete="off"
     >
+
       <div>
-        <TextField
+        <form>
+        <input
           required
-          onChange = {(event) => setName(event.target.value)}
+          onChange = {handleChange}
           id="outlined-required"
           label="Name of exercise"
-          value= {name}
+          name="name"
+          value= {exercise.name}
         />
-        <TextField
+        <input
           required
-          onChange = {(event) => setDescription(event.target.value)}
+          onChange = {handleChange}
           id="outlined-required"
           label="Description of exercise"
-          value= {description}
+          name= "description"
+          value= {exercise.description}
         />
         
-        <TextField
+        <input
           required
-          onChange = {(event) => setTargetGroup(event.target.value)}
+          onChange = {handleChange}
           id="outlined-required"
           label="Target muscle group"
-          value= {target_Muscle_Group}
+          name= "target_Muscle_Group"
+          value= {exercise.target_Muscle_Group}
 
         />
         
-        <TextField
+        <input
           required
-          onChange = {(event) => setImageUrl(event.target.value)}
+          onChange = {handleChange}
           id="outlined-required"
           label="ImageURL"
-          value={imageURL}
+          name= "image"
+          value={exercise.image}
         />
+
         <TextField
-          required
           id="outlined-required"
-          label="exData"
-          defaultValue={exData}
-          value ={exData}
+          name= "exe"
+          value={exercise.name + "   " + exercise.description + "   "+ exercise.image+ "   " + exercise.target_Muscle_Group}
         />
-        <Button variant="contained"   onClick={() => setExData("name: " + {name} + ","  + "description" + {description} + "," + "target_Muscle_Group: " + {target_Muscle_Group} + ","  + "imageURL" + {imageURL} )}>
-            Submit Exercise
+
+
+
+        <Button variant="contained"  onClick={() => exerciseFuncs.CreateExercise(exercise)}>
+            Create Exercise
             </Button>
+
+          </form>
         </div>
     </Box>
   );
