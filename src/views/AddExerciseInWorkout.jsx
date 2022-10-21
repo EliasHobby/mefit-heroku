@@ -12,7 +12,7 @@ const ExercisesInWorkout = () => {
     //Fetch for all exercises
     const data = exerciseFuncs.FetchExercises();
     const [listOfIds, setListOfIds] = useState([])
-    //const workouts = workoutFuncs.FetchWorkouts();
+    const workouts = workoutFuncs.FetchWorkouts();
   
   
     function handleClick(){
