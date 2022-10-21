@@ -1,7 +1,8 @@
-import { Button, Input, InputLabel, Typography, Box } from "@mui/material";
+import { Button, Input, InputLabel, Typography, Box, } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup";
+import { NavLink } from 'react-router-dom'
 /**
  * 1. register: Add inputs
  * 2. handleSubmit: Bind to form onSubmit
@@ -70,7 +71,9 @@ function NewProfileForm() {
                     min: 1, max: 300
                 })} type="text" sx={{ width: 100 }} />
                 <Typography>{errors.Weight?.message}</Typography>
-                <Button variant="contained" type="submit">Continue</Button>
+                <NavLink to={"/profile"}>
+                    <Button variant="contained" type="submit">Continue</Button>
+                </NavLink>
             </Box>
         </form>
     );
