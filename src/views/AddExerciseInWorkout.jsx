@@ -1,8 +1,9 @@
 import DisplayCard from "../components/DisplayCard/DisplayCard";
 import AddExerciseToWorkoutCard from "../components/DisplayCard/AddExerciseToWorkoutCard";
 import '../App.css';
-import { Grid, CircularProgress, Grid, Button } from "@mui/material";
+import { Grid, CircularProgress, Box, Button } from "@mui/material";
 import exerciseFuncs from "../utils/ExerciseContext";
+import { NavLink } from 'react-router-dom';
 
 
 //Catalogue of all exercises in database
@@ -49,4 +50,4 @@ const ExercisesInWorkout = () => {
     )
 }
 
-export default ExercisesInWorkout
+export default ExercisesInWorkout;

@@ -26,6 +26,21 @@ export function AddWorkoutForm () {
       });
   }
 
+    function addExHandler(){
+      workoutFuncs.CreateWorkout(workout)
+      alert('Add exercise')
+
+    }
+//   const buttonhandler = (event) => {
+//     const {name, value} = event.target;
+      
+//       // Updating state of exercise
+//       setWorkout({
+//         ...workout,
+//         [name]: value
+//     }), 
+// }
+
 
 
   return (
@@ -83,17 +98,9 @@ export function AddWorkoutForm () {
           value={workout.name + "   " + workout.type + "   "+ workout.image+ "   " + workout.day}
         />
 
-{/* 
-        <Box>
-            <NavLink to="/Contibutors/Workout">
-            <Button sx={{ alignItems: 'center', mb: '1rem', mt: '0.5rem' }}
-             variant="contained" >Back to create workout</Button>
-            </NavLink>
-        </Box>
- */}
 
 
-            <Button variant="contained"  onClick={() => workoutFuncs.CreateWorkout(workout)}>
+            <Button variant="contained"  onClick={addExHandler}>
             Create workout
             </Button>
           </form>

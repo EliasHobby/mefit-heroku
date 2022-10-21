@@ -92,7 +92,6 @@ async function CreateWorkout (workout) {
                'type': workout.type,
                'image': workout.image,
                'day': workout.day
-               
 
             })
         })
@@ -107,17 +106,34 @@ async function CreateWorkout (workout) {
     }
 }
 
-// async function AddExerciseInWorkout (exerciseid, workout, id ){
-//     try{
-
-//     }
-// }
+async function AddExerciseInWorkout (exerciseidlist, id ){
+    try{
+        const response = await fetch(apiUrl + "/" + id, {
+        method:"PUT",
+        headers: { Accept: "application/json, */*",
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            exerciseId: exerciseidlist
+        })
+    })
+    if(!response.ok){
+        throw new Error("Could not put exercise in workout")
+    }
+    const data = await response.json();
+    return [null, data]
+    }
+    catch(error) {
+        return [error.message, []]
+    }
+}
 
 const workoutFuncs = {
     FetchWorkouts,
     FetchWorkout,
     FetchExercisesInWorkout,
-    CreateWorkout
+    CreateWorkout,
+    AddExerciseInWorkout
 }
 
 export default workoutFuncs

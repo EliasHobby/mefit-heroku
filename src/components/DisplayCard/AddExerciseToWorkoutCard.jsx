@@ -3,17 +3,21 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { CardActionArea, Button } from '@mui/material';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import workoutFuncs from '../../utils/WorkoutContext';
+import AddExerciseInWorkout from '../../utils/WorkoutContext'
 
 const AddExerciseToWorkoutCard = ({ element, type, id }) => {
   const [listOfIds, setListOfIds] = useState([])
-
+  const workouts = workoutFuncs.FetchWorkouts();
 
   const handleClick = () => {
     setListOfIds(listOfIds => [ ...listOfIds, element.id])
+
     localStorage.setItem('listOfIds', listOfIds);  
+    AddExerciseInWorkout(listOfIds, (workouts.size()-1) )
     alert("ExerciseId added to list")
   }
 
@@ -21,6 +25,7 @@ const AddExerciseToWorkoutCard = ({ element, type, id }) => {
 
   return (
     <>
+    <Button  onClick={() => this.handleClick()}> </Button>
       <Card sx={{ maxWidth: 360, maxHeight: 360 }}>
         <CardActionArea onClick={handleClick} >
           <CardMedia
