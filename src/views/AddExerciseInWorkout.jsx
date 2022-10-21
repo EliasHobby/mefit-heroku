@@ -22,7 +22,7 @@ const ExercisesInWorkout = () => {
 
   function handleClick() {
     console.log(listOfIds);
-    workoutFuncs.AddExerciseInWorkout(listOfIds, 2);
+    workoutFuncs.AddExerciseInWorkout(2, listOfIds);
     alert("ExerciseId added to list");
   }
 
