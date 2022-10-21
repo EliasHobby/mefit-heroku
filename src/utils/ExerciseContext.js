@@ -87,6 +87,9 @@ async function CreateExercise (exercise)  {
     }
 }
 
+
+
+
 const exerciseFuncs = {
     FetchExercises,
     FetchExercise,

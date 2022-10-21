@@ -106,6 +106,13 @@ async function CreateWorkout (workout) {
         return [error.message, []]
     }
 }
+
+// async function AddExerciseInWorkout (exerciseid, workout, id ){
+//     try{
+
+//     }
+// }
+
 const workoutFuncs = {
     FetchWorkouts,
     FetchWorkout,
