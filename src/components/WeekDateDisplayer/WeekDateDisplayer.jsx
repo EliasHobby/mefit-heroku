@@ -20,6 +20,7 @@ const WeekDateDisplayer = () => {
     let fdd = firstDay.getDate();
     let lmm = lastDay.getMonth() + 1;
     let ldd = lastDay.getDate();
+    localStorage.setItem("week", currentWeek);
 
     // Method to call to update first and last day of the week when navigating to next/previous week
     const getWeekDates = () => {
