@@ -3,7 +3,7 @@ import LinearWithValueLabel from "../components/LinearProgressWithLabel/LinearPr
 import WeekDateDisplayer from "../components/WeekDateDisplayer/WeekDateDisplayer";
 import dashboardfuncs from "../utils/DashboardContext";
 import WeekDayAccordion from "../components/WeekdayAccordion/WeekdayAccordion"
-import GoalButton from "../components/GoalButton/GoalButton";
+import SimpleButton from "../components/Buttons/SimpleButton";
 
 const Dashboard = () => {
 
@@ -19,9 +19,12 @@ const Dashboard = () => {
                     <Typography sx={{ mr: '1rem' }}>Completion: </Typography>
                     <LinearWithValueLabel />
                 </Box>
-                <Box>
-                    <GoalButton></GoalButton>
-                </Box>
+                    <Box sx={{ alignItems: 'center', mb: '1rem', mt: '1rem' }}>
+                        <SimpleButton name={"Add Programs To Goal"} url={"/Programs"}></SimpleButton>
+                    </Box>
+                    <Box sx={{ alignItems: 'center', mb: '1rem', mt: '1rem' }}>
+                        <SimpleButton name={"Add Workouts To Goal"} url={"/Workouts"}></SimpleButton>
+                    </Box>
                 <Card>
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
                         <WeekDayAccordion />

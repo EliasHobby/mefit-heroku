@@ -17,6 +17,7 @@ const WeekDateDisplayer = () => {
     const numberOfDays = Math.floor((goalDate - oneJan) / (24 * 60 * 60 * 1000));
     let currentWeek = Math.ceil((numberOfDays) / 7);
     const [weekKey, setWeekKey] = useState(currentWeek);
+    localStorage.set("thisWeek", currentWeek);
 
     // Get first and last day of the week
     const [firstDay, setFirstDay] = useState(new Date(goalDate.setDate(goalDate.getDate() + 1 - goalDate.getDay())));
