@@ -3,6 +3,8 @@ import '../App.css';
 import { Grid } from "@mui/material";
 import workoutFuncs from "../utils/WorkoutContext";
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import BigButton from "../components/Buttons/BigButton";
 
 
 //Catalogue to for workouts 
@@ -27,9 +29,12 @@ const Workouts = () => {
             <h1>Workouts</h1>
 
             <Grid container spacing={2} >
-                {data.map((exercise, index) => (
+                {data.map((workout, index) => (
                     <Grid item xs={4} mb={4} key={index}>
-                        <DisplayCard element={exercise} id={index} type="workout" />
+                        <DisplayCard element={workout} id={index} type="workout" />
+                        <BigButton name={"Add Workout To Goal"} 
+                        message={"You have added this Workout to your Weekly Goal!"}
+                        WorkoutId = {index+1}></BigButton>
                     </Grid>
                 ))}
             </Grid>

@@ -1,9 +1,15 @@
+import { Description, JavascriptOutlined } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 
 
+const apiUrl = "https://apimefit.azurewebsites.net/api/exercises"
+
 function FetchExercises() {
 
+
     const [data, setData] = useState()
+
+    
 
     useEffect(() => {
         const fetchExercises = async () => {
@@ -48,14 +54,46 @@ function FetchExercise(id) {
                 })
         }
         fetchExercises();
-    }, [])
+    }, [id])
 
     return exercise;
 }
 
+
+async function CreateExercise (exercise)  {
+    try{
+        const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: { Accept : "application/json, */*",
+            "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({
+               'name': exercise.name, 
+               'description': exercise.description,
+               'target_Muscle_Group': exercise.target_Muscle_Group,
+               'image': exercise.image
+
+            }),
+        });
+        if(!response.ok){
+            throw new Error("Could not create exercise with exercise name " + exercise.name)
+        } 
+        const data = await response.json();
+        console.log(data)
+    }
+    catch(error) {
+        console.log(error)
+        console.log(exercise)
+    }
+}
+
 const exerciseFuncs = {
     FetchExercises,
-    FetchExercise
+    FetchExercise,
+    CreateExercise
+
 }
+
+
 
 export default exerciseFuncs
