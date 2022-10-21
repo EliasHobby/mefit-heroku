@@ -79,51 +79,52 @@ function FetchExercisesInWorkout(id) {
 
     return exercises;
 }
- 
-async function CreateWorkout (workout) {
-    try{
+
+async function CreateWorkout(workout) {
+    try {
         const response = await fetch(apiUrl, {
             method: "POST",
-            headers: { Accept: "application/json, */*",
-            "Content-Type": 'application/json'
+            headers: {
+                Accept: "application/json, */*",
+                "Content-Type": 'application/json'
             },
             body: JSON.stringify({
-               'name': workout.name, 
-               'type': workout.type,
-               'image': workout.image,
-               'day': workout.day
+                'name': workout.name,
+                'type': workout.type,
+                'image': workout.image,
+                'day': workout.day
 
             })
         })
-        if(!response.ok){
+        if (!response.ok) {
             throw new Error("Could not create exercise with exercise name " + workout.name)
-        } 
+        }
         const data = await response.json();
         return [null, data]
     }
-    catch(error) {
+    catch (error) {
         return [error.message, []]
     }
 }
 
 async function AddExerciseInWorkout (exerciseId, id ){
     try{
-        const response = await fetch(apiUrl + "/" + id, {
-            method:"PUT",
-            headers: { Accept: "application/json",
-                "Content-Type": 'application/json'
-            },
-            body: JSON.stringify({
-                'exerciseId': exerciseId
-            })
+        const response = await fetch((apiUrl + "/" + id), {
+        method:"PUT",
+        headers: { Accept: "application/json, */*",
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            'exerciseId': exerciseId
         })
-        if(!response.ok){
-            throw new Error("Could not put exercise in workout")
-        }
-        const data = await response.json();
-        return [null, data]
+    })
+    if(!response.ok){
+        throw new Error("Could not put exercise in workout")
     }
-    catch(error) {
+    const data = await response.json();
+    return [null, data]
+    }
+    catch (error) {
         return [error.message, []]
     }
 }
