@@ -82,7 +82,7 @@ const CreateTrainingProgram = async (trainingprogram) => {
     try{
         const response = await fetch(apiUrl, {
             method: "POST",
-            header: { Accept: "application/json, */*",
+            headers: { Accept: "application/json, */*",
             "Content-Type": 'application/json'
             },
             body: JSON.stringify({

@@ -86,7 +86,7 @@ async function CreateExercise (exercise)  {
     try{
         const response = await fetch(apiUrl, {
             method: "POST",
-            header: { 
+            headers: { 
             "Content-Type": 'application/json'
             },
             body: JSON.stringify({
@@ -108,6 +108,9 @@ async function CreateExercise (exercise)  {
         console.log(exercise)
     }
 }
+
+
+
 
 const exerciseFuncs = {
     FetchExercises,

@@ -84,7 +84,7 @@ const CreateWorkout = async (workout) => {
     try{
         const response = await fetch(apiUrl, {
             method: "POST",
-            header: { Accept: "application/json, */*",
+            headers: { Accept: "application/json, */*",
             "Content-Type": 'application/json'
             },
             body: JSON.stringify({
@@ -106,6 +106,13 @@ const CreateWorkout = async (workout) => {
         return [error.message, []]
     }
 }
+
+// async function AddExerciseInWorkout (exerciseid, workout, id ){
+//     try{
+
+//     }
+// }
+
 const workoutFuncs = {
     FetchWorkouts,
     FetchWorkout,
