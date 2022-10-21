@@ -17,7 +17,7 @@ const WeekDateDisplayer = () => {
     const numberOfDays = Math.floor((goalDate - oneJan) / (24 * 60 * 60 * 1000));
     let currentWeek = Math.ceil((numberOfDays) / 7);
     const [weekKey, setWeekKey] = useState(currentWeek);
-    localStorage.set("thisWeek", currentWeek);
+    localStorage.setItem("Current Week", currentWeek);
 
     // Get first and last day of the week
     const [firstDay, setFirstDay] = useState(new Date(goalDate.setDate(goalDate.getDate() + 1 - goalDate.getDay())));
@@ -26,7 +26,7 @@ const WeekDateDisplayer = () => {
     let fdd = firstDay.getDate();
     let lmm = lastDay.getMonth() + 1;
     let ldd = lastDay.getDate();
-    localStorage.setItem("week", weekKey);
+    localStorage.setItem("Calendar Week", weekKey);
 
     // Method to call to update first and last day of the week when navigating to next/previous week
     const getWeekDates = () => {
@@ -46,7 +46,7 @@ const WeekDateDisplayer = () => {
     const handleNextWeek = () => {
         // Update the week
         setWeekKey(weekKey + 1)
-        localStorage.setItem("week", weekKey);
+        localStorage.setItem("Calendar Week", weekKey);
 
         // Update the dates
         goalDate = new Date(goalDate.getTime() + (7 * 24 * 60 * 60 * 1000))
@@ -61,7 +61,7 @@ const WeekDateDisplayer = () => {
     const handlePreviousWeek = () => {
         // Update the week
         setWeekKey(weekKey - 1)
-        localStorage.setItem("week", weekKey);
+        localStorage.setItem("Calendar Week", weekKey);
 
         // Update the days
         goalDate = new Date(goalDate.getTime() - (7 * 24 * 60 * 60 * 1000))

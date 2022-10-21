@@ -13,6 +13,7 @@ const Dashboard = () => {
 
     return (
         <>
+        
             <Card sx={{ p: "20px", mt: "2rem" }}>
                 <WeekDateDisplayer />
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', mb: '1rem' }}>
