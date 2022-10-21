@@ -2,6 +2,7 @@ import { Card, Typography, Box, Button } from "@mui/material";
 import LinearWithValueLabel from "../components/LinearProgressWithLabel/LinearProgressWithLabel";
 import WeekDateDisplayer from "../components/WeekDateDisplayer/WeekDateDisplayer";
 import dashboardfuncs from "../utils/DashboardContext";
+import TextModelStepper from "../components/SwipeProfileCards/SwipeProfileCards"
 
 const Dashboard = () => {
 
@@ -20,6 +21,8 @@ const Dashboard = () => {
                 <Card>
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
                         {/* <WeekDayAccordion /> */}
+                        
+
                     </Box>
                 </Card>
             </Card>
