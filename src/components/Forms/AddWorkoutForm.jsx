@@ -40,7 +40,7 @@ export function AddWorkoutForm () {
 
       <div>
         <form>
-        <input
+        <TextField
           required
           onChange = {handleChange}
           id="outlined-required"
@@ -48,7 +48,7 @@ export function AddWorkoutForm () {
           name="name"
           value= {workout.name}
         />
-        <input
+        <TextField
           required
           onChange = {handleChange}
           id="outlined-required"
@@ -59,7 +59,7 @@ export function AddWorkoutForm () {
         
 
         
-        <input
+        <TextField
           required
           onChange = {handleChange}
           id="outlined-required"
@@ -68,7 +68,7 @@ export function AddWorkoutForm () {
           value={workout.image}
         />
 
-        <input
+        <TextField
           required
           onChange = {handleChange}
           id="outlined-required"

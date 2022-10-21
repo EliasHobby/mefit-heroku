@@ -44,7 +44,7 @@ const AddProgramForm = () =>  {
 
       <div>
         <form>
-        <input
+        <TextField
           required
           onChange = {handleChange}
           id="outlined-required"
@@ -52,7 +52,7 @@ const AddProgramForm = () =>  {
           name="name"
           value= {trainingProgram.name}
         />
-        <input
+        <TextField
           required
           onChange = {handleChange}
           id="outlined-required"
@@ -61,7 +61,7 @@ const AddProgramForm = () =>  {
           value= {trainingProgram.category}
         />
         
-        <input
+        <TextField
           required
           onChange = {handleChange}
           id="outlined-required"
@@ -70,7 +70,7 @@ const AddProgramForm = () =>  {
           value= {trainingProgram.description}
         />
         
-        <input
+        <TextField
           required
           onChange = {handleChange}
           id="outlined-required"

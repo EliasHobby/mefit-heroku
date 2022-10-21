@@ -1,5 +1,5 @@
 import '../App.css';
-import { Grid, Typography, CircularProgress } from "@mui/material";
+import { Grid, Typography, CircularProgress , Card} from "@mui/material";
 import workoutFuncs from "../utils/WorkoutContext"
 import { useEffect } from 'react'; 
 import exerciseFuncs  from "../utils/ExerciseContext"
@@ -55,6 +55,7 @@ const Workoutpage = () => {
 
     return (
         <>
+        <Card>
             <h1>Workout  {data.id } :  {data.name }</h1>
             <img src={data.image} alt="workout.pic" />
             <Typography variant="h3">Type: {data.type}</Typography>
@@ -67,6 +68,7 @@ const Workoutpage = () => {
                 </Grid>
             ))}
             </Grid>
+        </Card>
         </>
     )
     
