@@ -86,7 +86,9 @@ export function AddExerciseForm () {
           value={exercise.name + "   " + exercise.description + "   "+ exercise.image+ "   " + exercise.target_Muscle_Group}
         />
 
-
+        <Button variant="contained"  onClick={() => exerciseFuncs.CreateExercise(exercise)}>
+            Create Exercise
+            </Button>
 
         <Button variant="contained"  onClick={() => exerciseFuncs.CreateExercise(exercise)}>
             Create Exercise

@@ -8,7 +8,6 @@ import { NavLink } from 'react-router-dom';
 
 
 const DisplayCard = ({ element, type, id }) => {
-
   return (
     <>
       <Card sx={{ maxWidth: 360, maxHeight: 360 }}>

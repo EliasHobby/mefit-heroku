@@ -84,11 +84,18 @@ export function AddWorkoutForm () {
         />
 
 
+        <Box>
+            <NavLink to="/Contibutors/Workout">
+            <Button sx={{ alignItems: 'center', mb: '1rem', mt: '0.5rem' }}
+             variant="contained" >Back to create workout</Button>
+            </NavLink>
+        </Box>
 
-        <Button variant="contained"  onClick={() => workoutFuncs.CreateWorkout(workout)}>
+
+
+            <Button variant="contained"  onClick={() => workoutFuncs.CreateWorkout(workout)}>
             Create workout
             </Button>
-
           </form>
         </div>
     </Box>
