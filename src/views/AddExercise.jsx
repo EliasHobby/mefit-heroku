@@ -13,7 +13,6 @@ const AddExercise = () => {
             <h1>Add An Exercise Page</h1>
             <AddExerciseForm> 
             </AddExerciseForm>      
-
             </CardContent>
         </Card>
         </>

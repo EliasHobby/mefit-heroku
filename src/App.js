@@ -22,6 +22,7 @@ import Programpage from './views/Programpage';
 import AddExercise from './views/AddExercise';
 import AddWorkout from './views/AddWorkout';
 import AddProgram from './views/AddTrainingProgram';
+import ExercisesInWorkout from './views/AddExerciseInWorkout'
 
 import Contributorpage from './views/ContributersPage';
 import NewUser from './views/NewUser';
@@ -158,6 +159,14 @@ function App() {
                     <AddWorkout />
                   </ContributorRoute>
                 </ProfileFinishedRoute>
+              </PrivateRoute>
+            }
+            />
+            <Route path="/contributors/workout/addExerciseInWorkout" element={
+              <PrivateRoute>
+                <ContributorRoute> 
+                  <ExercisesInWorkout />
+                </ContributorRoute> 
               </PrivateRoute>
             }
             />

@@ -90,8 +90,6 @@ async function CreateTrainingProgram (trainingProgram) {
                'category': trainingProgram.category,
                'description': trainingProgram.description,
                'image': trainingProgram.image
-               
-
             })
         })
         if(!response.ok){
