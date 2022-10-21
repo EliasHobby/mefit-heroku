@@ -63,7 +63,7 @@ const ExercisesInWorkout = () => {
           <Grid item xs={4} mb={4} key={index}>
             <CardActionArea
               onClick={() =>
-                setListOfIds((listOfIds) => [...listOfIds, exercise.id])
+                ((listOfIds) => [...listOfIds, exercise.id])
               }
             >
               <AddExerciseToWorkoutCard
