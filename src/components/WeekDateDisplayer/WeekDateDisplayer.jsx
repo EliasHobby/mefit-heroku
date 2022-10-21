@@ -26,6 +26,7 @@ const WeekDateDisplayer = () => {
     let fdd = firstDay.getDate();
     let lmm = lastDay.getMonth() + 1;
     let ldd = lastDay.getDate();
+    localStorage.setItem("week", weekKey);
 
     // Method to call to update first and last day of the week when navigating to next/previous week
     const getWeekDates = () => {
@@ -44,7 +45,8 @@ const WeekDateDisplayer = () => {
 
     const handleNextWeek = () => {
         // Update the week
-        setWeekKey(key => key + 1)
+        setWeekKey(weekKey + 1)
+        localStorage.setItem("week", weekKey);
 
         // Update the dates
         goalDate = new Date(goalDate.getTime() + (7 * 24 * 60 * 60 * 1000))
@@ -58,7 +60,8 @@ const WeekDateDisplayer = () => {
 
     const handlePreviousWeek = () => {
         // Update the week
-        setWeekKey(key => key - 1)
+        setWeekKey(weekKey - 1)
+        localStorage.setItem("week", weekKey);
 
         // Update the days
         goalDate = new Date(goalDate.getTime() - (7 * 24 * 60 * 60 * 1000))
