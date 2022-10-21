@@ -1,5 +1,7 @@
 import { Box, Button, Card, CardContent } from "@mui/material";
 import { NavLink } from 'react-router-dom';
+import CreateGoalFuncs from "../../helpers/CreateGoal";
+import goalfuncs from "../../utils/GoalContext";
 
 const BigButton = ({ name, message, WorkoutId}) => {
 
@@ -13,7 +15,12 @@ const BigButton = ({ name, message, WorkoutId}) => {
     }
 
     function AddWorkoutToGoal(WorkoutId){
-        alert(WorkoutId)
+        if(!CreateGoalFuncs.GoalExist){
+            CreateGoalFuncs.CreateGoal()
+        }
+
+        const goalId = CreateGoalFuncs.GetGoalId()
+        goalfuncs.AddWorkoutsToGoal(WorkoutId, goalId)
     }
 
 return (
@@ -28,5 +35,7 @@ return (
         </Card>
     </>
 )
+
 }
+
 export default BigButton;

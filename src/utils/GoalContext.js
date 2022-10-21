@@ -81,6 +81,7 @@ async function AddWorkoutsToGoal (workoutidlist, id ){
 
 const goalfuncs = {
     FetchGoals,
+    CreateGoal,
     AddWorkoutsToGoal
 }
 
