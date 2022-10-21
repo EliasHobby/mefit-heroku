@@ -1,5 +1,5 @@
 import '../App.css';
-import { Grid, Typography, CircularProgress , Card} from "@mui/material";
+import { Grid, Typography, CircularProgress, Box, Card } from "@mui/material";
 import workoutFuncs from "../utils/WorkoutContext"
 import { useEffect } from 'react'; 
 import exerciseFuncs  from "../utils/ExerciseContext"
@@ -58,8 +58,15 @@ const Workoutpage = () => {
         <Card>
             <h1>Workout  {data.id } :  {data.name }</h1>
             <img src={data.image} alt="workout.pic" />
-            <Typography variant="h3">Type: {data.type}</Typography>
-            <Typography variant="h3">Workout description:</Typography>
+            
+            <Box sx={{ alignItems: 'center', mb: '2rem', mt: '1rem' }}>
+                <Typography variant="h5">Type: {data.type}</Typography>
+            </Box>
+
+            <Card>
+                <Typography marginBottom={2} variant="h4">Exercises In This Workout:</Typography>
+            
+
             <Grid container spacing={2} >
 
             {exercisedata.map((exercise, index) => (
@@ -68,7 +75,7 @@ const Workoutpage = () => {
                 </Grid>
             ))}
             </Grid>
-        </Card>
+            </Card>
         </>
     )
     
