@@ -63,8 +63,7 @@ const Workoutpage = () => {
                 <Typography variant="h5">Type: {data.type}</Typography>
             </Box>
 
-            <Card>
-                <Typography marginBottom={2} variant="h4">Exercises In This Workout:</Typography>
++                <Typography marginBottom={2} variant="h4">Exercises In This Workout:</Typography>
             
 
             <Grid container spacing={2} >

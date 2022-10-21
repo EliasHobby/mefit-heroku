@@ -106,15 +106,15 @@ async function CreateWorkout (workout) {
     }
 }
 
-async function AddExerciseInWorkout (exerciseidlist, id ){
+async function AddExerciseInWorkout (exerciseId, id ){
     try{
-        const response = await fetch(apiUrl + "/" + id, {
+        const response = await fetch((apiUrl + "/" + id), {
         method:"PUT",
         headers: { Accept: "application/json, */*",
             "Content-Type": 'application/json'
         },
         body: JSON.stringify({
-            exerciseId: exerciseidlist
+            'exerciseId': exerciseId
         })
     })
     if(!response.ok){
