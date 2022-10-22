@@ -36,10 +36,10 @@ const Profile = () => {
         fetchUser();
     }, [])
 
-
+    const userData = localStorage.getItem(user)
     return (
         <>
-            <h1>Profile for {data.username}</h1>
+            <h1>Profile for {userData.firstname}</h1>
             <img src={data.picture} alt="profile" />
             <Typography variant="h5">Hi {data.name} from {data.country}.</Typography>
         </>

@@ -27,6 +27,7 @@ import ExercisesInWorkout from './views/AddExerciseInWorkout'
 import Contributorpage from './views/ContributersPage';
 import NewUser from './views/NewUser';
 import ProfileFinishedRoute from './helpers/ProfileFinishedRoute';
+import AddWorkoutsInTrainingProgram from './views/AddWorkoutsToTrainingProgram';
 
 function App() {
 
@@ -179,7 +180,18 @@ function App() {
                 </ProfileFinishedRoute>
               </PrivateRoute>
             }
+            />            
+            <Route path="/contributors/trainingprogram/addWorkoutInProgram" element={
+              <PrivateRoute>
+                <ProfileFinishedRoute>
+                  <ContributorRoute>
+                    <AddWorkoutsInTrainingProgram />
+                  </ContributorRoute>
+                </ProfileFinishedRoute>
+              </PrivateRoute>
+            }
             />
+            
 
             <Route path="/*" element={
               <NotFound />

@@ -90,6 +90,8 @@ async function CreateTrainingProgram (trainingProgram) {
                'category': trainingProgram.category,
                'description': trainingProgram.description,
                'image': trainingProgram.image
+               
+
             })
         })
         if(!response.ok){
@@ -103,11 +105,31 @@ async function CreateTrainingProgram (trainingProgram) {
     }
 }
 
+function AddWorkoutsToProgram(id, listOfIds) {
+    const addWorkoutsToProgram = async () => {
+
+        const requestOptions = {
+            method: "PUT",
+            headers: {
+                Accept: "application/json, */*",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(
+                listOfIds
+            ),
+        }
+        console.log(requestOptions)
+        await fetch(`${apiUrl}/${id}`, requestOptions)
+    };
+    addWorkoutsToProgram();
+}
+
 const programFuncs = {
     FetchTrainingPrograms,
     FetchTrainingProgram,
     FetchWorkoutsInProgram,
-    CreateTrainingProgram
+    CreateTrainingProgram,
+    AddWorkoutsToProgram,
 }
 
 export default programFuncs
