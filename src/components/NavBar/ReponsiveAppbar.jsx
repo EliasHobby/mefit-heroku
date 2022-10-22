@@ -19,11 +19,18 @@ import { NavLink } from 'react-router-dom';
 const pages = ['Dashboard', 'Programs', 'Workouts', 'Exercises'];
 const settings = ['Profile'];
 
+
 const ResponsiveAppBar = () => {
   const { keycloak } = useKeycloak();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const user = JSON.parse(localStorage.getItem("user"));
+  let profilePictureUrl;
+  if (user.profilePicture) {
+    profilePictureUrl = user.profilePicture;
+  } else {
+    profilePictureUrl = "https://i.pinimg.com/736x/3d/cd/4a/3dcd4af5bc9e06d36305984730ab7888.jpg"
+  }
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -214,8 +221,8 @@ const ResponsiveAppBar = () => {
               </Typography>
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
-                  <Button onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <img style={{ height: 40, width: 40, borderRadius: 360, objectFit: 'cover' }} src={user.profilePicture} alt="" />
+                  <Button onClick={handleOpenUserMenu} sx={{ p: 0, }}>
+                    <img style={{ height: 40, width: 40, borderRadius: 360, objectFit: 'cover' }} src={profilePictureUrl} alt="" />
                   </Button>
                 </Tooltip>
                 <Menu

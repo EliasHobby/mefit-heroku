@@ -12,7 +12,7 @@ const Profile = () => {
     if (user.profilePicture) {
         profilePictureUrl = user.profilePicture;
     } else {
-        profilePictureUrl = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"
+        profilePictureUrl = "https://i.pinimg.com/736x/3d/cd/4a/3dcd4af5bc9e06d36305984730ab7888.jpg"
     }
 
     const handleLogout = () => {
@@ -57,7 +57,7 @@ const Profile = () => {
                         </Box>
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', ml: 5 }}>
-                        <img src={profilePictureUrl} alt="userpicture" style={{ width: 350, height: 350, borderRadius: 360, objectFit: 'cover', borderStyle: 'outset', borderWidth: 2, borderColor: '#1976d2' }} />
+                        <img src={profilePictureUrl} alt="userpicture" style={{ width: 350, height: 350, borderRadius: 360, objectFit: 'cover' }} />
                         <UpdateProfilePictureModal updateState={setState} />
                     </Box>
                 </Box>
