@@ -105,11 +105,49 @@ async function CreateTrainingProgram (trainingProgram) {
     }
 }
 
+function AddWorkoutsToProgram(id, listOfIds) {
+    const addWorkoutsToProgram = async () => {
+
+        const requestOptions = {
+            method: "PUT",
+            headers: {
+                Accept: "application/json, */*",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(
+                listOfIds
+            ),
+        }
+        console.log(requestOptions)
+        await fetch(`${apiUrl}/${id}`, requestOptions)
+    };
+    addWorkoutsToProgram();
+}
+
+function DeleteTrainingProgram(id) {
+    const deleteTrainingProgram = async () => {
+
+        const requestOptions = {
+            method: "DELETE",
+            headers: {
+                Accept: "application/json, */*",
+                "Content-Type": "application/json"
+            }
+        }
+        console.log(requestOptions)
+        await fetch(`${apiUrl}/${id}`, requestOptions)
+    };
+    deleteTrainingProgram();
+}
+
+
 const programFuncs = {
     FetchTrainingPrograms,
     FetchTrainingProgram,
     FetchWorkoutsInProgram,
-    CreateTrainingProgram
+    CreateTrainingProgram,
+    AddWorkoutsToProgram,
+    DeleteTrainingProgram
 }
 
 export default programFuncs

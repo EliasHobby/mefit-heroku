@@ -22,10 +22,15 @@ import Programpage from './views/Programpage';
 import AddExercise from './views/AddExercise';
 import AddWorkout from './views/AddWorkout';
 import AddProgram from './views/AddTrainingProgram';
+import ExercisesInWorkout from './views/AddExerciseInWorkout'
 
 import Contributorpage from './views/ContributersPage';
 import NewUser from './views/NewUser';
 import ProfileFinishedRoute from './helpers/ProfileFinishedRoute';
+import AddWorkoutsInTrainingProgram from './views/AddWorkoutsToTrainingProgram';
+import DeleteExercise from './views/DeleteExercise';
+import DeleteWorkouts from './views/DeleteWorkout';
+import DeleteTrainingProgram from './views/DeleteTrainingProgram';
 
 function App() {
 
@@ -161,11 +166,59 @@ function App() {
               </PrivateRoute>
             }
             />
+            <Route path="/contributors/workout/addExerciseInWorkout" element={
+              <PrivateRoute>
+                <ContributorRoute> 
+                  <ExercisesInWorkout />
+                </ContributorRoute> 
+              </PrivateRoute>
+            }
+            />
             <Route path="/contributors/trainingprogram" element={
               <PrivateRoute>
                 <ProfileFinishedRoute>
                   <ContributorRoute>
                     <AddProgram />
+                  </ContributorRoute>
+                </ProfileFinishedRoute>
+              </PrivateRoute>
+            }
+            />            
+            <Route path="/contributors/trainingprogram/addWorkoutInProgram" element={
+              <PrivateRoute>
+                <ProfileFinishedRoute>
+                  <ContributorRoute>
+                    <AddWorkoutsInTrainingProgram />
+                  </ContributorRoute>
+                </ProfileFinishedRoute>
+              </PrivateRoute>
+            }
+            />
+            <Route path="/contributors/deleteExercise" element={
+              <PrivateRoute>
+                <ProfileFinishedRoute>
+                  <ContributorRoute>
+                    <DeleteExercise />
+                  </ContributorRoute>
+                </ProfileFinishedRoute>
+              </PrivateRoute>
+            }
+            />
+            <Route path="/contributors/deleteWorkout" element={
+              <PrivateRoute>
+                <ProfileFinishedRoute>
+                  <ContributorRoute>
+                    <DeleteWorkouts/>
+                  </ContributorRoute>
+                </ProfileFinishedRoute>
+              </PrivateRoute>
+            }
+            />            
+            <Route path="/contributors/deleteTrainingProgram" element={
+              <PrivateRoute>
+                <ProfileFinishedRoute>
+                  <ContributorRoute>
+                    <DeleteTrainingProgram />
                   </ContributorRoute>
                 </ProfileFinishedRoute>
               </PrivateRoute>

@@ -19,10 +19,18 @@ import { NavLink } from 'react-router-dom';
 const pages = ['Dashboard', 'Programs', 'Workouts', 'Exercises'];
 const settings = ['Profile'];
 
+
 const ResponsiveAppBar = () => {
   const { keycloak } = useKeycloak();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const user = JSON.parse(localStorage.getItem("user"));
+  let profilePictureUrl;
+  if (user && user.profilePicture) {
+    profilePictureUrl = user.profilePicture;
+  } else {
+    profilePictureUrl = "https://i.pinimg.com/736x/3d/cd/4a/3dcd4af5bc9e06d36305984730ab7888.jpg"
+  }
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -207,15 +215,15 @@ const ResponsiveAppBar = () => {
 
           {/* User Profile Icon */}
           {!!keycloak.authenticated && (
-            <Box sx={{display: 'flex', alignItems: 'center'}}>
-              <Typography sx={{mr: '1rem'}}>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Typography sx={{ mr: '1rem' }}>
                 {keycloak.tokenParsed.name}
               </Typography>
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt={keycloak.tokenParsed.name} src="" />
-                  </IconButton>
+                  <Button onClick={handleOpenUserMenu} sx={{ p: 0, }}>
+                    <img style={{ height: 40, width: 40, borderRadius: 360, objectFit: 'cover' }} src={profilePictureUrl} alt="" />
+                  </Button>
                 </Tooltip>
                 <Menu
                   sx={{ mt: '45px' }}
@@ -235,11 +243,15 @@ const ResponsiveAppBar = () => {
                 >
                   {settings.map((setting) => (
                     <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                      <NavLink to={"/" + setting} textalign="center" style={{ textDecoration: 'none', color: '#1976d2' }}>{setting}</NavLink>
+                      <NavLink to={"/" + setting}>
+                        <Button sx={{ width: '100%' }}>
+                          {setting}
+                        </Button>
+                      </NavLink>
                     </MenuItem>
                   ))}
                   <MenuItem>
-                    <Button textalign="center" style={{ textDecoration: 'none' }} onClick={() => handleLogout()}>Logout</Button>
+                    <Button textAlign="center" style={{ textDecoration: 'none' }} onClick={() => handleLogout()}>Logout</Button>
                   </MenuItem>
                 </Menu>
               </Box>

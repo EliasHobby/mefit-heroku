@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import {Button} from '@mui/material';
 import { useState } from 'react';
 import workoutFuncs from '../../utils/WorkoutContext';
+import { NavLink } from 'react-router-dom';
 
 export function AddWorkoutForm () {
     const [ workout, setWorkout] = useState({
@@ -24,7 +25,12 @@ export function AddWorkoutForm () {
           ...workout,
           [name]: value
       });
-  }
+    }
+
+    function AddWorkoutHandler(){
+      workoutFuncs.CreateWorkout(workout)
+      alert('Add exercise')
+    }
 
 
 
@@ -40,7 +46,7 @@ export function AddWorkoutForm () {
 
       <div>
         <form>
-        <input
+        <TextField
           required
           onChange = {handleChange}
           id="outlined-required"
@@ -48,7 +54,7 @@ export function AddWorkoutForm () {
           name="name"
           value= {workout.name}
         />
-        <input
+        <TextField
           required
           onChange = {handleChange}
           id="outlined-required"
@@ -59,7 +65,7 @@ export function AddWorkoutForm () {
         
 
         
-        <input
+        <TextField
           required
           onChange = {handleChange}
           id="outlined-required"
@@ -68,7 +74,7 @@ export function AddWorkoutForm () {
           value={workout.image}
         />
 
-        <input
+        <TextField
           required
           onChange = {handleChange}
           id="outlined-required"
@@ -85,10 +91,9 @@ export function AddWorkoutForm () {
 
 
 
-        <Button variant="contained"  onClick={() => workoutFuncs.CreateWorkout(workout)}>
-            Create workout
+            <Button component={NavLink} to="/contributors/workout/addExerciseInWorkout" variant="contained"  onClick={AddWorkoutHandler}>
+            Add exercises to Workout
             </Button>
-
           </form>
         </div>
     </Box>

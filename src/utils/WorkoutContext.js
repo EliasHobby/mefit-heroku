@@ -79,38 +79,77 @@ function FetchExercisesInWorkout(id) {
 
     return exercises;
 }
- 
-async function CreateWorkout (workout) {
-    try{
+
+async function CreateWorkout(workout) {
+    try {
         const response = await fetch(apiUrl, {
             method: "POST",
-            headers: { Accept: "application/json, */*",
-            "Content-Type": 'application/json'
+            headers: {
+                Accept: "application/json, */*",
+                "Content-Type": 'application/json'
             },
             body: JSON.stringify({
-               'name': workout.name, 
-               'type': workout.type,
-               'image': workout.image,
-               'day': workout.day
-               
+                'name': workout.name,
+                'type': workout.type,
+                'image': workout.image,
+                'day': workout.day
 
             })
         })
-        if(!response.ok){
+        if (!response.ok) {
             throw new Error("Could not create exercise with exercise name " + workout.name)
-        } 
+        }
         const data = await response.json();
         return [null, data]
     }
-    catch(error) {
+    catch (error) {
         return [error.message, []]
     }
 }
+
+function AddExerciseInWorkout(id, exerciseidlist) {
+    const putExercises = async () => {
+
+        const requestOptions = {
+            method: "PUT",
+            headers: {
+                Accept: "application/json, */*",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(
+                exerciseidlist
+            ),
+        }
+        console.log(requestOptions)
+        await fetch(`${apiUrl}/${id}`, requestOptions)
+    };
+    putExercises();
+}
+
+
+function DeleteWorkout(id) {
+    const deleteWorkout = async () => {
+
+        const requestOptions = {
+            method: "DELETE",
+            headers: {
+                Accept: "application/json, */*",
+                "Content-Type": "application/json"
+            }
+        }
+        console.log(requestOptions)
+        await fetch(`${apiUrl}/${id}`, requestOptions)
+    };
+    deleteWorkout();
+}
+
 const workoutFuncs = {
     FetchWorkouts,
     FetchWorkout,
     FetchExercisesInWorkout,
-    CreateWorkout
+    CreateWorkout,
+    AddExerciseInWorkout,
+    DeleteWorkout
 }
 
 export default workoutFuncs

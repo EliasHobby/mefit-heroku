@@ -26,7 +26,7 @@ export default function TextMobileStepper() {
   };
 
   return (
-    <Box sx={{ Width: 400, height: 300, flexGrow: 1 }}>
+    <Box sx={{ minWidth: 400, minHeight: 300, flexGrow: 1, overflow: 'visible' }}>
 
       <Paper
         square

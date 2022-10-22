@@ -25,7 +25,11 @@ export function AddExerciseForm () {
       });
   }
 
-
+  // handleClickChange () {
+  //     alert("exercise added")      
+  //     // Updating state of exercise
+  //     exerciseFuncs.CreateExercise(exercise)
+  // }
 
   return (
     <Box
@@ -39,7 +43,7 @@ export function AddExerciseForm () {
 
       <div>
         <form>
-        <input
+        <TextField
           required
           onChange = {handleChange}
           id="outlined-required"
@@ -47,7 +51,7 @@ export function AddExerciseForm () {
           name="name"
           value= {exercise.name}
         />
-        <input
+        <TextField
           required
           onChange = {handleChange}
           id="outlined-required"
@@ -56,7 +60,7 @@ export function AddExerciseForm () {
           value= {exercise.description}
         />
         
-        <input
+        <TextField
           required
           onChange = {handleChange}
           id="outlined-required"
@@ -66,7 +70,7 @@ export function AddExerciseForm () {
 
         />
         
-        <input
+        <TextField
           required
           onChange = {handleChange}
           id="outlined-required"
@@ -77,10 +81,10 @@ export function AddExerciseForm () {
 
         <TextField
           id="outlined-required"
+          label = "mylabel"
           name= "exe"
           value={exercise.name + "   " + exercise.description + "   "+ exercise.image+ "   " + exercise.target_Muscle_Group}
         />
-
 
 
         <Button variant="contained"  onClick={() => exerciseFuncs.CreateExercise(exercise)}>

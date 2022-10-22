@@ -3,15 +3,16 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { CardActionArea, Button } from '@mui/material';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import workoutFuncs from '../../utils/WorkoutContext';
 
+const AddWorkoutsToTrainingProgramCard = ({ element, type, id }) => {
 
-const DisplayCard = ({ element, type, id }) => {
   return (
     <>
       <Card sx={{ maxWidth: 360, maxHeight: 360 }}>
-        <CardActionArea component={NavLink} to={{ pathname: `/${type}/${id + 1}` }}>
           <CardMedia
             component="img"
             height="180"
@@ -33,9 +34,8 @@ const DisplayCard = ({ element, type, id }) => {
               {element.description}
             </Typography>
           </CardContent>
-        </CardActionArea>
       </Card>
     </>
   );
 }
-export default DisplayCard;
+export default AddWorkoutsToTrainingProgramCard;
