@@ -10,9 +10,7 @@ const AddProgram = () => {
         <Card sx={{minWidth:200, maxWidth: 300}}>
             <CardContent >
             <h1>Add A TrainingProgram</h1>
-            <AddProgramForm> 
-            </AddProgramForm>      
-
+            <AddProgramForm></AddProgramForm>      
             </CardContent>
         </Card>
         </>

@@ -1,5 +1,5 @@
 import '../App.css';
-import { Grid, Typography, CircularProgress } from "@mui/material";
+import { Grid, Typography, CircularProgress, Card } from "@mui/material";
 import programFuncs from "../utils/TrainingProgramContext"
 import workoutFuncs from "../utils/WorkoutContext"
 import DisplayCard from "../components/DisplayCard/DisplayCard";
@@ -47,6 +47,7 @@ const Programpage = () => {
     return (
         <>
             <h1>Program  {data.id } :  {data.name }</h1>
+            <Card>
             <img src={data.image} alt="program.pic" />
             <Typography variant="h5">Type: {data.category}</Typography>
             <Typography variant="h5">Workout description:</Typography>
@@ -58,6 +59,7 @@ const Programpage = () => {
                 </Grid>
             ))}
             </Grid>
+            </Card>
         </>
 
     )

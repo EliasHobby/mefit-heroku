@@ -15,7 +15,7 @@ const NewUser = () => {
                 justifyContent="center"
                 style={{ minHeight: '20vh' }}
             >
-                <Card sx={{ p: "20px", mt: "2rem", height: '30vh', width: '50vh' }}>
+                <Card sx={{ p: "20px", mt: "2rem", }}>
                     <Grid
                         container
                         spacing={0}

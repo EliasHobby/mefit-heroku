@@ -14,12 +14,7 @@ const Workouts = () => {
 
     const list = []
 
-    // for (const x of dato){
-    //     list.push(x.name)
-    // }
 
-    // console.log(list)
-    // Hooks
     if (data === undefined) {
         return <>Fetching Workouts...</>
     }
