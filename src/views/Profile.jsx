@@ -24,11 +24,6 @@ const Profile = () => {
     const userData = localStorage.getItem(user)
     return (
         <>
-<<<<<<< HEAD
-            <h1>Profile for {userData.firstname}</h1>
-            <img src={data.picture} alt="profile" />
-            <Typography variant="h5">Hi {data.name} from {data.country}.</Typography>
-=======
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <h1>Profile</h1>
                 <Button variant="contained" sx={{ height: 40 }} onClick={() => handleLogout()}>Log out</Button>
@@ -67,7 +62,6 @@ const Profile = () => {
                     </Box>
                 </Box>
             </Card>
->>>>>>> main
         </>
     )
 }
