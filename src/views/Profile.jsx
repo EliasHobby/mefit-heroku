@@ -21,7 +21,7 @@ const Profile = () => {
     }
 
 
-
+    const userData = localStorage.getItem(user)
     return (
         <>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

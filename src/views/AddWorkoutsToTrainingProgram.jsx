@@ -12,12 +12,13 @@ import exerciseFuncs from "../utils/ExerciseContext";
 import { NavLink } from "react-router-dom";
 import workoutFuncs from "../utils/WorkoutContext";
 import { useState } from "react";
+import programFuncs from "../utils/TrainingProgramContext";
 
 //Catalogue of all exercises in database
-const ExercisesInWorkout = () => {
-  //Fetch for all exercises
-  const data = exerciseFuncs.FetchExercises();
-   const workoutsData = workoutFuncs.FetchWorkouts();
+const AddWorkoutsInTrainingProgram = () => {
+  //Fetch for all workouts that can be added to program
+   const data = workoutFuncs.FetchWorkouts();
+   const programData = programFuncs.FetchTrainingPrograms();    
 
 
   const [listOfIds, setListOfIds] = useState([]);
@@ -25,9 +26,9 @@ const ExercisesInWorkout = () => {
   function handleClick() {
     //amount of workouts in database
     console.log(listOfIds)
-    console.log(Object.keys(workoutsData).length)
-    workoutFuncs.AddExerciseInWorkout(Object.keys(workoutsData).length, listOfIds);
-    alert("ExerciseId added to list");
+    console.log(Object.keys(programData).length)
+    programFuncs.AddWorkoutsToProgram(Object.keys(programData).length, listOfIds);
+    alert("Workouts added to Program");
   }
 
   //Check if data is received from database
@@ -53,7 +54,7 @@ const ExercisesInWorkout = () => {
       <h1>Choose exercises to add</h1>
       <Button
         component={NavLink}
-        to="/workouts"
+        to="/programs"
         sx={{ alignItems: "center", mb: "1rem", mt: "0.5rem", position: "fixed", bottom: 55,  zIndex:2}}
         variant="contained"
         onClick={handleClick}
@@ -62,17 +63,17 @@ const ExercisesInWorkout = () => {
       </Button>
 
       <Grid container spacing={2}>
-        {data.map((exercise, index) => (
+        {data.map((workout, index) => (
           <Grid item xs={4} mb={4} key={index}>
             <CardActionArea
               onClick={() =>
-                listOfIds.push(exercise.id)
+                listOfIds.push(workout.id)
               }
             >
               <AddExerciseToWorkoutCard
-                element={exercise}
+                element={workout}
                 id={index}
-                type="exercise"
+                type="workout"
               />
             </CardActionArea>
           </Grid>
@@ -82,4 +83,4 @@ const ExercisesInWorkout = () => {
   );
 };
 
-export default ExercisesInWorkout;
+export default AddWorkoutsInTrainingProgram;

@@ -10,24 +10,22 @@ import {
 } from "@mui/material";
 import exerciseFuncs from "../utils/ExerciseContext";
 import { NavLink } from "react-router-dom";
-import workoutFuncs from "../utils/WorkoutContext";
-import { useState } from "react";
+import { positions } from '@mui/system';
 
 //Catalogue of all exercises in database
-const ExercisesInWorkout = () => {
-  //Fetch for all exercises
-  const data = exerciseFuncs.FetchExercises();
-   const workoutsData = workoutFuncs.FetchWorkouts();
+const DeleteExercise = () => {
+  //Fetch for all exercises that can be added deleted
+   const data = exerciseFuncs.FetchExercises();
 
 
-  const [listOfIds, setListOfIds] = useState([]);
 
-  function handleClick() {
+  function handleClick(exercise) {
     //amount of workouts in database
-    console.log(listOfIds)
-    console.log(Object.keys(workoutsData).length)
-    workoutFuncs.AddExerciseInWorkout(Object.keys(workoutsData).length, listOfIds);
-    alert("ExerciseId added to list");
+    console.log(exercise.id)
+    // exerciseFuncs.DeleteExercise(exercise.id);
+    console.log("Exercise with name" + exercise.name + "deleted")
+
+    alert("exerciseDeleted");
   }
 
   //Check if data is received from database
@@ -50,15 +48,14 @@ const ExercisesInWorkout = () => {
 
   return (
     <>
-      <h1>Choose exercises to add</h1>
+      <h1>Choose exercise(s) to Delete</h1>
       <Button
         component={NavLink}
-        to="/workouts"
+        to="/exercises"
         sx={{ alignItems: "center", mb: "1rem", mt: "0.5rem", position: "fixed", bottom: 55,  zIndex:2}}
         variant="contained"
-        onClick={handleClick}
       >
-        Add exercises to workout
+        Finished
       </Button>
 
       <Grid container spacing={2}>
@@ -66,7 +63,11 @@ const ExercisesInWorkout = () => {
           <Grid item xs={4} mb={4} key={index}>
             <CardActionArea
               onClick={() =>
-                listOfIds.push(exercise.id)
+                {console.log(exercise.id);
+                 exerciseFuncs.DeleteExercise(exercise.id);
+                 console.log("Exercise with name" + exercise.name + "deleted");
+                 alert("exerciseDeleted");
+                }
               }
             >
               <AddExerciseToWorkoutCard
@@ -82,4 +83,4 @@ const ExercisesInWorkout = () => {
   );
 };
 
-export default ExercisesInWorkout;
+export default DeleteExercise;
