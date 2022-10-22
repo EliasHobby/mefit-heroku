@@ -39,22 +39,17 @@ const BigButton = ({ name, message, WorkoutId }) => {
     function GetGoalId() {
         return currentGoal.id
     }
-
-
-    // BUTTON FUNCTION
-    function BtnClick(message, WorkoutId) {
-        alert(message)
-        AddWorkoutToGoal(WorkoutId)
-    }
-
     // ADD WORKOUT TO GOAL
-    function AddWorkoutToGoal(WorkoutId) {
+    function AddWorkoutToGoal(message, WorkoutId) {
+        alert(message)
         if (!GoalExist()) {
             CreateGoal()
         }
+        let arr = new Array();
+        arr.push(WorkoutId)
 
         const goalId = GetGoalId()
-        goalfuncs.AddWorkoutsToGoal(WorkoutId, goalId)
+        goalfuncs.AddWorkoutsToGoal(arr, goalId)
     }
 
 
@@ -62,7 +57,7 @@ const BigButton = ({ name, message, WorkoutId }) => {
         <>
             <Card textAlign='center'>
 
-                <Button fullWidth="true" onClick={() => BtnClick(message, WorkoutId)}
+                <Button fullWidth="true" onClick={() => AddWorkoutToGoal(message, WorkoutId)}
                     variant="outlined">
                     {name}
                 </Button>

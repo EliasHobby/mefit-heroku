@@ -84,53 +84,51 @@ function FetchGoalByUserAndWeek(id, week) {
 
 
 
-async function CreateGoal (goal)  {
-    try{
+async function CreateGoal(goal) {
+    try {
         const response = await fetch(apiUrl, {
             method: "POST",
-            headers: { Accept : "application/json, */*",
-            "Content-Type": 'application/json'
+            headers: {
+                Accept: "application/json, */*",
+                "Content-Type": 'application/json'
             },
             body: JSON.stringify({
-               'week': goal.week,
-               'achieved': goal.achieved,
-               'accountId': goal.accountId
+                'week': goal.week,
+                'achieved': goal.achieved,
+                'accountId': goal.accountId
             }),
         });
-        if(!response.ok){
+        if (!response.ok) {
             throw new Error("Could not create goal")
         }
         const data = await response.json();
         console.log(data)
     }
-    catch(error) {
+    catch (error) {
         console.log(error)
         console.log(goal)
     }
 }
 
 
-async function AddWorkoutsToGoal (workoutidlist, id ){
-    try{
-        const response = await fetch(apiUrl + "/" + id, {
-        method:"PUT",
-        headers: { Accept: "application/json, */*",
-            "Content-Type": 'application/json'
-        },
-        body: JSON.stringify(
-            workoutidlist
-        )
-    })
-    if(!response.ok){
-        throw new Error("Could not put exercise in workout")
-    }
-    const data = await response.json();
-    return [null, data]
-    }
-    catch(error) {
-        return [error.message, []]
-    }
+async function AddWorkoutsToGoal(workoutidlist, id) {
+    const putWorkoutsInGoal = async () => {
+
+        const requestOptions = {
+            method: "PUT",
+            headers: {
+                Accept: "application/json, */*",
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({
+                'workouts': workoutidlist
+            }),
+        }
+        await fetch(apiUrl + id, requestOptions)
+    };
+    putWorkoutsInGoal();
 }
+
 
 
 
