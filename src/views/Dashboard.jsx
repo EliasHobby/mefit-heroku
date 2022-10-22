@@ -7,9 +7,7 @@ import SimpleButton from "../components/Buttons/SimpleButton";
 
 const Dashboard = () => {
 
-    //Fetch the users' goals
-    const goals = dashboardfuncs.FetchGoals();
-    console.log(goals)
+
 
     return (
         <>

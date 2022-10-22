@@ -29,6 +29,61 @@ function FetchGoals() {
     return goals;
 }
 
+
+
+function FetchGoal(id) {
+    const [goal, setData] = useState()
+
+    useEffect(() => {
+        const fetchGoal = async () => {
+            fetch("https://mefitapi.azure-api.net/api/goals/" + id)
+                .then(async response => {
+                    if (response.ok) {
+                        console.log(response)
+                        return response.json()
+                    }
+                })
+                .then(goal => {
+                    setData(goal)
+                })
+                .catch(error => {
+                    console.error(error.message)
+                })
+        }
+        fetchGoal();
+    }, [])
+
+    return goal;
+}
+
+
+function FetchGoalByUserAndWeek(id, week) {
+    const [goal, setData] = useState()
+
+    useEffect(() => {
+        const fetchGoal = async () => {
+            fetch("https://mefitapi.azure-api.net/api/goals/IdAndWeek/" + id + "?week=" + week)
+                .then(async response => {
+                    if (response.ok) {
+                        console.log(response)
+                        return response.json()
+                    }
+                })
+                .then(goal => {
+                    setData(goal)
+                })
+                .catch(error => {
+                    console.error(error.message)
+                })
+        }
+        fetchGoal();
+    }, [])
+
+    return goal;
+}
+
+
+
 async function CreateGoal (goal)  {
     try{
         const response = await fetch(apiUrl, {
@@ -62,9 +117,9 @@ async function AddWorkoutsToGoal (workoutidlist, id ){
         headers: { Accept: "application/json, */*",
             "Content-Type": 'application/json'
         },
-        body: JSON.stringify({
-            workoutId: workoutidlist
-        })
+        body: JSON.stringify(
+            workoutidlist
+        )
     })
     if(!response.ok){
         throw new Error("Could not put exercise in workout")
@@ -82,7 +137,9 @@ async function AddWorkoutsToGoal (workoutidlist, id ){
 const goalfuncs = {
     FetchGoals,
     CreateGoal,
-    AddWorkoutsToGoal
+    AddWorkoutsToGoal,
+    FetchGoal,
+    FetchGoalByUserAndWeek
 }
 
 export default goalfuncs;
