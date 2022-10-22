@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const apiUrl = "https://apimefit.azurewebsites.net/api/goals/"
+const apiUrl = "https://apimefit.azurewebsites.net/api/goals"
 
 function FetchGoals() {
     const [goals, setGoals] = useState();
@@ -36,7 +36,7 @@ function FetchGoal(id) {
 
     useEffect(() => {
         const fetchGoal = async () => {
-            fetch("https://mefitapi.azure-api.net/api/goals/" + id)
+            fetch("https://apimefit.azurewebsites.net/api/goals/" + id)
                 .then(async response => {
                     if (response.ok) {
                         console.log(response)
@@ -62,7 +62,7 @@ function FetchGoalByUserAndWeek(id, week) {
 
     useEffect(() => {
         const fetchGoal = async () => {
-            fetch("https://mefitapi.azure-api.net/api/goals/IdAndWeek/" + id + "?week=" + week)
+            fetch("https://apimefit.azurewebsites.net/api/goals/IdAndWeek/" + id + "?week=" + week)
                 .then(async response => {
                     if (response.ok) {
                         console.log(response)
@@ -110,25 +110,23 @@ async function CreateGoal(goal) {
     }
 }
 
-
-async function AddWorkoutsToGoal(workoutidlist, id) {
+async function AddWorkoutsToGoal(id, workoutidlist) {
     const putWorkoutsInGoal = async () => {
 
         const requestOptions = {
             method: "PUT",
             headers: {
                 Accept: "application/json, */*",
-                "Content-Type": 'application/json'
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                'workouts': workoutidlist
-            }),
+            body: JSON.stringify(
+                workoutidlist
+            ),
         }
-        await fetch(apiUrl + id, requestOptions)
+        await fetch("https://apimefit.azurewebsites.net/api/goals/"+id, requestOptions)
     };
     putWorkoutsInGoal();
 }
-
 
 
 
