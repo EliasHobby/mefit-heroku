@@ -124,12 +124,30 @@ function AddWorkoutsToProgram(id, listOfIds) {
     addWorkoutsToProgram();
 }
 
+function DeleteTrainingProgram(id) {
+    const deleteTrainingProgram = async () => {
+
+        const requestOptions = {
+            method: "DELETE",
+            headers: {
+                Accept: "application/json, */*",
+                "Content-Type": "application/json"
+            }
+        }
+        console.log(requestOptions)
+        await fetch(`${apiUrl}/${id}`, requestOptions)
+    };
+    deleteTrainingProgram();
+}
+
+
 const programFuncs = {
     FetchTrainingPrograms,
     FetchTrainingProgram,
     FetchWorkoutsInProgram,
     CreateTrainingProgram,
     AddWorkoutsToProgram,
+    DeleteTrainingProgram
 }
 
 export default programFuncs

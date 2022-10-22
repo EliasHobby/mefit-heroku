@@ -28,6 +28,9 @@ import Contributorpage from './views/ContributersPage';
 import NewUser from './views/NewUser';
 import ProfileFinishedRoute from './helpers/ProfileFinishedRoute';
 import AddWorkoutsInTrainingProgram from './views/AddWorkoutsToTrainingProgram';
+import DeleteExercise from './views/DeleteExercise';
+import DeleteWorkouts from './views/DeleteWorkout';
+import DeleteTrainingProgram from './views/DeleteTrainingProgram';
 
 function App() {
 
@@ -191,7 +194,36 @@ function App() {
               </PrivateRoute>
             }
             />
-            
+            <Route path="/contributors/deleteExercise" element={
+              <PrivateRoute>
+                <ProfileFinishedRoute>
+                  <ContributorRoute>
+                    <DeleteExercise />
+                  </ContributorRoute>
+                </ProfileFinishedRoute>
+              </PrivateRoute>
+            }
+            />
+            <Route path="/contributors/deleteWorkout" element={
+              <PrivateRoute>
+                <ProfileFinishedRoute>
+                  <ContributorRoute>
+                    <DeleteWorkouts/>
+                  </ContributorRoute>
+                </ProfileFinishedRoute>
+              </PrivateRoute>
+            }
+            />            
+            <Route path="/contributors/deleteTrainingProgram" element={
+              <PrivateRoute>
+                <ProfileFinishedRoute>
+                  <ContributorRoute>
+                    <DeleteTrainingProgram />
+                  </ContributorRoute>
+                </ProfileFinishedRoute>
+              </PrivateRoute>
+            }
+            />
 
             <Route path="/*" element={
               <NotFound />

@@ -127,12 +127,29 @@ function AddExerciseInWorkout(id, exerciseidlist) {
 }
 
 
+function DeleteWorkout(id) {
+    const deleteWorkout = async () => {
+
+        const requestOptions = {
+            method: "DELETE",
+            headers: {
+                Accept: "application/json, */*",
+                "Content-Type": "application/json"
+            }
+        }
+        console.log(requestOptions)
+        await fetch(`${apiUrl}/${id}`, requestOptions)
+    };
+    deleteWorkout();
+}
+
 const workoutFuncs = {
     FetchWorkouts,
     FetchWorkout,
     FetchExercisesInWorkout,
     CreateWorkout,
-    AddExerciseInWorkout
+    AddExerciseInWorkout,
+    DeleteWorkout
 }
 
 export default workoutFuncs

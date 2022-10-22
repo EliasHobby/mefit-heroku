@@ -55,7 +55,7 @@ const AddWorkoutsInTrainingProgram = () => {
       <Button
         component={NavLink}
         to="/programs"
-        sx={{ alignItems: "center", mb: "1rem", mt: "0.5rem" }}
+        sx={{ alignItems: "center", mb: "1rem", mt: "0.5rem", position: "fixed", bottom: 55,  zIndex:2}}
         variant="contained"
         onClick={handleClick}
       >

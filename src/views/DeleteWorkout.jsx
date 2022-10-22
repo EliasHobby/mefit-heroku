@@ -8,27 +8,17 @@ import {
   Button,
   CardActionArea
 } from "@mui/material";
-import exerciseFuncs from "../utils/ExerciseContext";
 import { NavLink } from "react-router-dom";
 import workoutFuncs from "../utils/WorkoutContext";
-import { useState } from "react";
 
-//Catalogue of all exercises in database
-const ExercisesInWorkout = () => {
-  //Fetch for all exercises
-  const data = exerciseFuncs.FetchExercises();
-   const workoutsData = workoutFuncs.FetchWorkouts();
+//Catalogue of all Workouts that can be deleted
+const DeleteWorkouts = () => {
+  //Fetch for all exercises that can be added deleted
+   const data = workoutFuncs.FetchWorkouts();
 
 
-  const [listOfIds, setListOfIds] = useState([]);
 
-  function handleClick() {
-    //amount of workouts in database
-    console.log(listOfIds)
-    console.log(Object.keys(workoutsData).length)
-    workoutFuncs.AddExerciseInWorkout(Object.keys(workoutsData).length, listOfIds);
-    alert("ExerciseId added to list");
-  }
+
 
   //Check if data is received from database
   if (data === undefined) {
@@ -50,29 +40,32 @@ const ExercisesInWorkout = () => {
 
   return (
     <>
-      <h1>Choose exercises to add</h1>
+      <h1>Choose workout(s) to Delete</h1>
       <Button
         component={NavLink}
         to="/workouts"
         sx={{ alignItems: "center", mb: "1rem", mt: "0.5rem", position: "fixed", bottom: 55,  zIndex:2}}
         variant="contained"
-        onClick={handleClick}
+        onClick={() =>{alert("workout(s) deleted"); }}
       >
-        Add exercises to workout
+        Finished
       </Button>
 
       <Grid container spacing={2}>
-        {data.map((exercise, index) => (
+        {data.map((workout, index) => (
           <Grid item xs={4} mb={4} key={index}>
             <CardActionArea
               onClick={() =>
-                listOfIds.push(exercise.id)
+                {console.log(workout.id);
+                 workoutFuncs.DeleteWorkout(workout.id); 
+                 console.log("Workout with name " + workout.name + " deleted");
+                }
               }
             >
               <AddExerciseToWorkoutCard
-                element={exercise}
+                element={workout}
                 id={index}
-                type="exercise"
+                type="workout"
               />
             </CardActionArea>
           </Grid>
@@ -82,4 +75,4 @@ const ExercisesInWorkout = () => {
   );
 };
 
-export default ExercisesInWorkout;
+export default DeleteWorkouts;

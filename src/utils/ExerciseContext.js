@@ -89,11 +89,29 @@ async function CreateExercise (exercise)  {
 
 
 
+function DeleteExercise(id) {
+    const deleteExercise = async () => {
+
+        const requestOptions = {
+            method: "DELETE",
+            headers: {
+                Accept: "application/json, */*",
+                "Content-Type": "application/json"
+            }
+        }
+        console.log(requestOptions)
+        await fetch(`${apiUrl}/${id}`, requestOptions)
+    };
+    deleteExercise();
+}
+
+
 
 const exerciseFuncs = {
     FetchExercises,
     FetchExercise,
-    CreateExercise
+    CreateExercise,
+    DeleteExercise
 
 }
 
