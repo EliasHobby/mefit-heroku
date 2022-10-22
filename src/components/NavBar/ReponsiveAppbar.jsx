@@ -26,7 +26,7 @@ const ResponsiveAppBar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const user = JSON.parse(localStorage.getItem("user"));
   let profilePictureUrl;
-  if (user.profilePicture) {
+  if (user && user.profilePicture) {
     profilePictureUrl = user.profilePicture;
   } else {
     profilePictureUrl = "https://i.pinimg.com/736x/3d/cd/4a/3dcd4af5bc9e06d36305984730ab7888.jpg"
