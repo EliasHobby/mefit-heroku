@@ -20,6 +20,9 @@ const Profile = () => {
         keycloak.logout();
     }
 
+    const contributorRequest = () => {
+        localStorage.setItem("Request", JSON.stringify(user.id))
+    }
 
     const userData = localStorage.getItem(user)
     return (
@@ -60,6 +63,9 @@ const Profile = () => {
                         <img src={profilePictureUrl} alt="userpicture" style={{ width: 350, height: 350, borderRadius: 360, objectFit: 'cover' }} />
                         <UpdateProfilePictureModal updateState={setState} />
                     </Box>
+                </Box>
+                <Box mb={5}>
+                <Button variant="contained" sx={{ height: 40 }} onClick={() => contributorRequest()}>Send a request to be a Contributor</Button>
                 </Box>
             </Card>
         </>
