@@ -1,9 +1,7 @@
 # Case study .NET Fullstack – Norway Remote – August 2022
-# MeFit
-## An application to keep track of workouts
+## MeFit - An application to keep track of workouts
 # This project contains the following
 </br>
-## Features
 - React framework
 - Keycloak API for authentication
 - Deployed on heroku: https://react-mefit.herokuapp.com/dashboard
