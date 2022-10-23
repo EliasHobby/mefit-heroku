@@ -5,6 +5,13 @@ import {Button} from '@mui/material';
 import { useState } from 'react';
 import workoutFuncs from '../../utils/WorkoutContext';
 import { NavLink } from 'react-router-dom';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
+
+
 
 export function AddWorkoutForm () {
     const [ workout, setWorkout] = useState({
@@ -29,7 +36,6 @@ export function AddWorkoutForm () {
 
     function AddWorkoutHandler(){
       workoutFuncs.CreateWorkout(workout)
-      alert('Add exercise')
     }
 
 
@@ -45,7 +51,7 @@ export function AddWorkoutForm () {
     >
 
       <div>
-        <form>
+        <form >
         <TextField
           required
           onChange = {handleChange}
@@ -54,7 +60,7 @@ export function AddWorkoutForm () {
           name="name"
           value= {workout.name}
         />
-        <TextField
+        <TextField 
           required
           onChange = {handleChange}
           id="outlined-required"
@@ -74,20 +80,27 @@ export function AddWorkoutForm () {
           value={workout.image}
         />
 
-        <TextField
-          required
-          onChange = {handleChange}
-          id="outlined-required"
-          label="day for executing workout"
-          name= "day"
-          value= {workout.day}
 
-        />
-        <TextField
-          id="outlined-required"
-          name= "exe"
-          value={workout.name + "   " + workout.type + "   "+ workout.image+ "   " + workout.day}
-        />
+        <FormControl  fullWidth>
+          <InputLabel id="Day-to-execute-dropdown">Select for executing workout</InputLabel>
+          <Select
+            onChange={handleChange}
+            labelId="select workout execution day"
+            id="select-day"
+            name="day"
+            value={workout.day}
+            label="day for executing workout"
+          >
+            <MenuItem value={"Monday"}>Monday</MenuItem>
+            <MenuItem value={"Tuesday"}>Tuesday</MenuItem>
+            <MenuItem value={"Wednesday"}>Wednesday</MenuItem>
+            <MenuItem value={"Thursday"}>Thursday</MenuItem>
+            <MenuItem value={"Friday"}>Friday</MenuItem>
+            <MenuItem value={"Saturday"}>Saturday</MenuItem>
+            <MenuItem value={"Sunday"}>Sunday</MenuItem>
+          </Select>
+        </FormControl>
+
 
 
 

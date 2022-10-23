@@ -15,7 +15,7 @@ import { positions } from '@mui/system';
 //Catalogue of all exercises in database
 const DeleteExercise = () => {
   //Fetch for all exercises that can be added deleted
-   const data = exerciseFuncs.FetchExercises();
+   let data = exerciseFuncs.FetchExercises();
 
 
 
@@ -24,8 +24,7 @@ const DeleteExercise = () => {
     console.log(exercise.id)
     // exerciseFuncs.DeleteExercise(exercise.id);
     console.log("Exercise with name" + exercise.name + "deleted")
-
-    alert("exerciseDeleted");
+    alert("exerciseDeleted ");
   }
 
   //Check if data is received from database

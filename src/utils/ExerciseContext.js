@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useKeycloak } from "@react-keycloak/web"
 
 
 const apiUrl = "https://apimefit.azurewebsites.net/api/exercises"

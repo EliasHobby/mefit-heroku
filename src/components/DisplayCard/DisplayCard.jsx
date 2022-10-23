@@ -7,11 +7,11 @@ import { CardActionArea } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
 
-const DisplayCard = ({ element, type, id }) => {
+const DisplayCard = ({ element, type }) => {
   return (
     <>
       <Card sx={{ maxWidth: 360, maxHeight: 360 }}>
-        <CardActionArea component={NavLink} to={{ pathname: `/${type}/${id + 1}` }}>
+        <CardActionArea component={NavLink} to={{ pathname: `/${type}/${element.id}` }}>
           <CardMedia
             component="img"
             height="180"

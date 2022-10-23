@@ -11,8 +11,7 @@ import AddProgramToGoal from "../components/AddWorkoutToGoal/AddProgramToGoal";
 // Page of all programs, Catalogue of programs for user
 const Programs = () => {
   const data = programFuncs.FetchTrainingPrograms();
-  localStorage.setItem("data", data)
-  console.log(localStorage.getItem(data))
+
 
 //Check if data is received from database
     if (data === undefined) {
@@ -30,15 +29,6 @@ const Programs = () => {
       </>
   }
 
-  // <ul>{data.workoutId.map((x) => <li>{funcs.FetchWorkout(x).name}</li>)}</ul>
-
-  //const listex = data.map((program, index) => <li>{funcs.FetchExercise(program.workoutId[index])}</li>)
-
-  // const listOfEx = data.workoutId.map((x) => <li>{x}</li>)
-
-  // for (let x in data.workoutId){
-  //   console.log(funcs.FetchWorkout(x).name)
-  // }
 
   return (
       <>
@@ -49,7 +39,7 @@ const Programs = () => {
               {data.map((program, index) => (
                   <Grid item xs={4} mb={4} key={index}>
                     <Card>
-                      <DisplayCard element={program} id={index} type="program"></DisplayCard>
+                      <DisplayCard element={program} type="program"></DisplayCard>
                     </Card>
                     
                     <AddProgramToGoal name={"Add Program To Goal"} 
