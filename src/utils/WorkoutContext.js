@@ -120,7 +120,6 @@ function AddExerciseInWorkout(id, exerciseidlist) {
                 exerciseidlist
             ),
         }
-        console.log(requestOptions)
         await fetch(`${apiUrl}/${id}`, requestOptions)
     };
     putExercises();
