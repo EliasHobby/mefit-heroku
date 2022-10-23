@@ -26,10 +26,10 @@ const Workouts = () => {
             <Grid container spacing={2} >
                 {data.map((workout, index) => (
                     <Grid item xs={4} mb={4} key={index}>
-                        <DisplayCard element={workout} id={index} type="workout" />
+                        <DisplayCard element={workout} type="workout" />
                         <BigButton name={"Add Workout To Goal"} 
-                        message={"You have added this Workout to your Weekly Goal!"}
-                        WorkoutId = {index+1}></BigButton>
+                        message={"You have added this Workout to your Weekly Goal! " + workout.name}
+                        WorkoutId = {workout.id}></BigButton>
                     </Grid>
                 ))}
             </Grid>

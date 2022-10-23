@@ -4,6 +4,8 @@ import {Button} from '@mui/material';
 import exerciseFuncs from '../../utils/ExerciseContext'
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+
 
 export function AddExerciseForm () {
   const [ exercise, setExercise] = useState({
@@ -79,15 +81,9 @@ export function AddExerciseForm () {
           value={exercise.image}
         />
 
-        <TextField
-          id="outlined-required"
-          label = "mylabel"
-          name= "exe"
-          value={exercise.name + "   " + exercise.description + "   "+ exercise.image+ "   " + exercise.target_Muscle_Group}
-        />
 
 
-        <Button variant="contained"  onClick={() => exerciseFuncs.CreateExercise(exercise)}>
+        <Button variant="contained" component={NavLink} to="/exercises"  onClick={() => {exerciseFuncs.CreateExercise(exercise); alert("Exercise " + exercise.name + "added")}}>
             Create Exercise
             </Button>
 
