@@ -55,7 +55,7 @@ const Workoutpage = () => {
 
     return (
         <>
-            <h1>Workout  :  {data.name }</h1>
+            <h1>Workout  {data.id } :  {data.name }</h1>
             <img src={data.image} alt="workout.pic" />
             
             <Box sx={{ alignItems: 'center', mb: '2rem', mt: '1rem' }}>

@@ -81,8 +81,16 @@ const AddProgramForm = () =>  {
         />
 
 
+        <TextField
+          id="outlined-required"
+          name= "exe"
+          value={trainingProgram.name + "   " + trainingProgram.description + "   "+ trainingProgram.image+ "   " + trainingProgram.category}
+        />
+
+
+
         <Button variant="contained" component={NavLink} to="/contributors/TrainingProgram/addWorkoutInProgram"  onClick={() => programFuncs.CreateTrainingProgram(trainingProgram)}>
-            Add Workouts
+            Create New program
             </Button>
 
           </form>

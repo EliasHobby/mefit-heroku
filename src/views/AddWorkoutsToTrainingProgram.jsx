@@ -27,7 +27,7 @@ const AddWorkoutsInTrainingProgram = () => {
     //amount of workouts in database
     console.log(listOfIds)
     console.log(Object.keys(programData).length)
-    programFuncs.AddWorkoutsToProgram(Object.keys(programData)[-1], listOfIds);
+    programFuncs.AddWorkoutsToProgram(Object.keys(programData).length, listOfIds);
     alert("Workouts added to Program");
   }
 
@@ -59,7 +59,7 @@ const AddWorkoutsInTrainingProgram = () => {
         variant="contained"
         onClick={handleClick}
       >
-        Add workouts to training program
+        Add exercises to workout
       </Button>
 
       <Grid container spacing={2}>
