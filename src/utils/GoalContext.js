@@ -83,6 +83,31 @@ function FetchGoalByUserAndWeek(id, week) {
 }
 
 
+function FetchAllWorkoutsInGoal(id) {
+    const [goal, setData] = useState()
+
+    useEffect(() => {
+        const fetchGoal = async () => {
+            fetch("https://apimefit.azurewebsites.net/api/goals/GetAllWorkoutsInGoal/" + id)
+                .then(async response => {
+                    if (response.ok) {
+                        console.log(response)
+                        return response.json()
+                    }
+                })
+                .then(goal => {
+                    setData(goal)
+                })
+                .catch(error => {
+                    console.error(error.message)
+                })
+        }
+        fetchGoal();
+    }, [])
+
+    return goal;
+}
+
 
 async function CreateGoal(goal) {
     try {
@@ -135,7 +160,8 @@ const goalfuncs = {
     CreateGoal,
     AddWorkoutsToGoal,
     FetchGoal,
-    FetchGoalByUserAndWeek
+    FetchGoalByUserAndWeek,
+    FetchAllWorkoutsInGoal
 }
 
 export default goalfuncs;
