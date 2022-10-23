@@ -4,7 +4,7 @@ import { Grid } from "@mui/material";
 import workoutFuncs from "../utils/WorkoutContext";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import BigButton from "../components/Buttons/BigButton";
+import AddWorkoutToGoal from "../components/AddWorkoutToGoal/AddWorkoutToGoal";
 
 
 //Catalogue to for workouts 

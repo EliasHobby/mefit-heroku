@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const apiUrl = "https://apimefit.azurewebsites.net/api/goals/"
+const apiUrl = "https://apimefit.azurewebsites.net/api/goals"
 
 function FetchGoals() {
     const [goals, setGoals] = useState();
@@ -29,59 +29,113 @@ function FetchGoals() {
     return goals;
 }
 
-async function CreateGoal (goal)  {
-    try{
+
+
+function FetchGoal(id) {
+    const [goal, setData] = useState()
+
+    useEffect(() => {
+        const fetchGoal = async () => {
+            fetch("https://apimefit.azurewebsites.net/api/goals/" + id)
+                .then(async response => {
+                    if (response.ok) {
+                        console.log(response)
+                        return response.json()
+                    }
+                })
+                .then(goal => {
+                    setData(goal)
+                })
+                .catch(error => {
+                    console.error(error.message)
+                })
+        }
+        fetchGoal();
+    }, [])
+
+    return goal;
+}
+
+
+function FetchGoalByUserAndWeek(id, week) {
+    const [goal, setData] = useState()
+
+    useEffect(() => {
+        const fetchGoal = async () => {
+            fetch("https://apimefit.azurewebsites.net/api/goals/IdAndWeek/" + id + "?week=" + week)
+                .then(async response => {
+                    if (response.ok) {
+                        console.log(response)
+                        return response.json()
+                    }
+                })
+                .then(goal => {
+                    setData(goal)
+                })
+                .catch(error => {
+                    console.error(error.message)
+                })
+        }
+        fetchGoal();
+    }, [])
+
+    return goal;
+}
+
+
+
+async function CreateGoal(goal) {
+    try {
         const response = await fetch(apiUrl, {
             method: "POST",
-            headers: { Accept : "application/json, */*",
-            "Content-Type": 'application/json'
+            headers: {
+                Accept: "application/json, */*",
+                "Content-Type": 'application/json'
             },
             body: JSON.stringify({
-               'week': goal.week,
-               'achieved': goal.achieved,
-               'accountId': goal.accountId
+                'week': goal.week,
+                'achieved': goal.achieved,
+                'accountId': goal.accountId
             }),
         });
-        if(!response.ok){
+        if (!response.ok) {
             throw new Error("Could not create goal")
         }
         const data = await response.json();
         console.log(data)
     }
-    catch(error) {
+    catch (error) {
         console.log(error)
         console.log(goal)
     }
 }
 
+async function AddWorkoutsToGoal(id, workoutidlist) {
+    const putWorkoutsInGoal = async () => {
 
-async function AddWorkoutsToGoal (workoutidlist, id ){
-    try{
-        const response = await fetch(apiUrl + "/" + id, {
-        method:"PUT",
-        headers: { Accept: "application/json, */*",
-            "Content-Type": 'application/json'
-        },
-        body: JSON.stringify({
-            workoutId: workoutidlist
-        })
-    })
-    if(!response.ok){
-        throw new Error("Could not put exercise in workout")
-    }
-    const data = await response.json();
-    return [null, data]
-    }
-    catch(error) {
-        return [error.message, []]
-    }
+        const requestOptions = {
+            method: "PUT",
+            headers: {
+                Accept: "application/json, */*",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(
+                workoutidlist
+            ),
+        }
+        await fetch("https://apimefit.azurewebsites.net/api/goals/"+id, requestOptions)
+    };
+    putWorkoutsInGoal();
 }
 
 
 
 const goalfuncs = {
     FetchGoals,
-    AddWorkoutsToGoal
+    CreateGoal,
+    AddWorkoutsToGoal,
+    FetchGoal,
+    FetchGoalByUserAndWeek
 }
 
 export default goalfuncs;

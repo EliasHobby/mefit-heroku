@@ -5,7 +5,7 @@ import '../App.css';
 import programFuncs from "../utils/TrainingProgramContext"
 import workoutFuncs from "../utils/WorkoutContext"
 import { NavLink } from "react-router-dom";
-import BigButton from "../components/Buttons/BigButton";
+import AddProgramToGoal from "../components/AddWorkoutToGoal/AddProgramToGoal";
 
 
 // Page of all programs, Catalogue of programs for user
@@ -41,8 +41,12 @@ const Programs = () => {
                     <Card>
                       <DisplayCard element={program} type="program"></DisplayCard>
                     </Card>
-                    <BigButton name={"Add Program To Goal"} 
-                    message={"You have added this Program to your Weekly Goal!"}></BigButton>
+                    
+                    <AddProgramToGoal name={"Add Program To Goal"} 
+                    message={"You have added this Program to your Weekly Goal!"}
+                    ProgramId = {index+1}
+                    ></AddProgramToGoal>
+
                   </Grid>
               ))}                  
               
