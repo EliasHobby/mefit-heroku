@@ -13,12 +13,6 @@ const AddWorkoutToGoal = ({ name, message, WorkoutId }) => {
     //GET CURRENT GOAL
     const currentGoal = goalfuncs.FetchGoalByUserAndWeek(user.id, thisWeek);
 
-
-    //GET CURRENT GOAL ID
-    function GetGoalId() {
-        return currentGoal.id;
-    }
-
     //CHECK IF A GOAL EXISTS FOR THE CURRENT WEEK
     function GoalExist() {
         if(currentGoal===undefined){
@@ -50,7 +44,7 @@ const AddWorkoutToGoal = ({ name, message, WorkoutId }) => {
         let arr = new Array();
         arr.push(WorkoutId)
 
-        const goalId = GetGoalId()
+        const goalId = currentGoal.id;
         goalfuncs.AddWorkoutsToGoal(goalId, arr)
     }
 
