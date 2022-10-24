@@ -27,11 +27,6 @@ export function AddExerciseForm () {
       });
   }
 
-  // handleClickChange () {
-  //     alert("exercise added")      
-  //     // Updating state of exercise
-  //     exerciseFuncs.CreateExercise(exercise)
-  // }
 
   return (
     <Box

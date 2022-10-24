@@ -6,6 +6,7 @@ import { useState } from 'react';
 import {Button} from '@mui/material';
 import programFuncs from '../../utils/TrainingProgramContext'
 import { NavLink } from 'react-router-dom';
+//Asd
 
 const AddProgramForm = () =>  {
   const [ trainingProgram, setTrainingProgram] = useState({
@@ -81,8 +82,11 @@ const AddProgramForm = () =>  {
         />
 
 
+
+
+
         <Button variant="contained" component={NavLink} to="/contributors/TrainingProgram/addWorkoutInProgram"  onClick={() => programFuncs.CreateTrainingProgram(trainingProgram)}>
-            Add Workouts
+            Create New program
             </Button>
 
           </form>

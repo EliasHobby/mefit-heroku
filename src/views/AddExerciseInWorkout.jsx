@@ -13,6 +13,8 @@ import { NavLink } from "react-router-dom";
 import workoutFuncs from "../utils/WorkoutContext";
 import { useState } from "react";
 
+//Asd
+
 //Catalogue of all exercises in database
 const ExercisesInWorkout = () => {
   //Fetch for all exercises

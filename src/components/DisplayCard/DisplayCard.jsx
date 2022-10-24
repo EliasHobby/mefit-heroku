@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
+//Asd
 
 const DisplayCard = ({ element, type }) => {
   return (
