@@ -11,6 +11,7 @@ import {
 import exerciseFuncs from "../utils/ExerciseContext";
 import { NavLink } from "react-router-dom";
 import { positions } from '@mui/system';
+//Asd
 
 //Catalogue of all exercises in database
 const DeleteExercise = () => {

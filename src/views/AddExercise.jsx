@@ -1,5 +1,6 @@
 import AddExerciseForm from "../components/Forms/AddExerciseForm";
 import { Button, Card, CardContent } from "@mui/material";
+//Asd
 
 // View component for adding a new exercise. 
 const AddExercise = () => {

@@ -6,6 +6,7 @@ import { useState } from 'react';
 import {Button} from '@mui/material';
 import programFuncs from '../../utils/TrainingProgramContext'
 import { NavLink } from 'react-router-dom';
+//Asd
 
 const AddProgramForm = () =>  {
   const [ trainingProgram, setTrainingProgram] = useState({
@@ -81,11 +82,6 @@ const AddProgramForm = () =>  {
         />
 
 
-        <TextField
-          id="outlined-required"
-          name= "exe"
-          value={trainingProgram.name + "   " + trainingProgram.description + "   "+ trainingProgram.image+ "   " + trainingProgram.category}
-        />
 
 
 

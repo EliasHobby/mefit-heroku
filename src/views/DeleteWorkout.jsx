@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import workoutFuncs from "../utils/WorkoutContext";
+//Asd
 
 //Catalogue of all Workouts that can be deleted
 const DeleteWorkouts = () => {
