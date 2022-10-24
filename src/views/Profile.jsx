@@ -21,10 +21,31 @@ const Profile = () => {
     }
 
     const contributorRequest = () => {
-        localStorage.setItem("Request", JSON.stringify(user.id))
+        alert("You have sent a request to be a contributor")
+
+        // Update localstorage
+        user.contributor = true;
+        localStorage.setItem("user", JSON.stringify(user))
+
+        // Patch the user in the database
+        const patchUser = async () => {
+
+            const patchRequestOptions = {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+
+                },
+                body: JSON.stringify({
+                    'contributor': user.contributor
+                }),
+            }
+            // HTTP Patch the user
+            fetch("https://apimefit.azurewebsites.net/api/Accounts/" + user.id, patchRequestOptions)
+        }
+        patchUser();
     }
 
-    const userData = localStorage.getItem(user)
     return (
         <>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -65,7 +86,7 @@ const Profile = () => {
                     </Box>
                 </Box>
                 <Box mb={5}>
-                <Button variant="contained" sx={{ height: 40 }} onClick={() => contributorRequest()}>Send a request to be a Contributor</Button>
+                    <Button variant="contained" sx={{ height: 40 }} onClick={() => contributorRequest()}>Send a request to be a Contributor</Button>
                 </Box>
             </Card>
         </>
