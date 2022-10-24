@@ -1,6 +1,7 @@
 import '../App.css';
 import { Grid, Typography, CircularProgress, Card } from "@mui/material";
 import exerciseFuncs from "../utils/ExerciseContext"
+//Asd
 
 const Exercisepage = () => {
 

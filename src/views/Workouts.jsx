@@ -28,10 +28,10 @@ const Workouts = () => {
                     <Grid item xs={4} mb={4} key={index}>
                         <DisplayCard element={workout} id={index} type="workout" />
 
-                        <AddWorkoutToGoal name={"Add Workout To Goal"} 
+                        {/* <AddWorkoutToGoal name={"Add Workout To Goal"} 
                         message={"You have added this Workout to your Weekly Goal!"}
                         WorkoutId = {index+1}
-                        ></AddWorkoutToGoal>
+                        ></AddWorkoutToGoal> */}
 
                     </Grid>
                 ))}

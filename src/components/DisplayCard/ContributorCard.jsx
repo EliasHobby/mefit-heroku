@@ -5,6 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import { NavLink } from 'react-router-dom';
+//Asd
 
 const ContributorCard = ({img, title}) => {
 
@@ -21,7 +22,7 @@ const ContributorCard = ({img, title}) => {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {title}
+          Add {title}
         </Typography>
         <Typography variant="body2" color="text.secondary"sx={{
               overflow: 'hidden',
@@ -30,7 +31,7 @@ const ContributorCard = ({img, title}) => {
               WebkitLineClamp: '3',
               WebkitBoxOrient: 'vertical',
             }}>
-          Here you can create {title} and edit {title}
+          Here you can Create {title} and Delete {title}
         </Typography>
       </CardContent>
       </CardActionArea>

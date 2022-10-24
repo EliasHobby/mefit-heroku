@@ -3,6 +3,7 @@ import '../App.css';
 import { Grid, CircularProgress } from "@mui/material";
 import exerciseFuncs from "../utils/ExerciseContext";
 
+//Asd
 
 //Catalogue of all exercises in database
 const Exercises = () => {

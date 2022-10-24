@@ -7,6 +7,7 @@ import workoutFuncs from "../utils/WorkoutContext"
 import { NavLink } from "react-router-dom";
 import AddProgramToGoal from "../components/AddWorkoutToGoal/AddProgramToGoal";
 
+//Asd
 
 // Page of all programs, Catalogue of programs for user
 const Programs = () => {
@@ -30,15 +31,6 @@ const Programs = () => {
       </>
   }
 
-  // <ul>{data.workoutId.map((x) => <li>{funcs.FetchWorkout(x).name}</li>)}</ul>
-
-  //const listex = data.map((program, index) => <li>{funcs.FetchExercise(program.workoutId[index])}</li>)
-
-  // const listOfEx = data.workoutId.map((x) => <li>{x}</li>)
-
-  // for (let x in data.workoutId){
-  //   console.log(funcs.FetchWorkout(x).name)
-  // }
 
   return (
       <>
