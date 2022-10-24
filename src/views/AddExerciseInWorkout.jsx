@@ -19,15 +19,17 @@ import { useState } from "react";
 const ExercisesInWorkout = () => {
   //Fetch for all exercises
   const data = exerciseFuncs.FetchExercises();
-  const workoutsData = workoutFuncs.FetchWorkouts();
-  const listOfIds = []
+   const workoutsData = workoutFuncs.FetchWorkouts();
+
+
+  const [listOfIds, setListOfIds] = useState([]);
 
   function handleClick() {
     //amount of workouts in database
     console.log(listOfIds)
-    console.log(data[data.length-1].id)
-    // workoutFuncs.AddExerciseInWorkout(Object.keys(workoutsData).length, listOfIds);
-    alert("Exercises added to list");
+    console.log(Object.keys(workoutsData).length)
+    workoutFuncs.AddExerciseInWorkout(Object.keys(workoutsData).length, listOfIds);
+    alert("ExerciseId added to list");
   }
 
   //Check if data is received from database
@@ -50,7 +52,7 @@ const ExercisesInWorkout = () => {
 
   return (
     <>
-      <h1>Add exercises to workout</h1>
+      <h1>Choose exercises to add</h1>
       <Button
         component={NavLink}
         to="/workouts"
@@ -65,17 +67,13 @@ const ExercisesInWorkout = () => {
         {data.map((exercise, index) => (
           <Grid item xs={4} mb={4} key={index}>
             <CardActionArea
-              onClick={() =>{
-                listOfIds.push(exercise.id);
-                console.log(listOfIds);
-                console.log(Object.keys(workoutsData)[-1]);
-              }
-
+              onClick={() =>
+                listOfIds.push(exercise.id)
               }
             >
               <AddExerciseToWorkoutCard
                 element={exercise}
-                id={exercise.id}
+                id={index}
                 type="exercise"
               />
             </CardActionArea>

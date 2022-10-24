@@ -16,16 +16,20 @@ const Programpage = () => {
     console.log(data)
 
     //Data for the exercises in the selected workout
-    const workoutsData = programFuncs.FetchWorkoutsInProgram(programId);
-    console.log(workoutsData)
+    const workoutsData = programFuncs.FetchWorkoutsInProgram(1);
+    console.log("abc:" + workoutsData)
+    //List to hold specific data for the workout
+    const list = []
+
+    // for (const x of dato){
+    //     list.push(x.name)
+    // }            Lista all id's  <Typography><ul>Workouts:  {data.workoutId.map((x) => <li>{x}</li>)} </ul> </Typography>
 
 
+    // console.log(list)
 
 
-
-
-
-    if ( data === undefined) {
+    if (workoutsData === undefined) {
         return <>
             <Grid
                 container
@@ -40,28 +44,14 @@ const Programpage = () => {
             <>Fetching training programs...</>
         </>
     }
-    if ( workoutsData === undefined) {
-        return <>
-            <Grid
-                container
-                spacing={0}
-                direction="column"
-                alignItems="center"
-                justifyContent="center"
-                style={{ minHeight: '80vh' }}
-            >
-                <CircularProgress />
-            </Grid>
-            <>Fetching workouts in training program...</>
-        </>
-    }
+
     return (
         <>
             <h1>Program  {data.id } :  {data.name }</h1>
             <Card>
             <img src={data.image} alt="program.pic" />
-            <Typography variant="h5">Program Category : {data.category}</Typography>
-            <Typography variant="h5">Program Description : {data.description} </Typography>
+            <Typography variant="h5">Type: {data.category}</Typography>
+            <Typography variant="h5">Workout description:</Typography>
             <Grid container spacing={2} >
 
             {workoutsData.map((workout, index) => (

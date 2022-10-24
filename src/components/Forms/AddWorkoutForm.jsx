@@ -37,6 +37,7 @@ export function AddWorkoutForm () {
 
     function AddWorkoutHandler(){
       workoutFuncs.CreateWorkout(workout)
+      alert('Add exercise')
     }
 
 
@@ -52,7 +53,7 @@ export function AddWorkoutForm () {
     >
 
       <div>
-        <form >
+        <form>
         <TextField
           required
           onChange = {handleChange}
@@ -61,7 +62,7 @@ export function AddWorkoutForm () {
           name="name"
           value= {workout.name}
         />
-        <TextField 
+        <TextField
           required
           onChange = {handleChange}
           id="outlined-required"
@@ -102,6 +103,12 @@ export function AddWorkoutForm () {
           </Select>
         </FormControl> */}
 
+        />
+        <TextField
+          id="outlined-required"
+          name= "exe"
+          value={workout.name + "   " + workout.type + "   "+ workout.image+ "   " + workout.day}
+        />
 
 
 

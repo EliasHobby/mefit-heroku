@@ -29,7 +29,7 @@ const Exercisepage = () => {
         <>
         <Card>
             <h1>{data.name}</h1>
-            <img src={data.image} alt="Exercise.Picture" />
+            <img src={data.image} alt="workout" />
             <Typography>{data.description}</Typography>
         </Card>
         </>
