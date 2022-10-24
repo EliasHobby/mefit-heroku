@@ -6,6 +6,8 @@ import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import WorkoutList from '../WorkoutList/WorkoutList'
+import { useState, useEffect } from 'react';
+import goalfuncs from '../../utils/GoalContext';
 
 
 const Accordion = styled((props) => (
@@ -51,6 +53,16 @@ export default function CustomizedAccordions() {
     setExpanded(newExpanded ? panel : false);
   };
 
+  const [workoutsInGoal, setWorkouts] = useState([]);
+  const goal = (goalfuncs.FetchAllWorkoutsInGoal(2));
+
+  useEffect(() => {
+    if (goal && goal !== null) {
+
+      setWorkouts(goal)
+    }
+  }, [goal])
+
   return (
     <div>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
@@ -59,7 +71,7 @@ export default function CustomizedAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <WorkoutList weekday={"Monday"} />
+            <WorkoutList weekday={"Monday"} workoutsInGoal={workoutsInGoal} />
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -69,7 +81,7 @@ export default function CustomizedAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <WorkoutList weekday={"Tuesday"} />
+            <WorkoutList weekday={"Tuesday"} workoutsInGoal={workoutsInGoal} />
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -79,7 +91,7 @@ export default function CustomizedAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <WorkoutList weekday={"Wednesday"} />
+            <WorkoutList weekday={"Wednesday"} workoutsInGoal={workoutsInGoal} />
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -89,7 +101,7 @@ export default function CustomizedAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <WorkoutList weekday={"Thursday"} />
+            <WorkoutList weekday={"Thursday"} workoutsInGoal={workoutsInGoal} />
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -99,7 +111,7 @@ export default function CustomizedAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <WorkoutList weekday={"Friday"} />
+            <WorkoutList weekday={"Friday"} workoutsInGoal={workoutsInGoal} />
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -109,7 +121,7 @@ export default function CustomizedAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <WorkoutList weekday={"Saturday"} />
+            <WorkoutList weekday={"Saturday"} workoutsInGoal={workoutsInGoal} />
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -119,7 +131,7 @@ export default function CustomizedAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <WorkoutList weekday={"Sunday"} />
+            <WorkoutList weekday={"Sunday"} workoutsInGoal={workoutsInGoal} />
           </Typography>
         </AccordionDetails>
       </Accordion>
