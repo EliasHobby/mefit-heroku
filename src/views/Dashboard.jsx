@@ -73,14 +73,6 @@ const Dashboard = () => {
                         </Box>
                     </Card>
                 </Card>
-
-                <Grid container spacing={2} >
-                    {workoutsInGoal.map((workout, index) => (
-                        <Grid item xs={4} mb={4} key={index}>
-                            <DisplayCard element={workout} id={index} type="workout" />
-                        </Grid>
-                    ))}
-                </Grid>
             </>
         )
     }
