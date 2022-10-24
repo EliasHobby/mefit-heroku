@@ -59,7 +59,7 @@ export default function CustomizedAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <WorkoutList />
+            <WorkoutList weekday={"Monday"} />
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -69,7 +69,7 @@ export default function CustomizedAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-          <WorkoutList />
+            <WorkoutList weekday={"Tuesday"} />
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -79,7 +79,7 @@ export default function CustomizedAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-          <WorkoutList />
+            <WorkoutList weekday={"Wednesday"} />
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -89,7 +89,7 @@ export default function CustomizedAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-          <WorkoutList />
+            <WorkoutList weekday={"Thursday"} />
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -99,7 +99,17 @@ export default function CustomizedAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-          <WorkoutList />
+            <WorkoutList weekday={"Friday"} />
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion expanded={expanded === 'panel7'} onChange={handleChange('panel7')}>
+        <AccordionSummary aria-controls="panel7d-content" id="panel7d-header">
+          <Typography>Saturday</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            <WorkoutList weekday={"Saturday"} />
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -109,7 +119,7 @@ export default function CustomizedAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-          <WorkoutList />
+            <WorkoutList weekday={"Sunday"} />
           </Typography>
         </AccordionDetails>
       </Accordion>
