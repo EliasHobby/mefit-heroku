@@ -13,22 +13,26 @@ import { NavLink } from "react-router-dom";
 import workoutFuncs from "../utils/WorkoutContext";
 import { useState } from "react";
 import programFuncs from "../utils/TrainingProgramContext";
-//Asd
 
 //Catalogue of all exercises in database
 const AddWorkoutsInTrainingProgram = () => {
-  //Fetch for all workouts that can be added to program
+  //Fetch for all workouts that can be added to program, gets displayed in cards
    const data = workoutFuncs.FetchWorkouts();
+
+   //Fetch for all programs
    const programData = programFuncs.FetchTrainingPrograms();    
 
-
+  //list of workout Id's to be added to the newly created trainingprogram
   const [listOfIds, setListOfIds] = useState([]);
 
   function handleClick() {
     //amount of workouts in database
     console.log(listOfIds)
-    console.log(Object.keys(programData).length)
-    programFuncs.AddWorkoutsToProgram(Object.keys(programData).length, listOfIds);
+    //Ads workouts to the newly created program
+    console.log(programData.pop().id)
+
+    //adds workouts to program
+    programFuncs.AddWorkoutsToProgram(programData.pop().id +2 , listOfIds);
     alert("Workouts added to Program");
   }
 
@@ -52,7 +56,7 @@ const AddWorkoutsInTrainingProgram = () => {
 
   return (
     <>
-      <h1>Choose exercises to add</h1>
+      <h1>Choose workouts to add</h1>
       <Button
         component={NavLink}
         to="/programs"
@@ -60,15 +64,18 @@ const AddWorkoutsInTrainingProgram = () => {
         variant="contained"
         onClick={handleClick}
       >
-        Add exercises to workout
+        Add workouts to program
       </Button>
 
       <Grid container spacing={2}>
         {data.map((workout, index) => (
           <Grid item xs={4} mb={4} key={index}>
             <CardActionArea
-              onClick={() =>
-                listOfIds.push(workout.id)
+              onClick={() =>{
+                //pushes id to the list
+                listOfIds.push(workout.id);
+                console.log(listOfIds)
+              }
               }
             >
               <AddExerciseToWorkoutCard

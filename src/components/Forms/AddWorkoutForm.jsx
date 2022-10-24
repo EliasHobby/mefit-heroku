@@ -11,9 +11,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 
-//Asd
 
-
+// Component for adding workouts for contributors
 export function AddWorkoutForm () {
     const [ workout, setWorkout] = useState({
     name: "",
@@ -83,7 +82,7 @@ export function AddWorkoutForm () {
         />
 
 
-        {/* <FormControl  fullWidth>
+        <FormControl  fullWidth>
           <InputLabel id="Day-to-execute-dropdown">Select for executing workout</InputLabel>
           <Select
             onChange={handleChange}
@@ -101,14 +100,8 @@ export function AddWorkoutForm () {
             <MenuItem value={"Saturday"}>Saturday</MenuItem>
             <MenuItem value={"Sunday"}>Sunday</MenuItem>
           </Select>
-        </FormControl> */}
+        </FormControl>
 
-        />
-        <TextField
-          id="outlined-required"
-          name= "exe"
-          value={workout.name + "   " + workout.type + "   "+ workout.image+ "   " + workout.day}
-        />
 
 
 

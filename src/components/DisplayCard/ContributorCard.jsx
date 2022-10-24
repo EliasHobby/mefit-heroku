@@ -22,7 +22,7 @@ const ContributorCard = ({img, title}) => {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {title}
+          Add {title}
         </Typography>
         <Typography variant="body2" color="text.secondary"sx={{
               overflow: 'hidden',

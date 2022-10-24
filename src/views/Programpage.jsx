@@ -16,19 +16,27 @@ const Programpage = () => {
     console.log(data)
 
     //Data for the exercises in the selected workout
-    const workoutsData = programFuncs.FetchWorkoutsInProgram(1);
-    console.log("abc:" + workoutsData)
+    const workoutsData = programFuncs.FetchWorkoutsInProgram(programId);
     //List to hold specific data for the workout
-    const list = []
-
-    // for (const x of dato){
-    //     list.push(x.name)
-    // }            Lista all id's  <Typography><ul>Workouts:  {data.workoutId.map((x) => <li>{x}</li>)} </ul> </Typography>
 
 
-    // console.log(list)
 
 
+    if (data === undefined) {
+        return <>
+            <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
+                style={{ minHeight: '80vh' }}
+            >
+                <CircularProgress />
+            </Grid>
+            <>Fetching training programs...</>
+        </>
+    }
     if (workoutsData === undefined) {
         return <>
             <Grid
