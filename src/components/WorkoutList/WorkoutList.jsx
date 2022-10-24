@@ -7,11 +7,12 @@ import Checkbox from '@mui/material/Checkbox';
 import { useState, useEffect } from 'react';
 import goalfuncs from '../../utils/GoalContext';
 
-export default function CheckboxListSecondary(weekday) {
+export default function CheckboxListSecondary({ weekday }) {
   const [checked, setChecked] = React.useState([1]);
 
   const [workoutsInGoal, setWorkouts] = useState([]);
   const goal = (goalfuncs.FetchAllWorkoutsInGoal(2));
+  console.log(weekday)
 
   useEffect(() => {
     if (goal && goal !== null) {
@@ -46,7 +47,6 @@ export default function CheckboxListSecondary(weekday) {
       switch (workoutsInGoal[i].day) {
         case "Monday":
           arrMon.push(workoutsInGoal[i].name)
-          console.log(arrMon)
           break;
         case "Tuesday":
           arrTue.push(workoutsInGoal[i].name)
@@ -77,9 +77,9 @@ export default function CheckboxListSecondary(weekday) {
 
   return (
     <>
-      {weekday === "Monday" &&
-        <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-          {[0, 1, 2].map((value) => {
+      <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+        {weekday === "Monday" &&
+          arrMon.map((value) => {
             const labelId = `checkbox-list-secondary-label-${value}`;
             return (
               <ListItem
@@ -95,13 +95,14 @@ export default function CheckboxListSecondary(weekday) {
                 disablePadding
               >
                 <ListItemButton>
-                  <ListItemText id={labelId} primary="Horse" />
+                  <ListItemText id={labelId} primary={value} />
                 </ListItemButton>
               </ListItem>
             );
-          })}
-        </List>
-      }
+          })
+        }
+
+      </List>
       {weekday === "Tuesday" &&
         <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
           {arrTue.map((value) => {
@@ -120,7 +121,7 @@ export default function CheckboxListSecondary(weekday) {
                 disablePadding
               >
                 <ListItemButton>
-                  <ListItemText id={labelId} primary={`${value + 1}. Workout`} />
+                  <ListItemText id={labelId} primary={value} />
                 </ListItemButton>
               </ListItem>
             );
@@ -145,7 +146,7 @@ export default function CheckboxListSecondary(weekday) {
                 disablePadding
               >
                 <ListItemButton>
-                  <ListItemText id={labelId} primary={`${value + 1}. Workout`} />
+                  <ListItemText id={labelId} primary={value} />
                 </ListItemButton>
               </ListItem>
             );
@@ -170,7 +171,7 @@ export default function CheckboxListSecondary(weekday) {
                 disablePadding
               >
                 <ListItemButton>
-                  <ListItemText id={labelId} primary={`${value + 1}. Workout`} />
+                  <ListItemText id={labelId} primary={value} />
                 </ListItemButton>
               </ListItem>
             );
@@ -195,7 +196,7 @@ export default function CheckboxListSecondary(weekday) {
                 disablePadding
               >
                 <ListItemButton>
-                  <ListItemText id={labelId} primary={`${value + 1}. Workout`} />
+                  <ListItemText id={labelId} primary={value} />
                 </ListItemButton>
               </ListItem>
             );
@@ -220,7 +221,7 @@ export default function CheckboxListSecondary(weekday) {
                 disablePadding
               >
                 <ListItemButton>
-                  <ListItemText id={labelId} primary={`${value + 1}. Workout`} />
+                  <ListItemText id={labelId} primary={value} />
                 </ListItemButton>
               </ListItem>
             );
@@ -245,7 +246,7 @@ export default function CheckboxListSecondary(weekday) {
                 disablePadding
               >
                 <ListItemButton>
-                  <ListItemText id={labelId} primary={`${value + 1}. Workout`} />
+                  <ListItemText id={labelId} primary={value} />
                 </ListItemButton>
               </ListItem>
             );
