@@ -52,7 +52,7 @@ const AddWorkoutToGoal = ({ name, message, WorkoutId }) => {
 
     return (
         <>
-            <Card textAlign='center'>
+            <Card textalign='center'>
 
                 <Button fullWidth="true" onClick={() => AddWorkoutToGoal(message, WorkoutId)}
                     variant="outlined">

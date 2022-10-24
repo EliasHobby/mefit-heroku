@@ -58,7 +58,7 @@ function FetchGoal(id) {
 }
 
 
-function FetchGoalByUserAndWeek(id, week) {
+async function FetchGoalByUserAndWeek(id, week) {
     const [goal, setData] = useState()
 
     useEffect(() => {
@@ -149,7 +149,7 @@ async function AddWorkoutsToGoal(id, workoutidlist) {
                 workoutidlist
             ),
         }
-        await fetch("https://apimefit.azurewebsites.net/api/goals/"+id, requestOptions)
+        await fetch("https://apimefit.azurewebsites.net/api/goals/" + id, requestOptions)
     };
     putWorkoutsInGoal();
 }

@@ -251,7 +251,7 @@ const ResponsiveAppBar = () => {
                     </MenuItem>
                   ))}
                   <MenuItem>
-                    <Button textAlign="center" style={{ textDecoration: 'none' }} onClick={() => handleLogout()}>Logout</Button>
+                    <Button textalign="center" style={{ textDecoration: 'none' }} onClick={() => handleLogout()}>Logout</Button>
                   </MenuItem>
                 </Menu>
               </Box>

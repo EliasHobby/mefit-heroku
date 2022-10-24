@@ -13,7 +13,7 @@ const Exercises = () => {
     //Check if data is received from database
     if (data === undefined) {
         return <>
-        <Grid
+            <Grid
                 container
                 spacing={0}
                 direction="column"
