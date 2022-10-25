@@ -85,7 +85,7 @@ export default function CustomizedAccordions() {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
+      <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
         <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
           <Typography>Wednesday</Typography>
         </AccordionSummary>
@@ -95,7 +95,7 @@ export default function CustomizedAccordions() {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
+      <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
         <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
           <Typography>Thursday</Typography>
         </AccordionSummary>
@@ -105,7 +105,7 @@ export default function CustomizedAccordions() {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion expanded={expanded === 'panel6'} onChange={handleChange('panel6')}>
+      <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
         <AccordionSummary aria-controls="panel6d-content" id="panel6d-header">
           <Typography>Friday</Typography>
         </AccordionSummary>
@@ -115,7 +115,7 @@ export default function CustomizedAccordions() {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion expanded={expanded === 'panel7'} onChange={handleChange('panel7')}>
+      <Accordion expanded={expanded === 'panel6'} onChange={handleChange('panel6')}>
         <AccordionSummary aria-controls="panel7d-content" id="panel7d-header">
           <Typography>Saturday</Typography>
         </AccordionSummary>
