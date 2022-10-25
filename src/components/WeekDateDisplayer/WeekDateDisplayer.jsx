@@ -6,7 +6,7 @@ import { Typography, Box, IconButton } from "@mui/material";
 const WeekDateDisplayer = () => {
 
     //Get the current day
-    const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const d = new Date();
     let day = weekday[d.getDay()];
     let daynumber = d.getDay();
@@ -76,11 +76,11 @@ const WeekDateDisplayer = () => {
             <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'baseline', mb: '2rem' }}>
                 <Typography variant="h4">Week {weekKey}</Typography>
             </Box>
-            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'baseline', mb: '0.5rem'}}>
+            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'baseline', mb: '0.5rem' }}>
                 <Typography variant="h5">{day}</Typography>
             </Box>
-            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'baseline', mb: '2rem'}}>
-                <Typography variant="h7">You have {7 - daynumber} days left to achieve your weekly goal.</Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'baseline', mb: '2rem' }}>
+                <Typography variant="h7">You have {8 - daynumber} days left to achieve your weekly goal.</Typography>
             </Box>
 
 
